@@ -36,7 +36,7 @@ type Product struct {
 	Length        float32                `protobuf:"fixed32,9,opt,name=length,proto3" json:"length,omitempty"`
 	Width         float32                `protobuf:"fixed32,10,opt,name=width,proto3" json:"width,omitempty"`
 	Storeid       string                 `protobuf:"bytes,11,opt,name=storeid,proto3" json:"storeid,omitempty"`
-	Galeries      []*Galery              `protobuf:"bytes,12,rep,name=galeries,proto3" json:"galeries,omitempty"`
+	Galeries      []*Productgalery       `protobuf:"bytes,12,rep,name=galeries,proto3" json:"galeries,omitempty"`
 	Brands        []*Brand               `protobuf:"bytes,13,rep,name=brands,proto3" json:"brands,omitempty"`
 	Categories    []*Productcategory     `protobuf:"bytes,14,rep,name=categories,proto3" json:"categories,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -150,7 +150,7 @@ func (x *Product) GetStoreid() string {
 	return ""
 }
 
-func (x *Product) GetGaleries() []*Galery {
+func (x *Product) GetGaleries() []*Productgalery {
 	if x != nil {
 		return x.Galeries
 	}
@@ -179,7 +179,7 @@ type ProductList struct {
 	Price         float64                `protobuf:"fixed64,4,opt,name=price,proto3" json:"price,omitempty"`
 	Stock         int32                  `protobuf:"varint,5,opt,name=stock,proto3" json:"stock,omitempty"`
 	Storeid       string                 `protobuf:"bytes,6,opt,name=storeid,proto3" json:"storeid,omitempty"`
-	Galeries      []*Galery              `protobuf:"bytes,7,rep,name=galeries,proto3" json:"galeries,omitempty"`
+	Galeries      []*Productgalery       `protobuf:"bytes,7,rep,name=galeries,proto3" json:"galeries,omitempty"`
 	Brands        []*Brand               `protobuf:"bytes,8,rep,name=brands,proto3" json:"brands,omitempty"`
 	Categories    []*Productcategory     `protobuf:"bytes,9,rep,name=categories,proto3" json:"categories,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -258,7 +258,7 @@ func (x *ProductList) GetStoreid() string {
 	return ""
 }
 
-func (x *ProductList) GetGaleries() []*Galery {
+func (x *ProductList) GetGaleries() []*Productgalery {
 	if x != nil {
 		return x.Galeries
 	}
@@ -803,7 +803,7 @@ var File_product_proto protoreflect.FileDescriptor
 
 const file_product_proto_rawDesc = "" +
 	"\n" +
-	"\rproduct.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\fgalery.proto\x1a\vbrand.proto\x1a\x15productcategory.proto\"\x95\x04\n" +
+	"\rproduct.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x13productgalery.proto\x1a\vbrand.proto\x1a\x15productcategory.proto\"\x9c\x04\n" +
 	"\aProduct\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x182R\x04name\x12,\n" +
@@ -823,13 +823,13 @@ const file_product_proto_rawDesc = "" +
 	" \x01(\x02B\x0f\xbaH\f\n" +
 	"\n" +
 	"\x1d\x00\x00\xc8B-\x00\x00\x00\x00R\x05width\x12\"\n" +
-	"\astoreid\x18\v \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreid\x12'\n" +
-	"\bgaleries\x18\f \x03(\v2\v.cat.GaleryR\bgaleries\x12\"\n" +
+	"\astoreid\x18\v \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreid\x12.\n" +
+	"\bgaleries\x18\f \x03(\v2\x12.cat.ProductgaleryR\bgaleries\x12\"\n" +
 	"\x06brands\x18\r \x03(\v2\n" +
 	".cat.BrandR\x06brands\x124\n" +
 	"\n" +
 	"categories\x18\x0e \x03(\v2\x14.cat.ProductcategoryR\n" +
-	"categories\"\xe0\x02\n" +
+	"categories\"\xe7\x02\n" +
 	"\vProductList\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1d\n" +
 	"\x04name\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x182R\x04name\x12,\n" +
@@ -837,8 +837,8 @@ const file_product_proto_rawDesc = "" +
 	"\xbaH\ar\x05\x10\x01\x18\xf4\x03R\vdescription\x12$\n" +
 	"\x05price\x18\x04 \x01(\x01B\x0e\xbaH\v\x12\t)\x00\x00\x00\x00\x00\x00\x00\x00R\x05price\x12\x1d\n" +
 	"\x05stock\x18\x05 \x01(\x05B\a\xbaH\x04\x1a\x02(\x00R\x05stock\x12\"\n" +
-	"\astoreid\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreid\x12'\n" +
-	"\bgaleries\x18\a \x03(\v2\v.cat.GaleryR\bgaleries\x12\"\n" +
+	"\astoreid\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreid\x12.\n" +
+	"\bgaleries\x18\a \x03(\v2\x12.cat.ProductgaleryR\bgaleries\x12\"\n" +
 	"\x06brands\x18\b \x03(\v2\n" +
 	".cat.BrandR\x06brands\x124\n" +
 	"\n" +
@@ -908,15 +908,15 @@ var file_product_proto_goTypes = []any{
 	(*SearchProductsByStoreIDResponse)(nil), // 9: cat.SearchProductsByStoreIDResponse
 	(*GetProductByIDRequest)(nil),           // 10: cat.GetProductByIDRequest
 	(*GetProductByIDResponse)(nil),          // 11: cat.GetProductByIDResponse
-	(*Galery)(nil),                          // 12: cat.Galery
+	(*Productgalery)(nil),                   // 12: cat.Productgalery
 	(*Brand)(nil),                           // 13: cat.Brand
 	(*Productcategory)(nil),                 // 14: cat.Productcategory
 }
 var file_product_proto_depIdxs = []int32{
-	12, // 0: cat.Product.galeries:type_name -> cat.Galery
+	12, // 0: cat.Product.galeries:type_name -> cat.Productgalery
 	13, // 1: cat.Product.brands:type_name -> cat.Brand
 	14, // 2: cat.Product.categories:type_name -> cat.Productcategory
-	12, // 3: cat.ProductList.galeries:type_name -> cat.Galery
+	12, // 3: cat.ProductList.galeries:type_name -> cat.Productgalery
 	13, // 4: cat.ProductList.brands:type_name -> cat.Brand
 	14, // 5: cat.ProductList.categories:type_name -> cat.Productcategory
 	1,  // 6: cat.GetProductsByIDsResponse.products:type_name -> cat.ProductList
@@ -946,7 +946,7 @@ func file_product_proto_init() {
 	if File_product_proto != nil {
 		return
 	}
-	file_galery_proto_init()
+	file_productgalery_proto_init()
 	file_brand_proto_init()
 	file_productcategory_proto_init()
 	type x struct{}

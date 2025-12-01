@@ -32,6 +32,7 @@ type Store struct {
 	Addresses     []*Address             `protobuf:"bytes,5,rep,name=addresses,proto3" json:"addresses,omitempty"`
 	Products      []*Product             `protobuf:"bytes,6,rep,name=products,proto3" json:"products,omitempty"`
 	Categories    []*Storecategory       `protobuf:"bytes,7,rep,name=categories,proto3" json:"categories,omitempty"`
+	Galeries      []*Storegalery         `protobuf:"bytes,8,rep,name=galeries,proto3" json:"galeries,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -111,6 +112,13 @@ func (x *Store) GetProducts() []*Product {
 func (x *Store) GetCategories() []*Storecategory {
 	if x != nil {
 		return x.Categories
+	}
+	return nil
+}
+
+func (x *Store) GetGaleries() []*Storegalery {
+	if x != nil {
+		return x.Galeries
 	}
 	return nil
 }
@@ -231,7 +239,7 @@ var File_store_proto protoreflect.FileDescriptor
 
 const file_store_proto_rawDesc = "" +
 	"\n" +
-	"\vstore.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\raddress.proto\x1a\x0esupplier.proto\x1a\x13storecategory.proto\x1a\rproduct.proto\"\xa1\x02\n" +
+	"\vstore.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\raddress.proto\x1a\x0esupplier.proto\x1a\x13storecategory.proto\x1a\rproduct.proto\x1a\x11storegalery.proto\"\xcf\x02\n" +
 	"\x05Store\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1f\n" +
 	"\x05title\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x05title\x12(\n" +
@@ -243,7 +251,8 @@ const file_store_proto_rawDesc = "" +
 	"\bproducts\x18\x06 \x03(\v2\f.cat.ProductR\bproducts\x122\n" +
 	"\n" +
 	"categories\x18\a \x03(\v2\x12.cat.StorecategoryR\n" +
-	"categories\"}\n" +
+	"categories\x12,\n" +
+	"\bgaleries\x18\b \x03(\v2\x10.cat.StoregaleryR\bgaleries\"}\n" +
 	"\x18SearchStoreByNameRequest\x12\x1f\n" +
 	"\x05query\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x182R\x05query\x12\x1f\n" +
 	"\x06offset\x18\x02 \x01(\x05B\a\xbaH\x04\x1a\x02(\x00R\x06offset\x12\x1f\n" +
@@ -278,20 +287,22 @@ var file_store_proto_goTypes = []any{
 	(*Address)(nil),                   // 4: cat.Address
 	(*Product)(nil),                   // 5: cat.Product
 	(*Storecategory)(nil),             // 6: cat.Storecategory
+	(*Storegalery)(nil),               // 7: cat.Storegalery
 }
 var file_store_proto_depIdxs = []int32{
 	3, // 0: cat.Store.supplier:type_name -> cat.Supplier
 	4, // 1: cat.Store.addresses:type_name -> cat.Address
 	5, // 2: cat.Store.products:type_name -> cat.Product
 	6, // 3: cat.Store.categories:type_name -> cat.Storecategory
-	0, // 4: cat.SearchStoreByNameResponse.stores:type_name -> cat.Store
-	1, // 5: cat.StoreService.SearchStoreByName:input_type -> cat.SearchStoreByNameRequest
-	2, // 6: cat.StoreService.SearchStoreByName:output_type -> cat.SearchStoreByNameResponse
-	6, // [6:7] is the sub-list for method output_type
-	5, // [5:6] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	7, // 4: cat.Store.galeries:type_name -> cat.Storegalery
+	0, // 5: cat.SearchStoreByNameResponse.stores:type_name -> cat.Store
+	1, // 6: cat.StoreService.SearchStoreByName:input_type -> cat.SearchStoreByNameRequest
+	2, // 7: cat.StoreService.SearchStoreByName:output_type -> cat.SearchStoreByNameResponse
+	7, // [7:8] is the sub-list for method output_type
+	6, // [6:7] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_store_proto_init() }
@@ -303,6 +314,7 @@ func file_store_proto_init() {
 	file_supplier_proto_init()
 	file_storecategory_proto_init()
 	file_product_proto_init()
+	file_storegalery_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
