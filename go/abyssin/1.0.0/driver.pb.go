@@ -320,7 +320,7 @@ const file_driver_proto_rawDesc = "" +
 	"\bresponse\x18\x01 \x01(\x05R\bresponse2\xa6\x02\n" +
 	"\rDriverService\x12U\n" +
 	"\tLeaveZone\x12\x15.cat.LeaveZoneRequest\x1a\x16.cat.LeaveZoneResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/abyssin/leave\x12Z\n" +
-	"\bJoinZone\x12\x14.cat.JoinZoneRequest\x1a\x14.cat.JoinZoneRespone\"\"\x82\xd3\xe4\x93\x02\x1c\x12\x1a/v1/abyssin/join/{zone_id}\x12b\n" +
+	"\bJoinZone\x12\x14.cat.JoinZoneRequest\x1a\x14.cat.JoinZoneRespone\"\"\x82\xd3\xe4\x93\x02\x1c\"\x1a/v1/abyssin/join/{zone_id}\x12b\n" +
 	"\fUpdateStatus\x12\x18.cat.UpdateStatusRequest\x1a\x19.cat.UpdateStatusResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/abyssin/statusBQ\n" +
 	"\acom.catB\vDriverProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
