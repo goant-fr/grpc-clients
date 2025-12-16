@@ -25,14 +25,11 @@ const (
 
 type Address struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Addressline1  string                 `protobuf:"bytes,2,opt,name=addressline1,proto3" json:"addressline1,omitempty"`
-	Addressline2  string                 `protobuf:"bytes,3,opt,name=addressline2,proto3" json:"addressline2,omitempty"`
-	Postalcode    string                 `protobuf:"bytes,4,opt,name=postalcode,proto3" json:"postalcode,omitempty"`
-	Country       string                 `protobuf:"bytes,5,opt,name=country,proto3" json:"country,omitempty"`
-	Zoneid        string                 `protobuf:"bytes,6,opt,name=zoneid,proto3" json:"zoneid,omitempty"`
-	City          string                 `protobuf:"bytes,7,opt,name=city,proto3" json:"city,omitempty"`
-	Storeid       string                 `protobuf:"bytes,8,opt,name=storeid,proto3" json:"storeid,omitempty"`
+	Label         string                 `protobuf:"bytes,3,opt,name=label,proto3" json:"label,omitempty"`
+	City          string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
+	PostalCode    string                 `protobuf:"bytes,5,opt,name=postal_code,json=postalCode,proto3" json:"postal_code,omitempty"`
+	X             float64                `protobuf:"fixed64,6,opt,name=x,proto3" json:"x,omitempty"`
+	Y             float64                `protobuf:"fixed64,7,opt,name=y,proto3" json:"y,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -67,44 +64,9 @@ func (*Address) Descriptor() ([]byte, []int) {
 	return file_address_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Address) GetId() string {
+func (x *Address) GetLabel() string {
 	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Address) GetAddressline1() string {
-	if x != nil {
-		return x.Addressline1
-	}
-	return ""
-}
-
-func (x *Address) GetAddressline2() string {
-	if x != nil {
-		return x.Addressline2
-	}
-	return ""
-}
-
-func (x *Address) GetPostalcode() string {
-	if x != nil {
-		return x.Postalcode
-	}
-	return ""
-}
-
-func (x *Address) GetCountry() string {
-	if x != nil {
-		return x.Country
-	}
-	return ""
-}
-
-func (x *Address) GetZoneid() string {
-	if x != nil {
-		return x.Zoneid
+		return x.Label
 	}
 	return ""
 }
@@ -116,30 +78,40 @@ func (x *Address) GetCity() string {
 	return ""
 }
 
-func (x *Address) GetStoreid() string {
+func (x *Address) GetPostalCode() string {
 	if x != nil {
-		return x.Storeid
+		return x.PostalCode
 	}
 	return ""
+}
+
+func (x *Address) GetX() float64 {
+	if x != nil {
+		return x.X
+	}
+	return 0
+}
+
+func (x *Address) GetY() float64 {
+	if x != nil {
+		return x.Y
+	}
+	return 0
 }
 
 var File_address_proto protoreflect.FileDescriptor
 
 const file_address_proto_rawDesc = "" +
 	"\n" +
-	"\raddress.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xb6\x02\n" +
-	"\aAddress\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12-\n" +
-	"\faddressline1\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\faddressline1\x12-\n" +
-	"\faddressline2\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\faddressline2\x12)\n" +
-	"\n" +
-	"postalcode\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x05\x18\n" +
-	"R\n" +
-	"postalcode\x12#\n" +
-	"\acountry\x18\x05 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18\x14R\acountry\x12 \n" +
-	"\x06zoneid\x18\x06 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06zoneid\x12\x1d\n" +
-	"\x04city\x18\a \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18\x14R\x04city\x12\"\n" +
-	"\astoreid\x18\b \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreidBR\n" +
+	"\raddress.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\x92\x01\n" +
+	"\aAddress\x12 \n" +
+	"\x05label\x18\x03 \x01(\tB\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05label\x12\x1d\n" +
+	"\x04city\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x04city\x12*\n" +
+	"\vpostal_code\x18\x05 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18\x14R\n" +
+	"postalCode\x12\f\n" +
+	"\x01x\x18\x06 \x01(\x01R\x01x\x12\f\n" +
+	"\x01y\x18\a \x01(\x01R\x01yBR\n" +
 	"\acom.catB\fAddressProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
