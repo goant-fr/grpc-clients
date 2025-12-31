@@ -620,7 +620,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\x04user\x1a\raddress.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xc2\x01\n" +
+	"user.proto\x12\vsphinx.user\x1a\raddress.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xc2\x01\n" +
 	"\x04User\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
@@ -631,38 +631,37 @@ const file_user_proto_rawDesc = "" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x03 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
-	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"J\n" +
-	"\x11UpdateUserRequest\x125\n" +
-	"\x04user\x18\x01 \x01(\v2\x19.user.PersonalInformationB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
+	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"Q\n" +
+	"\x11UpdateUserRequest\x12<\n" +
+	"\x04user\x18\x01 \x01(\v2 .sphinx.user.PersonalInformationB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
 	"\x12UpdateUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x17\n" +
-	"\x15GetUserByTokenRequest\"G\n" +
-	"\x16GetUserByTokenResponse\x12-\n" +
-	"\x04user\x18\x01 \x01(\v2\x19.user.PersonalInformationR\x04user\"o\n" +
+	"\x15GetUserByTokenRequest\"N\n" +
+	"\x16GetUserByTokenResponse\x124\n" +
+	"\x04user\x18\x01 \x01(\v2 .sphinx.user.PersonalInformationR\x04user\"o\n" +
 	"\x15UpdatePasswordRequest\x12+\n" +
 	"\flastPassword\x18\x01 \x01(\tB\a\xbaH\x04r\x02\x10\bR\flastPassword\x12)\n" +
 	"\vnewPassword\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\bR\vnewPassword\".\n" +
 	"\x16UpdatePasswordResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\";\n" +
-	"\x11CreateUserRequest\x12&\n" +
-	"\x04user\x18\x01 \x01(\v2\n" +
-	".user.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"B\n" +
+	"\x11CreateUserRequest\x12-\n" +
+	"\x04user\x18\x01 \x01(\v2\x11.sphinx.user.UserB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
 	"\x12CreateUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"[\n" +
 	"\x17AuthenticateUserRequest\x12\x1b\n" +
 	"\x04mail\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12#\n" +
 	"\bpassword\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\"0\n" +
 	"\x18AuthenticateUserResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token2\x8c\x04\n" +
-	"\vUserService\x12X\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token2\xd3\x04\n" +
+	"\vUserService\x12f\n" +
 	"\n" +
-	"CreateUser\x12\x17.user.CreateUserRequest\x1a\x18.user.CreateUserResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x04user\"\t/v1/users\x12t\n" +
-	"\x10AuthenticateUser\x12\x1d.user.AuthenticateUserRequest\x1a\x1e.user.AuthenticateUserResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/users/authenticate\x12a\n" +
-	"\x0eGetUserByToken\x12\x1b.user.GetUserByTokenRequest\x1a\x1c.user.GetUserByTokenResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/users/me\x12[\n" +
+	"CreateUser\x12\x1e.sphinx.user.CreateUserRequest\x1a\x1f.sphinx.user.CreateUserResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x04user\"\t/v1/users\x12\x82\x01\n" +
+	"\x10AuthenticateUser\x12$.sphinx.user.AuthenticateUserRequest\x1a%.sphinx.user.AuthenticateUserResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/users/authenticate\x12o\n" +
+	"\x0eGetUserByToken\x12\".sphinx.user.GetUserByTokenRequest\x1a#.sphinx.user.GetUserByTokenResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/users/me\x12i\n" +
 	"\n" +
-	"UpdateUser\x12\x17.user.UpdateUserRequest\x1a\x18.user.UpdateUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x04user\x1a\f/v1/users/me\x12m\n" +
-	"\x0eUpdatePassword\x12\x1b.user.UpdatePasswordRequest\x1a\x1c.user.UpdatePasswordResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/users/me/passwordBT\n" +
-	"\bcom.userB\tUserProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03UXX\xaa\x02\x04User\xca\x02\x04User\xe2\x02\x10User\\GPBMetadata\xea\x02\x04Userb\x06proto3"
+	"UpdateUser\x12\x1e.sphinx.user.UpdateUserRequest\x1a\x1f.sphinx.user.UpdateUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x04user\x1a\f/v1/users/me\x12{\n" +
+	"\x0eUpdatePassword\x12\".sphinx.user.UpdatePasswordRequest\x1a#.sphinx.user.UpdatePasswordResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/users/me/passwordBx\n" +
+	"\x0fcom.sphinx.userB\tUserProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03SUX\xaa\x02\vSphinx.User\xca\x02\vSphinx\\User\xe2\x02\x17Sphinx\\User\\GPBMetadata\xea\x02\fSphinx::Userb\x06proto3"
 
 var (
 	file_user_proto_rawDescOnce sync.Once
@@ -678,33 +677,33 @@ func file_user_proto_rawDescGZIP() []byte {
 
 var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
 var file_user_proto_goTypes = []any{
-	(*User)(nil),                     // 0: user.User
-	(*PersonalInformation)(nil),      // 1: user.PersonalInformation
-	(*UpdateUserRequest)(nil),        // 2: user.UpdateUserRequest
-	(*UpdateUserResponse)(nil),       // 3: user.UpdateUserResponse
-	(*GetUserByTokenRequest)(nil),    // 4: user.GetUserByTokenRequest
-	(*GetUserByTokenResponse)(nil),   // 5: user.GetUserByTokenResponse
-	(*UpdatePasswordRequest)(nil),    // 6: user.UpdatePasswordRequest
-	(*UpdatePasswordResponse)(nil),   // 7: user.UpdatePasswordResponse
-	(*CreateUserRequest)(nil),        // 8: user.CreateUserRequest
-	(*CreateUserResponse)(nil),       // 9: user.CreateUserResponse
-	(*AuthenticateUserRequest)(nil),  // 10: user.AuthenticateUserRequest
-	(*AuthenticateUserResponse)(nil), // 11: user.AuthenticateUserResponse
+	(*User)(nil),                     // 0: sphinx.user.User
+	(*PersonalInformation)(nil),      // 1: sphinx.user.PersonalInformation
+	(*UpdateUserRequest)(nil),        // 2: sphinx.user.UpdateUserRequest
+	(*UpdateUserResponse)(nil),       // 3: sphinx.user.UpdateUserResponse
+	(*GetUserByTokenRequest)(nil),    // 4: sphinx.user.GetUserByTokenRequest
+	(*GetUserByTokenResponse)(nil),   // 5: sphinx.user.GetUserByTokenResponse
+	(*UpdatePasswordRequest)(nil),    // 6: sphinx.user.UpdatePasswordRequest
+	(*UpdatePasswordResponse)(nil),   // 7: sphinx.user.UpdatePasswordResponse
+	(*CreateUserRequest)(nil),        // 8: sphinx.user.CreateUserRequest
+	(*CreateUserResponse)(nil),       // 9: sphinx.user.CreateUserResponse
+	(*AuthenticateUserRequest)(nil),  // 10: sphinx.user.AuthenticateUserRequest
+	(*AuthenticateUserResponse)(nil), // 11: sphinx.user.AuthenticateUserResponse
 }
 var file_user_proto_depIdxs = []int32{
-	1,  // 0: user.UpdateUserRequest.user:type_name -> user.PersonalInformation
-	1,  // 1: user.GetUserByTokenResponse.user:type_name -> user.PersonalInformation
-	0,  // 2: user.CreateUserRequest.user:type_name -> user.User
-	8,  // 3: user.UserService.CreateUser:input_type -> user.CreateUserRequest
-	10, // 4: user.UserService.AuthenticateUser:input_type -> user.AuthenticateUserRequest
-	4,  // 5: user.UserService.GetUserByToken:input_type -> user.GetUserByTokenRequest
-	2,  // 6: user.UserService.UpdateUser:input_type -> user.UpdateUserRequest
-	6,  // 7: user.UserService.UpdatePassword:input_type -> user.UpdatePasswordRequest
-	9,  // 8: user.UserService.CreateUser:output_type -> user.CreateUserResponse
-	11, // 9: user.UserService.AuthenticateUser:output_type -> user.AuthenticateUserResponse
-	5,  // 10: user.UserService.GetUserByToken:output_type -> user.GetUserByTokenResponse
-	3,  // 11: user.UserService.UpdateUser:output_type -> user.UpdateUserResponse
-	7,  // 12: user.UserService.UpdatePassword:output_type -> user.UpdatePasswordResponse
+	1,  // 0: sphinx.user.UpdateUserRequest.user:type_name -> sphinx.user.PersonalInformation
+	1,  // 1: sphinx.user.GetUserByTokenResponse.user:type_name -> sphinx.user.PersonalInformation
+	0,  // 2: sphinx.user.CreateUserRequest.user:type_name -> sphinx.user.User
+	8,  // 3: sphinx.user.UserService.CreateUser:input_type -> sphinx.user.CreateUserRequest
+	10, // 4: sphinx.user.UserService.AuthenticateUser:input_type -> sphinx.user.AuthenticateUserRequest
+	4,  // 5: sphinx.user.UserService.GetUserByToken:input_type -> sphinx.user.GetUserByTokenRequest
+	2,  // 6: sphinx.user.UserService.UpdateUser:input_type -> sphinx.user.UpdateUserRequest
+	6,  // 7: sphinx.user.UserService.UpdatePassword:input_type -> sphinx.user.UpdatePasswordRequest
+	9,  // 8: sphinx.user.UserService.CreateUser:output_type -> sphinx.user.CreateUserResponse
+	11, // 9: sphinx.user.UserService.AuthenticateUser:output_type -> sphinx.user.AuthenticateUserResponse
+	5,  // 10: sphinx.user.UserService.GetUserByToken:output_type -> sphinx.user.GetUserByTokenResponse
+	3,  // 11: sphinx.user.UserService.UpdateUser:output_type -> sphinx.user.UpdateUserResponse
+	7,  // 12: sphinx.user.UserService.UpdatePassword:output_type -> sphinx.user.UpdatePasswordResponse
 	8,  // [8:13] is the sub-list for method output_type
 	3,  // [3:8] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name

@@ -747,7 +747,7 @@ var File_address_proto protoreflect.FileDescriptor
 
 const file_address_proto_rawDesc = "" +
 	"\n" +
-	"\raddress.proto\x12\aaddress\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"[\n" +
+	"\raddress.proto\x12\x0esphinx.address\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"[\n" +
 	"\vListAddress\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12&\n" +
@@ -765,11 +765,11 @@ const file_address_proto_rawDesc = "" +
 	"\x01y\x18\a \x01(\x01R\x01y\"\x1c\n" +
 	"\x1aGetAddressesByTokenRequest\"1\n" +
 	"\x15GetAddressByIDRequest\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"D\n" +
-	"\x16GetAddressByIDResponse\x12*\n" +
-	"\aaddress\x18\x01 \x01(\v2\x10.address.AddressR\aaddress\"Q\n" +
-	"\x1bGetAddressesByTokenResponse\x122\n" +
-	"\taddresses\x18\x01 \x03(\v2\x14.address.ListAddressR\taddresses\"\x90\x01\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"K\n" +
+	"\x16GetAddressByIDResponse\x121\n" +
+	"\aaddress\x18\x01 \x01(\v2\x17.sphinx.address.AddressR\aaddress\"X\n" +
+	"\x1bGetAddressesByTokenResponse\x129\n" +
+	"\taddresses\x18\x01 \x03(\v2\x1b.sphinx.address.ListAddressR\taddresses\"\x90\x01\n" +
 	"\x14UpdateAddressRequest\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
 	"\x05title\x18\x02 \x01(\tB\n" +
@@ -792,17 +792,17 @@ const file_address_proto_rawDesc = "" +
 	"\x15GetAddressInfoRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12'\n" +
 	"\n" +
-	"address_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\taddressId\"D\n" +
-	"\x16GetAddressInfoResponse\x12*\n" +
-	"\aaddress\x18\x01 \x01(\v2\x10.address.AddressR\aaddress2\xae\x05\n" +
-	"\x0eAddressService\x12}\n" +
-	"\x13GetAddressesByToken\x12#.address.GetAddressesByTokenRequest\x1a$.address.GetAddressesByTokenResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/users/addresses\x12s\n" +
-	"\x0eGetAddressByID\x12\x1e.address.GetAddressByIDRequest\x1a\x1f.address.GetAddressByIDResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/users/addresses/{id}\x12n\n" +
-	"\rCreateAddress\x12\x1d.address.CreateAddressRequest\x1a\x1e.address.CreateAddressResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/users/addresses\x12s\n" +
-	"\rUpdateAddress\x12\x1d.address.UpdateAddressRequest\x1a\x1e.address.UpdateAddressResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\x1a\x18/v1/users/addresses/{id}\x12p\n" +
-	"\rDeleteAddress\x12\x1d.address.DeleteAddressRequest\x1a\x1e.address.DeleteAddressResponse\" \x82\xd3\xe4\x93\x02\x1a*\x18/v1/users/addresses/{id}\x12Q\n" +
-	"\x0eGetAddressInfo\x12\x1e.address.GetAddressInfoRequest\x1a\x1f.address.GetAddressInfoResponseBf\n" +
-	"\vcom.addressB\fAddressProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03AXX\xaa\x02\aAddress\xca\x02\aAddress\xe2\x02\x13Address\\GPBMetadata\xea\x02\aAddressb\x06proto3"
+	"address_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\taddressId\"K\n" +
+	"\x16GetAddressInfoResponse\x121\n" +
+	"\aaddress\x18\x01 \x01(\v2\x17.sphinx.address.AddressR\aaddress2\x85\x06\n" +
+	"\x0eAddressService\x12\x8b\x01\n" +
+	"\x13GetAddressesByToken\x12*.sphinx.address.GetAddressesByTokenRequest\x1a+.sphinx.address.GetAddressesByTokenResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/users/addresses\x12\x81\x01\n" +
+	"\x0eGetAddressByID\x12%.sphinx.address.GetAddressByIDRequest\x1a&.sphinx.address.GetAddressByIDResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/users/addresses/{id}\x12|\n" +
+	"\rCreateAddress\x12$.sphinx.address.CreateAddressRequest\x1a%.sphinx.address.CreateAddressResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/users/addresses\x12\x81\x01\n" +
+	"\rUpdateAddress\x12$.sphinx.address.UpdateAddressRequest\x1a%.sphinx.address.UpdateAddressResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\x1a\x18/v1/users/addresses/{id}\x12~\n" +
+	"\rDeleteAddress\x12$.sphinx.address.DeleteAddressRequest\x1a%.sphinx.address.DeleteAddressResponse\" \x82\xd3\xe4\x93\x02\x1a*\x18/v1/users/addresses/{id}\x12_\n" +
+	"\x0eGetAddressInfo\x12%.sphinx.address.GetAddressInfoRequest\x1a&.sphinx.address.GetAddressInfoResponseB\x8a\x01\n" +
+	"\x12com.sphinx.addressB\fAddressProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03SAX\xaa\x02\x0eSphinx.Address\xca\x02\x0eSphinx\\Address\xe2\x02\x1aSphinx\\Address\\GPBMetadata\xea\x02\x0fSphinx::Addressb\x06proto3"
 
 var (
 	file_address_proto_rawDescOnce sync.Once
@@ -818,37 +818,37 @@ func file_address_proto_rawDescGZIP() []byte {
 
 var file_address_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_address_proto_goTypes = []any{
-	(*ListAddress)(nil),                 // 0: address.ListAddress
-	(*Address)(nil),                     // 1: address.Address
-	(*GetAddressesByTokenRequest)(nil),  // 2: address.GetAddressesByTokenRequest
-	(*GetAddressByIDRequest)(nil),       // 3: address.GetAddressByIDRequest
-	(*GetAddressByIDResponse)(nil),      // 4: address.GetAddressByIDResponse
-	(*GetAddressesByTokenResponse)(nil), // 5: address.GetAddressesByTokenResponse
-	(*UpdateAddressRequest)(nil),        // 6: address.UpdateAddressRequest
-	(*UpdateAddressResponse)(nil),       // 7: address.UpdateAddressResponse
-	(*CreateAddressRequest)(nil),        // 8: address.CreateAddressRequest
-	(*CreateAddressResponse)(nil),       // 9: address.CreateAddressResponse
-	(*DeleteAddressRequest)(nil),        // 10: address.DeleteAddressRequest
-	(*DeleteAddressResponse)(nil),       // 11: address.DeleteAddressResponse
-	(*GetAddressInfoRequest)(nil),       // 12: address.GetAddressInfoRequest
-	(*GetAddressInfoResponse)(nil),      // 13: address.GetAddressInfoResponse
+	(*ListAddress)(nil),                 // 0: sphinx.address.ListAddress
+	(*Address)(nil),                     // 1: sphinx.address.Address
+	(*GetAddressesByTokenRequest)(nil),  // 2: sphinx.address.GetAddressesByTokenRequest
+	(*GetAddressByIDRequest)(nil),       // 3: sphinx.address.GetAddressByIDRequest
+	(*GetAddressByIDResponse)(nil),      // 4: sphinx.address.GetAddressByIDResponse
+	(*GetAddressesByTokenResponse)(nil), // 5: sphinx.address.GetAddressesByTokenResponse
+	(*UpdateAddressRequest)(nil),        // 6: sphinx.address.UpdateAddressRequest
+	(*UpdateAddressResponse)(nil),       // 7: sphinx.address.UpdateAddressResponse
+	(*CreateAddressRequest)(nil),        // 8: sphinx.address.CreateAddressRequest
+	(*CreateAddressResponse)(nil),       // 9: sphinx.address.CreateAddressResponse
+	(*DeleteAddressRequest)(nil),        // 10: sphinx.address.DeleteAddressRequest
+	(*DeleteAddressResponse)(nil),       // 11: sphinx.address.DeleteAddressResponse
+	(*GetAddressInfoRequest)(nil),       // 12: sphinx.address.GetAddressInfoRequest
+	(*GetAddressInfoResponse)(nil),      // 13: sphinx.address.GetAddressInfoResponse
 }
 var file_address_proto_depIdxs = []int32{
-	1,  // 0: address.GetAddressByIDResponse.address:type_name -> address.Address
-	0,  // 1: address.GetAddressesByTokenResponse.addresses:type_name -> address.ListAddress
-	1,  // 2: address.GetAddressInfoResponse.address:type_name -> address.Address
-	2,  // 3: address.AddressService.GetAddressesByToken:input_type -> address.GetAddressesByTokenRequest
-	3,  // 4: address.AddressService.GetAddressByID:input_type -> address.GetAddressByIDRequest
-	8,  // 5: address.AddressService.CreateAddress:input_type -> address.CreateAddressRequest
-	6,  // 6: address.AddressService.UpdateAddress:input_type -> address.UpdateAddressRequest
-	10, // 7: address.AddressService.DeleteAddress:input_type -> address.DeleteAddressRequest
-	12, // 8: address.AddressService.GetAddressInfo:input_type -> address.GetAddressInfoRequest
-	5,  // 9: address.AddressService.GetAddressesByToken:output_type -> address.GetAddressesByTokenResponse
-	4,  // 10: address.AddressService.GetAddressByID:output_type -> address.GetAddressByIDResponse
-	9,  // 11: address.AddressService.CreateAddress:output_type -> address.CreateAddressResponse
-	7,  // 12: address.AddressService.UpdateAddress:output_type -> address.UpdateAddressResponse
-	11, // 13: address.AddressService.DeleteAddress:output_type -> address.DeleteAddressResponse
-	13, // 14: address.AddressService.GetAddressInfo:output_type -> address.GetAddressInfoResponse
+	1,  // 0: sphinx.address.GetAddressByIDResponse.address:type_name -> sphinx.address.Address
+	0,  // 1: sphinx.address.GetAddressesByTokenResponse.addresses:type_name -> sphinx.address.ListAddress
+	1,  // 2: sphinx.address.GetAddressInfoResponse.address:type_name -> sphinx.address.Address
+	2,  // 3: sphinx.address.AddressService.GetAddressesByToken:input_type -> sphinx.address.GetAddressesByTokenRequest
+	3,  // 4: sphinx.address.AddressService.GetAddressByID:input_type -> sphinx.address.GetAddressByIDRequest
+	8,  // 5: sphinx.address.AddressService.CreateAddress:input_type -> sphinx.address.CreateAddressRequest
+	6,  // 6: sphinx.address.AddressService.UpdateAddress:input_type -> sphinx.address.UpdateAddressRequest
+	10, // 7: sphinx.address.AddressService.DeleteAddress:input_type -> sphinx.address.DeleteAddressRequest
+	12, // 8: sphinx.address.AddressService.GetAddressInfo:input_type -> sphinx.address.GetAddressInfoRequest
+	5,  // 9: sphinx.address.AddressService.GetAddressesByToken:output_type -> sphinx.address.GetAddressesByTokenResponse
+	4,  // 10: sphinx.address.AddressService.GetAddressByID:output_type -> sphinx.address.GetAddressByIDResponse
+	9,  // 11: sphinx.address.AddressService.CreateAddress:output_type -> sphinx.address.CreateAddressResponse
+	7,  // 12: sphinx.address.AddressService.UpdateAddress:output_type -> sphinx.address.UpdateAddressResponse
+	11, // 13: sphinx.address.AddressService.DeleteAddress:output_type -> sphinx.address.DeleteAddressResponse
+	13, // 14: sphinx.address.AddressService.GetAddressInfo:output_type -> sphinx.address.GetAddressInfoResponse
 	9,  // [9:15] is the sub-list for method output_type
 	3,  // [3:9] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name

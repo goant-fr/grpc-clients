@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_CreateUser_FullMethodName       = "/user.UserService/CreateUser"
-	UserService_AuthenticateUser_FullMethodName = "/user.UserService/AuthenticateUser"
-	UserService_GetUserByToken_FullMethodName   = "/user.UserService/GetUserByToken"
-	UserService_UpdateUser_FullMethodName       = "/user.UserService/UpdateUser"
-	UserService_UpdatePassword_FullMethodName   = "/user.UserService/UpdatePassword"
+	UserService_CreateUser_FullMethodName       = "/sphinx.user.UserService/CreateUser"
+	UserService_AuthenticateUser_FullMethodName = "/sphinx.user.UserService/AuthenticateUser"
+	UserService_GetUserByToken_FullMethodName   = "/sphinx.user.UserService/GetUserByToken"
+	UserService_UpdateUser_FullMethodName       = "/sphinx.user.UserService/UpdateUser"
+	UserService_UpdatePassword_FullMethodName   = "/sphinx.user.UserService/UpdatePassword"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -244,7 +244,7 @@ func _UserService_UpdatePassword_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var UserService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "user.UserService",
+	ServiceName: "sphinx.user.UserService",
 	HandlerType: (*UserServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

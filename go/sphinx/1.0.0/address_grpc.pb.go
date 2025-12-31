@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AddressService_GetAddressesByToken_FullMethodName = "/address.AddressService/GetAddressesByToken"
-	AddressService_GetAddressByID_FullMethodName      = "/address.AddressService/GetAddressByID"
-	AddressService_CreateAddress_FullMethodName       = "/address.AddressService/CreateAddress"
-	AddressService_UpdateAddress_FullMethodName       = "/address.AddressService/UpdateAddress"
-	AddressService_DeleteAddress_FullMethodName       = "/address.AddressService/DeleteAddress"
-	AddressService_GetAddressInfo_FullMethodName      = "/address.AddressService/GetAddressInfo"
+	AddressService_GetAddressesByToken_FullMethodName = "/sphinx.address.AddressService/GetAddressesByToken"
+	AddressService_GetAddressByID_FullMethodName      = "/sphinx.address.AddressService/GetAddressByID"
+	AddressService_CreateAddress_FullMethodName       = "/sphinx.address.AddressService/CreateAddress"
+	AddressService_UpdateAddress_FullMethodName       = "/sphinx.address.AddressService/UpdateAddress"
+	AddressService_DeleteAddress_FullMethodName       = "/sphinx.address.AddressService/DeleteAddress"
+	AddressService_GetAddressInfo_FullMethodName      = "/sphinx.address.AddressService/GetAddressInfo"
 )
 
 // AddressServiceClient is the client API for AddressService service.
@@ -278,7 +278,7 @@ func _AddressService_GetAddressInfo_Handler(srv interface{}, ctx context.Context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AddressService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "address.AddressService",
+	ServiceName: "sphinx.address.AddressService",
 	HandlerType: (*AddressServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
