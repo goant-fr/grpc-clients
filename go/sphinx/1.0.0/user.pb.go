@@ -620,7 +620,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\vsphinx.user\x1a\raddress.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xc2\x01\n" +
+	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xc2\x01\n" +
 	"\x04User\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
@@ -716,7 +716,7 @@ func file_user_proto_init() {
 	if File_user_proto != nil {
 		return
 	}
-	file_address_proto_init()
+	file_user_address_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

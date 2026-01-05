@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             (unknown)
-// source: address.proto
+// source: user_address.proto
 
 package pb
 
@@ -19,12 +19,12 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AddressService_GetAddressesByToken_FullMethodName = "/sphinx.address.AddressService/GetAddressesByToken"
-	AddressService_GetAddressByID_FullMethodName      = "/sphinx.address.AddressService/GetAddressByID"
-	AddressService_CreateAddress_FullMethodName       = "/sphinx.address.AddressService/CreateAddress"
-	AddressService_UpdateAddress_FullMethodName       = "/sphinx.address.AddressService/UpdateAddress"
-	AddressService_DeleteAddress_FullMethodName       = "/sphinx.address.AddressService/DeleteAddress"
-	AddressService_GetAddressInfo_FullMethodName      = "/sphinx.address.AddressService/GetAddressInfo"
+	AddressService_GetAddressesByToken_FullMethodName = "/user_address.AddressService/GetAddressesByToken"
+	AddressService_GetAddressByID_FullMethodName      = "/user_address.AddressService/GetAddressByID"
+	AddressService_CreateAddress_FullMethodName       = "/user_address.AddressService/CreateAddress"
+	AddressService_UpdateAddress_FullMethodName       = "/user_address.AddressService/UpdateAddress"
+	AddressService_DeleteAddress_FullMethodName       = "/user_address.AddressService/DeleteAddress"
+	AddressService_GetAddressInfo_FullMethodName      = "/user_address.AddressService/GetAddressInfo"
 )
 
 // AddressServiceClient is the client API for AddressService service.
@@ -278,7 +278,7 @@ func _AddressService_GetAddressInfo_Handler(srv interface{}, ctx context.Context
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var AddressService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "sphinx.address.AddressService",
+	ServiceName: "user_address.AddressService",
 	HandlerType: (*AddressServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -307,5 +307,5 @@ var AddressService_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "address.proto",
+	Metadata: "user_address.proto",
 }

@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: address.proto
+// source: user_address.proto
 
 package pb
 
@@ -34,7 +34,7 @@ type ListAddress struct {
 
 func (x *ListAddress) Reset() {
 	*x = ListAddress{}
-	mi := &file_address_proto_msgTypes[0]
+	mi := &file_user_address_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -46,7 +46,7 @@ func (x *ListAddress) String() string {
 func (*ListAddress) ProtoMessage() {}
 
 func (x *ListAddress) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[0]
+	mi := &file_user_address_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -59,7 +59,7 @@ func (x *ListAddress) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ListAddress.ProtoReflect.Descriptor instead.
 func (*ListAddress) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{0}
+	return file_user_address_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *ListAddress) GetId() string {
@@ -98,7 +98,7 @@ type Address struct {
 
 func (x *Address) Reset() {
 	*x = Address{}
-	mi := &file_address_proto_msgTypes[1]
+	mi := &file_user_address_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -110,7 +110,7 @@ func (x *Address) String() string {
 func (*Address) ProtoMessage() {}
 
 func (x *Address) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[1]
+	mi := &file_user_address_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,7 +123,7 @@ func (x *Address) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Address.ProtoReflect.Descriptor instead.
 func (*Address) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{1}
+	return file_user_address_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Address) GetTitle() string {
@@ -183,7 +183,7 @@ type GetAddressesByTokenRequest struct {
 
 func (x *GetAddressesByTokenRequest) Reset() {
 	*x = GetAddressesByTokenRequest{}
-	mi := &file_address_proto_msgTypes[2]
+	mi := &file_user_address_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -195,7 +195,7 @@ func (x *GetAddressesByTokenRequest) String() string {
 func (*GetAddressesByTokenRequest) ProtoMessage() {}
 
 func (x *GetAddressesByTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[2]
+	mi := &file_user_address_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -208,7 +208,7 @@ func (x *GetAddressesByTokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressesByTokenRequest.ProtoReflect.Descriptor instead.
 func (*GetAddressesByTokenRequest) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{2}
+	return file_user_address_proto_rawDescGZIP(), []int{2}
 }
 
 type GetAddressByIDRequest struct {
@@ -220,7 +220,7 @@ type GetAddressByIDRequest struct {
 
 func (x *GetAddressByIDRequest) Reset() {
 	*x = GetAddressByIDRequest{}
-	mi := &file_address_proto_msgTypes[3]
+	mi := &file_user_address_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -232,7 +232,7 @@ func (x *GetAddressByIDRequest) String() string {
 func (*GetAddressByIDRequest) ProtoMessage() {}
 
 func (x *GetAddressByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[3]
+	mi := &file_user_address_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -245,7 +245,7 @@ func (x *GetAddressByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetAddressByIDRequest) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{3}
+	return file_user_address_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *GetAddressByIDRequest) GetId() string {
@@ -264,7 +264,7 @@ type GetAddressByIDResponse struct {
 
 func (x *GetAddressByIDResponse) Reset() {
 	*x = GetAddressByIDResponse{}
-	mi := &file_address_proto_msgTypes[4]
+	mi := &file_user_address_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -276,7 +276,7 @@ func (x *GetAddressByIDResponse) String() string {
 func (*GetAddressByIDResponse) ProtoMessage() {}
 
 func (x *GetAddressByIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[4]
+	mi := &file_user_address_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -289,7 +289,7 @@ func (x *GetAddressByIDResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressByIDResponse.ProtoReflect.Descriptor instead.
 func (*GetAddressByIDResponse) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{4}
+	return file_user_address_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetAddressByIDResponse) GetAddress() *Address {
@@ -308,7 +308,7 @@ type GetAddressesByTokenResponse struct {
 
 func (x *GetAddressesByTokenResponse) Reset() {
 	*x = GetAddressesByTokenResponse{}
-	mi := &file_address_proto_msgTypes[5]
+	mi := &file_user_address_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -320,7 +320,7 @@ func (x *GetAddressesByTokenResponse) String() string {
 func (*GetAddressesByTokenResponse) ProtoMessage() {}
 
 func (x *GetAddressesByTokenResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[5]
+	mi := &file_user_address_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -333,7 +333,7 @@ func (x *GetAddressesByTokenResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressesByTokenResponse.ProtoReflect.Descriptor instead.
 func (*GetAddressesByTokenResponse) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{5}
+	return file_user_address_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetAddressesByTokenResponse) GetAddresses() []*ListAddress {
@@ -355,7 +355,7 @@ type UpdateAddressRequest struct {
 
 func (x *UpdateAddressRequest) Reset() {
 	*x = UpdateAddressRequest{}
-	mi := &file_address_proto_msgTypes[6]
+	mi := &file_user_address_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -367,7 +367,7 @@ func (x *UpdateAddressRequest) String() string {
 func (*UpdateAddressRequest) ProtoMessage() {}
 
 func (x *UpdateAddressRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[6]
+	mi := &file_user_address_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -380,7 +380,7 @@ func (x *UpdateAddressRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateAddressRequest.ProtoReflect.Descriptor instead.
 func (*UpdateAddressRequest) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{6}
+	return file_user_address_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UpdateAddressRequest) GetId() string {
@@ -420,7 +420,7 @@ type UpdateAddressResponse struct {
 
 func (x *UpdateAddressResponse) Reset() {
 	*x = UpdateAddressResponse{}
-	mi := &file_address_proto_msgTypes[7]
+	mi := &file_user_address_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -432,7 +432,7 @@ func (x *UpdateAddressResponse) String() string {
 func (*UpdateAddressResponse) ProtoMessage() {}
 
 func (x *UpdateAddressResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[7]
+	mi := &file_user_address_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -445,7 +445,7 @@ func (x *UpdateAddressResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateAddressResponse.ProtoReflect.Descriptor instead.
 func (*UpdateAddressResponse) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{7}
+	return file_user_address_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateAddressResponse) GetId() string {
@@ -466,7 +466,7 @@ type CreateAddressRequest struct {
 
 func (x *CreateAddressRequest) Reset() {
 	*x = CreateAddressRequest{}
-	mi := &file_address_proto_msgTypes[8]
+	mi := &file_user_address_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -478,7 +478,7 @@ func (x *CreateAddressRequest) String() string {
 func (*CreateAddressRequest) ProtoMessage() {}
 
 func (x *CreateAddressRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[8]
+	mi := &file_user_address_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -491,7 +491,7 @@ func (x *CreateAddressRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAddressRequest.ProtoReflect.Descriptor instead.
 func (*CreateAddressRequest) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{8}
+	return file_user_address_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *CreateAddressRequest) GetTitle() string {
@@ -524,7 +524,7 @@ type CreateAddressResponse struct {
 
 func (x *CreateAddressResponse) Reset() {
 	*x = CreateAddressResponse{}
-	mi := &file_address_proto_msgTypes[9]
+	mi := &file_user_address_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -536,7 +536,7 @@ func (x *CreateAddressResponse) String() string {
 func (*CreateAddressResponse) ProtoMessage() {}
 
 func (x *CreateAddressResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[9]
+	mi := &file_user_address_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -549,7 +549,7 @@ func (x *CreateAddressResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateAddressResponse.ProtoReflect.Descriptor instead.
 func (*CreateAddressResponse) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{9}
+	return file_user_address_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CreateAddressResponse) GetId() string {
@@ -568,7 +568,7 @@ type DeleteAddressRequest struct {
 
 func (x *DeleteAddressRequest) Reset() {
 	*x = DeleteAddressRequest{}
-	mi := &file_address_proto_msgTypes[10]
+	mi := &file_user_address_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -580,7 +580,7 @@ func (x *DeleteAddressRequest) String() string {
 func (*DeleteAddressRequest) ProtoMessage() {}
 
 func (x *DeleteAddressRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[10]
+	mi := &file_user_address_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -593,7 +593,7 @@ func (x *DeleteAddressRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAddressRequest.ProtoReflect.Descriptor instead.
 func (*DeleteAddressRequest) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{10}
+	return file_user_address_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *DeleteAddressRequest) GetId() string {
@@ -612,7 +612,7 @@ type DeleteAddressResponse struct {
 
 func (x *DeleteAddressResponse) Reset() {
 	*x = DeleteAddressResponse{}
-	mi := &file_address_proto_msgTypes[11]
+	mi := &file_user_address_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -624,7 +624,7 @@ func (x *DeleteAddressResponse) String() string {
 func (*DeleteAddressResponse) ProtoMessage() {}
 
 func (x *DeleteAddressResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[11]
+	mi := &file_user_address_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -637,7 +637,7 @@ func (x *DeleteAddressResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteAddressResponse.ProtoReflect.Descriptor instead.
 func (*DeleteAddressResponse) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{11}
+	return file_user_address_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *DeleteAddressResponse) GetId() string {
@@ -657,7 +657,7 @@ type GetAddressInfoRequest struct {
 
 func (x *GetAddressInfoRequest) Reset() {
 	*x = GetAddressInfoRequest{}
-	mi := &file_address_proto_msgTypes[12]
+	mi := &file_user_address_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -669,7 +669,7 @@ func (x *GetAddressInfoRequest) String() string {
 func (*GetAddressInfoRequest) ProtoMessage() {}
 
 func (x *GetAddressInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[12]
+	mi := &file_user_address_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -682,7 +682,7 @@ func (x *GetAddressInfoRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressInfoRequest.ProtoReflect.Descriptor instead.
 func (*GetAddressInfoRequest) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{12}
+	return file_user_address_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetAddressInfoRequest) GetUserId() string {
@@ -708,7 +708,7 @@ type GetAddressInfoResponse struct {
 
 func (x *GetAddressInfoResponse) Reset() {
 	*x = GetAddressInfoResponse{}
-	mi := &file_address_proto_msgTypes[13]
+	mi := &file_user_address_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -720,7 +720,7 @@ func (x *GetAddressInfoResponse) String() string {
 func (*GetAddressInfoResponse) ProtoMessage() {}
 
 func (x *GetAddressInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_address_proto_msgTypes[13]
+	mi := &file_user_address_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -733,7 +733,7 @@ func (x *GetAddressInfoResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetAddressInfoResponse.ProtoReflect.Descriptor instead.
 func (*GetAddressInfoResponse) Descriptor() ([]byte, []int) {
-	return file_address_proto_rawDescGZIP(), []int{13}
+	return file_user_address_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetAddressInfoResponse) GetAddress() *Address {
@@ -743,11 +743,11 @@ func (x *GetAddressInfoResponse) GetAddress() *Address {
 	return nil
 }
 
-var File_address_proto protoreflect.FileDescriptor
+var File_user_address_proto protoreflect.FileDescriptor
 
-const file_address_proto_rawDesc = "" +
+const file_user_address_proto_rawDesc = "" +
 	"\n" +
-	"\raddress.proto\x12\x0esphinx.address\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"[\n" +
+	"\x12user_address.proto\x12\fuser_address\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"[\n" +
 	"\vListAddress\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12&\n" +
@@ -765,11 +765,11 @@ const file_address_proto_rawDesc = "" +
 	"\x01y\x18\a \x01(\x01R\x01y\"\x1c\n" +
 	"\x1aGetAddressesByTokenRequest\"1\n" +
 	"\x15GetAddressByIDRequest\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"K\n" +
-	"\x16GetAddressByIDResponse\x121\n" +
-	"\aaddress\x18\x01 \x01(\v2\x17.sphinx.address.AddressR\aaddress\"X\n" +
-	"\x1bGetAddressesByTokenResponse\x129\n" +
-	"\taddresses\x18\x01 \x03(\v2\x1b.sphinx.address.ListAddressR\taddresses\"\x90\x01\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"I\n" +
+	"\x16GetAddressByIDResponse\x12/\n" +
+	"\aaddress\x18\x01 \x01(\v2\x15.user_address.AddressR\aaddress\"V\n" +
+	"\x1bGetAddressesByTokenResponse\x127\n" +
+	"\taddresses\x18\x01 \x03(\v2\x19.user_address.ListAddressR\taddresses\"\x90\x01\n" +
 	"\x14UpdateAddressRequest\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12 \n" +
 	"\x05title\x18\x02 \x01(\tB\n" +
@@ -792,63 +792,63 @@ const file_address_proto_rawDesc = "" +
 	"\x15GetAddressInfoRequest\x12!\n" +
 	"\auser_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06userId\x12'\n" +
 	"\n" +
-	"address_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\taddressId\"K\n" +
-	"\x16GetAddressInfoResponse\x121\n" +
-	"\aaddress\x18\x01 \x01(\v2\x17.sphinx.address.AddressR\aaddress2\x85\x06\n" +
-	"\x0eAddressService\x12\x8b\x01\n" +
-	"\x13GetAddressesByToken\x12*.sphinx.address.GetAddressesByTokenRequest\x1a+.sphinx.address.GetAddressesByTokenResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/users/addresses\x12\x81\x01\n" +
-	"\x0eGetAddressByID\x12%.sphinx.address.GetAddressByIDRequest\x1a&.sphinx.address.GetAddressByIDResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/users/addresses/{id}\x12|\n" +
-	"\rCreateAddress\x12$.sphinx.address.CreateAddressRequest\x1a%.sphinx.address.CreateAddressResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/users/addresses\x12\x81\x01\n" +
-	"\rUpdateAddress\x12$.sphinx.address.UpdateAddressRequest\x1a%.sphinx.address.UpdateAddressResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\x1a\x18/v1/users/addresses/{id}\x12~\n" +
-	"\rDeleteAddress\x12$.sphinx.address.DeleteAddressRequest\x1a%.sphinx.address.DeleteAddressResponse\" \x82\xd3\xe4\x93\x02\x1a*\x18/v1/users/addresses/{id}\x12_\n" +
-	"\x0eGetAddressInfo\x12%.sphinx.address.GetAddressInfoRequest\x1a&.sphinx.address.GetAddressInfoResponseB\x8a\x01\n" +
-	"\x12com.sphinx.addressB\fAddressProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03SAX\xaa\x02\x0eSphinx.Address\xca\x02\x0eSphinx\\Address\xe2\x02\x1aSphinx\\Address\\GPBMetadata\xea\x02\x0fSphinx::Addressb\x06proto3"
+	"address_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\taddressId\"I\n" +
+	"\x16GetAddressInfoResponse\x12/\n" +
+	"\aaddress\x18\x01 \x01(\v2\x15.user_address.AddressR\aaddress2\xeb\x05\n" +
+	"\x0eAddressService\x12\x87\x01\n" +
+	"\x13GetAddressesByToken\x12(.user_address.GetAddressesByTokenRequest\x1a).user_address.GetAddressesByTokenResponse\"\x1b\x82\xd3\xe4\x93\x02\x15\x12\x13/v1/users/addresses\x12}\n" +
+	"\x0eGetAddressByID\x12#.user_address.GetAddressByIDRequest\x1a$.user_address.GetAddressByIDResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/users/addresses/{id}\x12x\n" +
+	"\rCreateAddress\x12\".user_address.CreateAddressRequest\x1a#.user_address.CreateAddressResponse\"\x1e\x82\xd3\xe4\x93\x02\x18:\x01*\"\x13/v1/users/addresses\x12}\n" +
+	"\rUpdateAddress\x12\".user_address.UpdateAddressRequest\x1a#.user_address.UpdateAddressResponse\"#\x82\xd3\xe4\x93\x02\x1d:\x01*\x1a\x18/v1/users/addresses/{id}\x12z\n" +
+	"\rDeleteAddress\x12\".user_address.DeleteAddressRequest\x1a#.user_address.DeleteAddressResponse\" \x82\xd3\xe4\x93\x02\x1a*\x18/v1/users/addresses/{id}\x12[\n" +
+	"\x0eGetAddressInfo\x12#.user_address.GetAddressInfoRequest\x1a$.user_address.GetAddressInfoResponseB\x7f\n" +
+	"\x10com.user_addressB\x10UserAddressProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03UXX\xaa\x02\vUserAddress\xca\x02\vUserAddress\xe2\x02\x17UserAddress\\GPBMetadata\xea\x02\vUserAddressb\x06proto3"
 
 var (
-	file_address_proto_rawDescOnce sync.Once
-	file_address_proto_rawDescData []byte
+	file_user_address_proto_rawDescOnce sync.Once
+	file_user_address_proto_rawDescData []byte
 )
 
-func file_address_proto_rawDescGZIP() []byte {
-	file_address_proto_rawDescOnce.Do(func() {
-		file_address_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_address_proto_rawDesc), len(file_address_proto_rawDesc)))
+func file_user_address_proto_rawDescGZIP() []byte {
+	file_user_address_proto_rawDescOnce.Do(func() {
+		file_user_address_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_user_address_proto_rawDesc), len(file_user_address_proto_rawDesc)))
 	})
-	return file_address_proto_rawDescData
+	return file_user_address_proto_rawDescData
 }
 
-var file_address_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
-var file_address_proto_goTypes = []any{
-	(*ListAddress)(nil),                 // 0: sphinx.address.ListAddress
-	(*Address)(nil),                     // 1: sphinx.address.Address
-	(*GetAddressesByTokenRequest)(nil),  // 2: sphinx.address.GetAddressesByTokenRequest
-	(*GetAddressByIDRequest)(nil),       // 3: sphinx.address.GetAddressByIDRequest
-	(*GetAddressByIDResponse)(nil),      // 4: sphinx.address.GetAddressByIDResponse
-	(*GetAddressesByTokenResponse)(nil), // 5: sphinx.address.GetAddressesByTokenResponse
-	(*UpdateAddressRequest)(nil),        // 6: sphinx.address.UpdateAddressRequest
-	(*UpdateAddressResponse)(nil),       // 7: sphinx.address.UpdateAddressResponse
-	(*CreateAddressRequest)(nil),        // 8: sphinx.address.CreateAddressRequest
-	(*CreateAddressResponse)(nil),       // 9: sphinx.address.CreateAddressResponse
-	(*DeleteAddressRequest)(nil),        // 10: sphinx.address.DeleteAddressRequest
-	(*DeleteAddressResponse)(nil),       // 11: sphinx.address.DeleteAddressResponse
-	(*GetAddressInfoRequest)(nil),       // 12: sphinx.address.GetAddressInfoRequest
-	(*GetAddressInfoResponse)(nil),      // 13: sphinx.address.GetAddressInfoResponse
+var file_user_address_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
+var file_user_address_proto_goTypes = []any{
+	(*ListAddress)(nil),                 // 0: user_address.ListAddress
+	(*Address)(nil),                     // 1: user_address.Address
+	(*GetAddressesByTokenRequest)(nil),  // 2: user_address.GetAddressesByTokenRequest
+	(*GetAddressByIDRequest)(nil),       // 3: user_address.GetAddressByIDRequest
+	(*GetAddressByIDResponse)(nil),      // 4: user_address.GetAddressByIDResponse
+	(*GetAddressesByTokenResponse)(nil), // 5: user_address.GetAddressesByTokenResponse
+	(*UpdateAddressRequest)(nil),        // 6: user_address.UpdateAddressRequest
+	(*UpdateAddressResponse)(nil),       // 7: user_address.UpdateAddressResponse
+	(*CreateAddressRequest)(nil),        // 8: user_address.CreateAddressRequest
+	(*CreateAddressResponse)(nil),       // 9: user_address.CreateAddressResponse
+	(*DeleteAddressRequest)(nil),        // 10: user_address.DeleteAddressRequest
+	(*DeleteAddressResponse)(nil),       // 11: user_address.DeleteAddressResponse
+	(*GetAddressInfoRequest)(nil),       // 12: user_address.GetAddressInfoRequest
+	(*GetAddressInfoResponse)(nil),      // 13: user_address.GetAddressInfoResponse
 }
-var file_address_proto_depIdxs = []int32{
-	1,  // 0: sphinx.address.GetAddressByIDResponse.address:type_name -> sphinx.address.Address
-	0,  // 1: sphinx.address.GetAddressesByTokenResponse.addresses:type_name -> sphinx.address.ListAddress
-	1,  // 2: sphinx.address.GetAddressInfoResponse.address:type_name -> sphinx.address.Address
-	2,  // 3: sphinx.address.AddressService.GetAddressesByToken:input_type -> sphinx.address.GetAddressesByTokenRequest
-	3,  // 4: sphinx.address.AddressService.GetAddressByID:input_type -> sphinx.address.GetAddressByIDRequest
-	8,  // 5: sphinx.address.AddressService.CreateAddress:input_type -> sphinx.address.CreateAddressRequest
-	6,  // 6: sphinx.address.AddressService.UpdateAddress:input_type -> sphinx.address.UpdateAddressRequest
-	10, // 7: sphinx.address.AddressService.DeleteAddress:input_type -> sphinx.address.DeleteAddressRequest
-	12, // 8: sphinx.address.AddressService.GetAddressInfo:input_type -> sphinx.address.GetAddressInfoRequest
-	5,  // 9: sphinx.address.AddressService.GetAddressesByToken:output_type -> sphinx.address.GetAddressesByTokenResponse
-	4,  // 10: sphinx.address.AddressService.GetAddressByID:output_type -> sphinx.address.GetAddressByIDResponse
-	9,  // 11: sphinx.address.AddressService.CreateAddress:output_type -> sphinx.address.CreateAddressResponse
-	7,  // 12: sphinx.address.AddressService.UpdateAddress:output_type -> sphinx.address.UpdateAddressResponse
-	11, // 13: sphinx.address.AddressService.DeleteAddress:output_type -> sphinx.address.DeleteAddressResponse
-	13, // 14: sphinx.address.AddressService.GetAddressInfo:output_type -> sphinx.address.GetAddressInfoResponse
+var file_user_address_proto_depIdxs = []int32{
+	1,  // 0: user_address.GetAddressByIDResponse.address:type_name -> user_address.Address
+	0,  // 1: user_address.GetAddressesByTokenResponse.addresses:type_name -> user_address.ListAddress
+	1,  // 2: user_address.GetAddressInfoResponse.address:type_name -> user_address.Address
+	2,  // 3: user_address.AddressService.GetAddressesByToken:input_type -> user_address.GetAddressesByTokenRequest
+	3,  // 4: user_address.AddressService.GetAddressByID:input_type -> user_address.GetAddressByIDRequest
+	8,  // 5: user_address.AddressService.CreateAddress:input_type -> user_address.CreateAddressRequest
+	6,  // 6: user_address.AddressService.UpdateAddress:input_type -> user_address.UpdateAddressRequest
+	10, // 7: user_address.AddressService.DeleteAddress:input_type -> user_address.DeleteAddressRequest
+	12, // 8: user_address.AddressService.GetAddressInfo:input_type -> user_address.GetAddressInfoRequest
+	5,  // 9: user_address.AddressService.GetAddressesByToken:output_type -> user_address.GetAddressesByTokenResponse
+	4,  // 10: user_address.AddressService.GetAddressByID:output_type -> user_address.GetAddressByIDResponse
+	9,  // 11: user_address.AddressService.CreateAddress:output_type -> user_address.CreateAddressResponse
+	7,  // 12: user_address.AddressService.UpdateAddress:output_type -> user_address.UpdateAddressResponse
+	11, // 13: user_address.AddressService.DeleteAddress:output_type -> user_address.DeleteAddressResponse
+	13, // 14: user_address.AddressService.GetAddressInfo:output_type -> user_address.GetAddressInfoResponse
 	9,  // [9:15] is the sub-list for method output_type
 	3,  // [3:9] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
@@ -856,26 +856,26 @@ var file_address_proto_depIdxs = []int32{
 	0,  // [0:3] is the sub-list for field type_name
 }
 
-func init() { file_address_proto_init() }
-func file_address_proto_init() {
-	if File_address_proto != nil {
+func init() { file_user_address_proto_init() }
+func file_user_address_proto_init() {
+	if File_user_address_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_address_proto_rawDesc), len(file_address_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_address_proto_rawDesc), len(file_user_address_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_address_proto_goTypes,
-		DependencyIndexes: file_address_proto_depIdxs,
-		MessageInfos:      file_address_proto_msgTypes,
+		GoTypes:           file_user_address_proto_goTypes,
+		DependencyIndexes: file_user_address_proto_depIdxs,
+		MessageInfos:      file_user_address_proto_msgTypes,
 	}.Build()
-	File_address_proto = out.File
-	file_address_proto_goTypes = nil
-	file_address_proto_depIdxs = nil
+	File_user_address_proto = out.File
+	file_user_address_proto_goTypes = nil
+	file_user_address_proto_depIdxs = nil
 }
