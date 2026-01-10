@@ -25,7 +25,8 @@ var File_abyssin_proto protoreflect.FileDescriptor
 const file_abyssin_proto_rawDesc = "" +
 	"\n" +
 	"\rabyssin.proto\x1a\n" +
-	"zone.proto\x1a\fdriver.protoB\x1fB\fAbyssinProtoP\x01Z\rmau/pkg/pb;pb"
+	"zone.proto\x1a\fdriver.proto\x1a\n" +
+	"slot.protoB\x1fB\fAbyssinProtoP\x01Z\rmau/pkg/pb;pb"
 
 var file_abyssin_proto_goTypes = []any{}
 var file_abyssin_proto_depIdxs = []int32{
@@ -43,6 +44,7 @@ func file_abyssin_proto_init() {
 	}
 	file_zone_proto_init()
 	file_driver_proto_init()
+	file_slot_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

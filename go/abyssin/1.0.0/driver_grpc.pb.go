@@ -23,6 +23,9 @@ const (
 	DriverService_JoinZone_FullMethodName      = "/cat.DriverService/JoinZone"
 	DriverService_UpdateStatus_FullMethodName  = "/cat.DriverService/UpdateStatus"
 	DriverService_AcceptCommand_FullMethodName = "/cat.DriverService/AcceptCommand"
+	DriverService_PickupCommand_FullMethodName = "/cat.DriverService/PickupCommand"
+	DriverService_AcceptSlot_FullMethodName    = "/cat.DriverService/AcceptSlot"
+	DriverService_ChangeSlot_FullMethodName    = "/cat.DriverService/ChangeSlot"
 )
 
 // DriverServiceClient is the client API for DriverService service.
@@ -33,6 +36,9 @@ type DriverServiceClient interface {
 	JoinZone(ctx context.Context, in *JoinZoneRequest, opts ...grpc.CallOption) (*JoinZoneRespone, error)
 	UpdateStatus(ctx context.Context, in *UpdateStatusRequest, opts ...grpc.CallOption) (*UpdateStatusResponse, error)
 	AcceptCommand(ctx context.Context, in *AcceptCommandRequest, opts ...grpc.CallOption) (*AcceptCommandResponse, error)
+	PickupCommand(ctx context.Context, in *PickupCommandRequest, opts ...grpc.CallOption) (*PickupCommandResponse, error)
+	AcceptSlot(ctx context.Context, in *AcceptSlotRequest, opts ...grpc.CallOption) (*AcceptSlotResponse, error)
+	ChangeSlot(ctx context.Context, in *ChangeSlotRequest, opts ...grpc.CallOption) (*ChangeSlotResponse, error)
 }
 
 type driverServiceClient struct {
@@ -83,6 +89,36 @@ func (c *driverServiceClient) AcceptCommand(ctx context.Context, in *AcceptComma
 	return out, nil
 }
 
+func (c *driverServiceClient) PickupCommand(ctx context.Context, in *PickupCommandRequest, opts ...grpc.CallOption) (*PickupCommandResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PickupCommandResponse)
+	err := c.cc.Invoke(ctx, DriverService_PickupCommand_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *driverServiceClient) AcceptSlot(ctx context.Context, in *AcceptSlotRequest, opts ...grpc.CallOption) (*AcceptSlotResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AcceptSlotResponse)
+	err := c.cc.Invoke(ctx, DriverService_AcceptSlot_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *driverServiceClient) ChangeSlot(ctx context.Context, in *ChangeSlotRequest, opts ...grpc.CallOption) (*ChangeSlotResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ChangeSlotResponse)
+	err := c.cc.Invoke(ctx, DriverService_ChangeSlot_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DriverServiceServer is the server API for DriverService service.
 // All implementations must embed UnimplementedDriverServiceServer
 // for forward compatibility.
@@ -91,6 +127,9 @@ type DriverServiceServer interface {
 	JoinZone(context.Context, *JoinZoneRequest) (*JoinZoneRespone, error)
 	UpdateStatus(context.Context, *UpdateStatusRequest) (*UpdateStatusResponse, error)
 	AcceptCommand(context.Context, *AcceptCommandRequest) (*AcceptCommandResponse, error)
+	PickupCommand(context.Context, *PickupCommandRequest) (*PickupCommandResponse, error)
+	AcceptSlot(context.Context, *AcceptSlotRequest) (*AcceptSlotResponse, error)
+	ChangeSlot(context.Context, *ChangeSlotRequest) (*ChangeSlotResponse, error)
 	mustEmbedUnimplementedDriverServiceServer()
 }
 
@@ -112,6 +151,15 @@ func (UnimplementedDriverServiceServer) UpdateStatus(context.Context, *UpdateSta
 }
 func (UnimplementedDriverServiceServer) AcceptCommand(context.Context, *AcceptCommandRequest) (*AcceptCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AcceptCommand not implemented")
+}
+func (UnimplementedDriverServiceServer) PickupCommand(context.Context, *PickupCommandRequest) (*PickupCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PickupCommand not implemented")
+}
+func (UnimplementedDriverServiceServer) AcceptSlot(context.Context, *AcceptSlotRequest) (*AcceptSlotResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AcceptSlot not implemented")
+}
+func (UnimplementedDriverServiceServer) ChangeSlot(context.Context, *ChangeSlotRequest) (*ChangeSlotResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ChangeSlot not implemented")
 }
 func (UnimplementedDriverServiceServer) mustEmbedUnimplementedDriverServiceServer() {}
 func (UnimplementedDriverServiceServer) testEmbeddedByValue()                       {}
@@ -206,6 +254,60 @@ func _DriverService_AcceptCommand_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DriverService_PickupCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PickupCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverServiceServer).PickupCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverService_PickupCommand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverServiceServer).PickupCommand(ctx, req.(*PickupCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DriverService_AcceptSlot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AcceptSlotRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverServiceServer).AcceptSlot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverService_AcceptSlot_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverServiceServer).AcceptSlot(ctx, req.(*AcceptSlotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DriverService_ChangeSlot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ChangeSlotRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverServiceServer).ChangeSlot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverService_ChangeSlot_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverServiceServer).ChangeSlot(ctx, req.(*ChangeSlotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DriverService_ServiceDesc is the grpc.ServiceDesc for DriverService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +330,18 @@ var DriverService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AcceptCommand",
 			Handler:    _DriverService_AcceptCommand_Handler,
+		},
+		{
+			MethodName: "PickupCommand",
+			Handler:    _DriverService_PickupCommand_Handler,
+		},
+		{
+			MethodName: "AcceptSlot",
+			Handler:    _DriverService_AcceptSlot_Handler,
+		},
+		{
+			MethodName: "ChangeSlot",
+			Handler:    _DriverService_ChangeSlot_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
