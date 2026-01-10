@@ -27,7 +27,8 @@ type ListAddress struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	IsMainAddress bool                   `protobuf:"varint,3,opt,name=is_main_address,json=isMainAddress,proto3" json:"is_main_address,omitempty"`
+	Label         string                 `protobuf:"bytes,3,opt,name=label,proto3" json:"label,omitempty"`
+	IsMainAddress bool                   `protobuf:"varint,4,opt,name=is_main_address,json=isMainAddress,proto3" json:"is_main_address,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -72,6 +73,13 @@ func (x *ListAddress) GetId() string {
 func (x *ListAddress) GetTitle() string {
 	if x != nil {
 		return x.Title
+	}
+	return ""
+}
+
+func (x *ListAddress) GetLabel() string {
+	if x != nil {
+		return x.Label
 	}
 	return ""
 }
@@ -747,11 +755,12 @@ var File_user_address_proto protoreflect.FileDescriptor
 
 const file_user_address_proto_rawDesc = "" +
 	"\n" +
-	"\x12user_address.proto\x12\fuser_address\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"[\n" +
+	"\x12user_address.proto\x12\fuser_address\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\"q\n" +
 	"\vListAddress\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12&\n" +
-	"\x0fis_main_address\x18\x03 \x01(\bR\risMainAddress\"\xdc\x01\n" +
+	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
+	"\x05label\x18\x03 \x01(\tR\x05label\x12&\n" +
+	"\x0fis_main_address\x18\x04 \x01(\bR\risMainAddress\"\xdc\x01\n" +
 	"\aAddress\x12 \n" +
 	"\x05title\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05title\x12&\n" +
