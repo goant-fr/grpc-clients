@@ -201,7 +201,7 @@ func (x *Command) GetUpdatedAt() string {
 
 type CreateCommandRequest struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
-	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	OrderId             string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
 	Size                string                 `protobuf:"bytes,2,opt,name=size,proto3" json:"size,omitempty"`
 	OriginPosition      *Position              `protobuf:"bytes,3,opt,name=origin_position,json=originPosition,proto3" json:"origin_position,omitempty"`
 	DestinationPosition *Position              `protobuf:"bytes,4,opt,name=destination_position,json=destinationPosition,proto3" json:"destination_position,omitempty"`
@@ -239,9 +239,9 @@ func (*CreateCommandRequest) Descriptor() ([]byte, []int) {
 	return file_command_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *CreateCommandRequest) GetId() string {
+func (x *CreateCommandRequest) GetOrderId() string {
 	if x != nil {
-		return x.Id
+		return x.OrderId
 	}
 	return ""
 }
@@ -631,10 +631,10 @@ const file_command_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\v \x01(\tR\tupdatedAtB\f\n" +
 	"\n" +
-	"_driver_id\"\xbe\x01\n" +
-	"\x14CreateCommandRequest\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x12\n" +
-	"\x04size\x18\x02 \x01(\tR\x04size\x126\n" +
+	"_driver_id\"\xdd\x01\n" +
+	"\x14CreateCommandRequest\x12#\n" +
+	"\border_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aorderId\x12&\n" +
+	"\x04size\x18\x02 \x01(\tB\x12\xbaH\x0fr\rR\x01SR\x01MR\x01LR\x02XlR\x04size\x126\n" +
 	"\x0forigin_position\x18\x03 \x01(\v2\r.cat.PositionR\x0eoriginPosition\x12@\n" +
 	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionR\x13destinationPosition\"3\n" +
 	"\x15CreateCommandResponse\x12\x1a\n" +
@@ -658,12 +658,9 @@ const file_command_proto_rawDesc = "" +
 	"_driver_idB\a\n" +
 	"\x05_path\"?\n" +
 	"\x15UpdateCommandResponse\x12&\n" +
-	"\acommand\x18\x01 \x01(\v2\f.cat.CommandR\acommand2\xb2\x03\n" +
-	"\x0eCommandService\x12\\\n" +
-	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/commands\x12_\n" +
-	"\x0fReadAllCommands\x12\x1b.cat.ReadAllCommandsRequest\x1a\x1c.cat.ReadAllCommandsResponse\"\x11\x82\xd3\xe4\x93\x02\v\x12\t/commands\x12~\n" +
-	"\x14ReadCommandsByStatus\x12 .cat.ReadCommandsByStatusRequest\x1a!.cat.ReadCommandsByStatusResponse\"!\x82\xd3\xe4\x93\x02\x1b\x12\x19/commands/status/{status}\x12a\n" +
-	"\rUpdateCommand\x12\x19.cat.UpdateCommandRequest\x1a\x1a.cat.UpdateCommandResponse\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*2\x0e/commands/{id}BR\n" +
+	"\acommand\x18\x01 \x01(\v2\f.cat.CommandR\acommand2~\n" +
+	"\x0eCommandService\x12l\n" +
+	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/abyssin/createCommandBR\n" +
 	"\acom.catB\fCommandProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
@@ -692,26 +689,20 @@ var file_command_proto_goTypes = []any{
 	(*UpdateCommandResponse)(nil),        // 9: cat.UpdateCommandResponse
 }
 var file_command_proto_depIdxs = []int32{
-	0,  // 0: cat.Command.origin_position:type_name -> cat.Position
-	0,  // 1: cat.Command.destination_position:type_name -> cat.Position
-	0,  // 2: cat.CreateCommandRequest.origin_position:type_name -> cat.Position
-	0,  // 3: cat.CreateCommandRequest.destination_position:type_name -> cat.Position
-	1,  // 4: cat.ReadAllCommandsResponse.commands:type_name -> cat.Command
-	1,  // 5: cat.ReadCommandsByStatusResponse.commands:type_name -> cat.Command
-	1,  // 6: cat.UpdateCommandResponse.command:type_name -> cat.Command
-	2,  // 7: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
-	4,  // 8: cat.CommandService.ReadAllCommands:input_type -> cat.ReadAllCommandsRequest
-	6,  // 9: cat.CommandService.ReadCommandsByStatus:input_type -> cat.ReadCommandsByStatusRequest
-	8,  // 10: cat.CommandService.UpdateCommand:input_type -> cat.UpdateCommandRequest
-	3,  // 11: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
-	5,  // 12: cat.CommandService.ReadAllCommands:output_type -> cat.ReadAllCommandsResponse
-	7,  // 13: cat.CommandService.ReadCommandsByStatus:output_type -> cat.ReadCommandsByStatusResponse
-	9,  // 14: cat.CommandService.UpdateCommand:output_type -> cat.UpdateCommandResponse
-	11, // [11:15] is the sub-list for method output_type
-	7,  // [7:11] is the sub-list for method input_type
-	7,  // [7:7] is the sub-list for extension type_name
-	7,  // [7:7] is the sub-list for extension extendee
-	0,  // [0:7] is the sub-list for field type_name
+	0, // 0: cat.Command.origin_position:type_name -> cat.Position
+	0, // 1: cat.Command.destination_position:type_name -> cat.Position
+	0, // 2: cat.CreateCommandRequest.origin_position:type_name -> cat.Position
+	0, // 3: cat.CreateCommandRequest.destination_position:type_name -> cat.Position
+	1, // 4: cat.ReadAllCommandsResponse.commands:type_name -> cat.Command
+	1, // 5: cat.ReadCommandsByStatusResponse.commands:type_name -> cat.Command
+	1, // 6: cat.UpdateCommandResponse.command:type_name -> cat.Command
+	2, // 7: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
+	3, // 8: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
+	8, // [8:9] is the sub-list for method output_type
+	7, // [7:8] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_command_proto_init() }

@@ -295,6 +295,94 @@ func (x *UpdateStatusResponse) GetResponse() int32 {
 	return 0
 }
 
+type AcceptCommandRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CommandId     string                 `protobuf:"bytes,1,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AcceptCommandRequest) Reset() {
+	*x = AcceptCommandRequest{}
+	mi := &file_driver_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AcceptCommandRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AcceptCommandRequest) ProtoMessage() {}
+
+func (x *AcceptCommandRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_driver_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AcceptCommandRequest.ProtoReflect.Descriptor instead.
+func (*AcceptCommandRequest) Descriptor() ([]byte, []int) {
+	return file_driver_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *AcceptCommandRequest) GetCommandId() string {
+	if x != nil {
+		return x.CommandId
+	}
+	return ""
+}
+
+type AcceptCommandResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Response      int32                  `protobuf:"varint,1,opt,name=response,proto3" json:"response,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AcceptCommandResponse) Reset() {
+	*x = AcceptCommandResponse{}
+	mi := &file_driver_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AcceptCommandResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AcceptCommandResponse) ProtoMessage() {}
+
+func (x *AcceptCommandResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_driver_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AcceptCommandResponse.ProtoReflect.Descriptor instead.
+func (*AcceptCommandResponse) Descriptor() ([]byte, []int) {
+	return file_driver_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *AcceptCommandResponse) GetResponse() int32 {
+	if x != nil {
+		return x.Response
+	}
+	return 0
+}
+
 var File_driver_proto protoreflect.FileDescriptor
 
 const file_driver_proto_rawDesc = "" +
@@ -317,11 +405,17 @@ const file_driver_proto_rawDesc = "" +
 	"\x13UpdateStatusRequest\x127\n" +
 	"\x06status\x18\x01 \x01(\tB\x1f\xbaH\x1cr\x1aR\tAVAILABLER\x04BUSYR\aOFFLINER\x06status\"2\n" +
 	"\x14UpdateStatusResponse\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\x05R\bresponse2\xa6\x02\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse\"?\n" +
+	"\x14AcceptCommandRequest\x12'\n" +
+	"\n" +
+	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"3\n" +
+	"\x15AcceptCommandResponse\x12\x1a\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse2\x94\x03\n" +
 	"\rDriverService\x12U\n" +
 	"\tLeaveZone\x12\x15.cat.LeaveZoneRequest\x1a\x16.cat.LeaveZoneResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/abyssin/leave\x12Z\n" +
 	"\bJoinZone\x12\x14.cat.JoinZoneRequest\x1a\x14.cat.JoinZoneRespone\"\"\x82\xd3\xe4\x93\x02\x1c\"\x1a/v1/abyssin/join/{zone_id}\x12b\n" +
-	"\fUpdateStatus\x12\x18.cat.UpdateStatusRequest\x1a\x19.cat.UpdateStatusResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/abyssin/statusBQ\n" +
+	"\fUpdateStatus\x12\x18.cat.UpdateStatusRequest\x1a\x19.cat.UpdateStatusResponse\"\x1d\x82\xd3\xe4\x93\x02\x17:\x01*\"\x12/v1/abyssin/status\x12l\n" +
+	"\rAcceptCommand\x12\x19.cat.AcceptCommandRequest\x1a\x1a.cat.AcceptCommandResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/abyssin/acceptCommandBQ\n" +
 	"\acom.catB\vDriverProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
@@ -336,26 +430,30 @@ func file_driver_proto_rawDescGZIP() []byte {
 	return file_driver_proto_rawDescData
 }
 
-var file_driver_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_driver_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_driver_proto_goTypes = []any{
-	(*LeaveZoneRequest)(nil),     // 0: cat.LeaveZoneRequest
-	(*JoinZoneRequest)(nil),      // 1: cat.JoinZoneRequest
-	(*JoinZoneRespone)(nil),      // 2: cat.JoinZoneRespone
-	(*LeaveZoneResponse)(nil),    // 3: cat.LeaveZoneResponse
-	(*UpdateStatusRequest)(nil),  // 4: cat.UpdateStatusRequest
-	(*UpdateStatusResponse)(nil), // 5: cat.UpdateStatusResponse
-	(*Zone)(nil),                 // 6: cat.Zone
+	(*LeaveZoneRequest)(nil),      // 0: cat.LeaveZoneRequest
+	(*JoinZoneRequest)(nil),       // 1: cat.JoinZoneRequest
+	(*JoinZoneRespone)(nil),       // 2: cat.JoinZoneRespone
+	(*LeaveZoneResponse)(nil),     // 3: cat.LeaveZoneResponse
+	(*UpdateStatusRequest)(nil),   // 4: cat.UpdateStatusRequest
+	(*UpdateStatusResponse)(nil),  // 5: cat.UpdateStatusResponse
+	(*AcceptCommandRequest)(nil),  // 6: cat.AcceptCommandRequest
+	(*AcceptCommandResponse)(nil), // 7: cat.AcceptCommandResponse
+	(*Zone)(nil),                  // 8: cat.Zone
 }
 var file_driver_proto_depIdxs = []int32{
-	6, // 0: cat.JoinZoneRespone.zone:type_name -> cat.Zone
+	8, // 0: cat.JoinZoneRespone.zone:type_name -> cat.Zone
 	0, // 1: cat.DriverService.LeaveZone:input_type -> cat.LeaveZoneRequest
 	1, // 2: cat.DriverService.JoinZone:input_type -> cat.JoinZoneRequest
 	4, // 3: cat.DriverService.UpdateStatus:input_type -> cat.UpdateStatusRequest
-	3, // 4: cat.DriverService.LeaveZone:output_type -> cat.LeaveZoneResponse
-	2, // 5: cat.DriverService.JoinZone:output_type -> cat.JoinZoneRespone
-	5, // 6: cat.DriverService.UpdateStatus:output_type -> cat.UpdateStatusResponse
-	4, // [4:7] is the sub-list for method output_type
-	1, // [1:4] is the sub-list for method input_type
+	6, // 4: cat.DriverService.AcceptCommand:input_type -> cat.AcceptCommandRequest
+	3, // 5: cat.DriverService.LeaveZone:output_type -> cat.LeaveZoneResponse
+	2, // 6: cat.DriverService.JoinZone:output_type -> cat.JoinZoneRespone
+	5, // 7: cat.DriverService.UpdateStatus:output_type -> cat.UpdateStatusResponse
+	7, // 8: cat.DriverService.AcceptCommand:output_type -> cat.AcceptCommandResponse
+	5, // [5:9] is the sub-list for method output_type
+	1, // [1:5] is the sub-list for method input_type
 	1, // [1:1] is the sub-list for extension type_name
 	1, // [1:1] is the sub-list for extension extendee
 	0, // [0:1] is the sub-list for field type_name
@@ -373,7 +471,7 @@ func file_driver_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_driver_proto_rawDesc), len(file_driver_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

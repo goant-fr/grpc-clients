@@ -19,9 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DriverService_LeaveZone_FullMethodName    = "/cat.DriverService/LeaveZone"
-	DriverService_JoinZone_FullMethodName     = "/cat.DriverService/JoinZone"
-	DriverService_UpdateStatus_FullMethodName = "/cat.DriverService/UpdateStatus"
+	DriverService_LeaveZone_FullMethodName     = "/cat.DriverService/LeaveZone"
+	DriverService_JoinZone_FullMethodName      = "/cat.DriverService/JoinZone"
+	DriverService_UpdateStatus_FullMethodName  = "/cat.DriverService/UpdateStatus"
+	DriverService_AcceptCommand_FullMethodName = "/cat.DriverService/AcceptCommand"
 )
 
 // DriverServiceClient is the client API for DriverService service.
@@ -31,6 +32,7 @@ type DriverServiceClient interface {
 	LeaveZone(ctx context.Context, in *LeaveZoneRequest, opts ...grpc.CallOption) (*LeaveZoneResponse, error)
 	JoinZone(ctx context.Context, in *JoinZoneRequest, opts ...grpc.CallOption) (*JoinZoneRespone, error)
 	UpdateStatus(ctx context.Context, in *UpdateStatusRequest, opts ...grpc.CallOption) (*UpdateStatusResponse, error)
+	AcceptCommand(ctx context.Context, in *AcceptCommandRequest, opts ...grpc.CallOption) (*AcceptCommandResponse, error)
 }
 
 type driverServiceClient struct {
@@ -71,6 +73,16 @@ func (c *driverServiceClient) UpdateStatus(ctx context.Context, in *UpdateStatus
 	return out, nil
 }
 
+func (c *driverServiceClient) AcceptCommand(ctx context.Context, in *AcceptCommandRequest, opts ...grpc.CallOption) (*AcceptCommandResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(AcceptCommandResponse)
+	err := c.cc.Invoke(ctx, DriverService_AcceptCommand_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // DriverServiceServer is the server API for DriverService service.
 // All implementations must embed UnimplementedDriverServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type DriverServiceServer interface {
 	LeaveZone(context.Context, *LeaveZoneRequest) (*LeaveZoneResponse, error)
 	JoinZone(context.Context, *JoinZoneRequest) (*JoinZoneRespone, error)
 	UpdateStatus(context.Context, *UpdateStatusRequest) (*UpdateStatusResponse, error)
+	AcceptCommand(context.Context, *AcceptCommandRequest) (*AcceptCommandResponse, error)
 	mustEmbedUnimplementedDriverServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedDriverServiceServer) JoinZone(context.Context, *JoinZoneReque
 }
 func (UnimplementedDriverServiceServer) UpdateStatus(context.Context, *UpdateStatusRequest) (*UpdateStatusResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateStatus not implemented")
+}
+func (UnimplementedDriverServiceServer) AcceptCommand(context.Context, *AcceptCommandRequest) (*AcceptCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AcceptCommand not implemented")
 }
 func (UnimplementedDriverServiceServer) mustEmbedUnimplementedDriverServiceServer() {}
 func (UnimplementedDriverServiceServer) testEmbeddedByValue()                       {}
@@ -172,6 +188,24 @@ func _DriverService_UpdateStatus_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DriverService_AcceptCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AcceptCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverServiceServer).AcceptCommand(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverService_AcceptCommand_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverServiceServer).AcceptCommand(ctx, req.(*AcceptCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // DriverService_ServiceDesc is the grpc.ServiceDesc for DriverService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var DriverService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateStatus",
 			Handler:    _DriverService_UpdateStatus_Handler,
+		},
+		{
+			MethodName: "AcceptCommand",
+			Handler:    _DriverService_AcceptCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

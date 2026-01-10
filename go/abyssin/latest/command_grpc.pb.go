@@ -19,10 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CommandService_CreateCommand_FullMethodName        = "/cat.CommandService/CreateCommand"
-	CommandService_ReadAllCommands_FullMethodName      = "/cat.CommandService/ReadAllCommands"
-	CommandService_ReadCommandsByStatus_FullMethodName = "/cat.CommandService/ReadCommandsByStatus"
-	CommandService_UpdateCommand_FullMethodName        = "/cat.CommandService/UpdateCommand"
+	CommandService_CreateCommand_FullMethodName = "/cat.CommandService/CreateCommand"
 )
 
 // CommandServiceClient is the client API for CommandService service.
@@ -30,9 +27,6 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CommandServiceClient interface {
 	CreateCommand(ctx context.Context, in *CreateCommandRequest, opts ...grpc.CallOption) (*CreateCommandResponse, error)
-	ReadAllCommands(ctx context.Context, in *ReadAllCommandsRequest, opts ...grpc.CallOption) (*ReadAllCommandsResponse, error)
-	ReadCommandsByStatus(ctx context.Context, in *ReadCommandsByStatusRequest, opts ...grpc.CallOption) (*ReadCommandsByStatusResponse, error)
-	UpdateCommand(ctx context.Context, in *UpdateCommandRequest, opts ...grpc.CallOption) (*UpdateCommandResponse, error)
 }
 
 type commandServiceClient struct {
@@ -53,44 +47,11 @@ func (c *commandServiceClient) CreateCommand(ctx context.Context, in *CreateComm
 	return out, nil
 }
 
-func (c *commandServiceClient) ReadAllCommands(ctx context.Context, in *ReadAllCommandsRequest, opts ...grpc.CallOption) (*ReadAllCommandsResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ReadAllCommandsResponse)
-	err := c.cc.Invoke(ctx, CommandService_ReadAllCommands_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *commandServiceClient) ReadCommandsByStatus(ctx context.Context, in *ReadCommandsByStatusRequest, opts ...grpc.CallOption) (*ReadCommandsByStatusResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ReadCommandsByStatusResponse)
-	err := c.cc.Invoke(ctx, CommandService_ReadCommandsByStatus_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *commandServiceClient) UpdateCommand(ctx context.Context, in *UpdateCommandRequest, opts ...grpc.CallOption) (*UpdateCommandResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UpdateCommandResponse)
-	err := c.cc.Invoke(ctx, CommandService_UpdateCommand_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // CommandServiceServer is the server API for CommandService service.
 // All implementations must embed UnimplementedCommandServiceServer
 // for forward compatibility.
 type CommandServiceServer interface {
 	CreateCommand(context.Context, *CreateCommandRequest) (*CreateCommandResponse, error)
-	ReadAllCommands(context.Context, *ReadAllCommandsRequest) (*ReadAllCommandsResponse, error)
-	ReadCommandsByStatus(context.Context, *ReadCommandsByStatusRequest) (*ReadCommandsByStatusResponse, error)
-	UpdateCommand(context.Context, *UpdateCommandRequest) (*UpdateCommandResponse, error)
 	mustEmbedUnimplementedCommandServiceServer()
 }
 
@@ -103,15 +64,6 @@ type UnimplementedCommandServiceServer struct{}
 
 func (UnimplementedCommandServiceServer) CreateCommand(context.Context, *CreateCommandRequest) (*CreateCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommand not implemented")
-}
-func (UnimplementedCommandServiceServer) ReadAllCommands(context.Context, *ReadAllCommandsRequest) (*ReadAllCommandsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadAllCommands not implemented")
-}
-func (UnimplementedCommandServiceServer) ReadCommandsByStatus(context.Context, *ReadCommandsByStatusRequest) (*ReadCommandsByStatusResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReadCommandsByStatus not implemented")
-}
-func (UnimplementedCommandServiceServer) UpdateCommand(context.Context, *UpdateCommandRequest) (*UpdateCommandResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateCommand not implemented")
 }
 func (UnimplementedCommandServiceServer) mustEmbedUnimplementedCommandServiceServer() {}
 func (UnimplementedCommandServiceServer) testEmbeddedByValue()                        {}
@@ -152,60 +104,6 @@ func _CommandService_CreateCommand_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
-func _CommandService_ReadAllCommands_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadAllCommandsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CommandServiceServer).ReadAllCommands(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CommandService_ReadAllCommands_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CommandServiceServer).ReadAllCommands(ctx, req.(*ReadAllCommandsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CommandService_ReadCommandsByStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReadCommandsByStatusRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CommandServiceServer).ReadCommandsByStatus(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CommandService_ReadCommandsByStatus_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CommandServiceServer).ReadCommandsByStatus(ctx, req.(*ReadCommandsByStatusRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _CommandService_UpdateCommand_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateCommandRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(CommandServiceServer).UpdateCommand(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: CommandService_UpdateCommand_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(CommandServiceServer).UpdateCommand(ctx, req.(*UpdateCommandRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // CommandService_ServiceDesc is the grpc.ServiceDesc for CommandService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -216,18 +114,6 @@ var CommandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCommand",
 			Handler:    _CommandService_CreateCommand_Handler,
-		},
-		{
-			MethodName: "ReadAllCommands",
-			Handler:    _CommandService_ReadAllCommands_Handler,
-		},
-		{
-			MethodName: "ReadCommandsByStatus",
-			Handler:    _CommandService_ReadCommandsByStatus_Handler,
-		},
-		{
-			MethodName: "UpdateCommand",
-			Handler:    _CommandService_UpdateCommand_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
