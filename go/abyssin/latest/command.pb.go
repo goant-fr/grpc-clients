@@ -658,9 +658,9 @@ const file_command_proto_rawDesc = "" +
 	"_driver_idB\a\n" +
 	"\x05_path\"?\n" +
 	"\x15UpdateCommandResponse\x12&\n" +
-	"\acommand\x18\x01 \x01(\v2\f.cat.CommandR\acommand2~\n" +
-	"\x0eCommandService\x12l\n" +
-	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/abyssin/createCommandBR\n" +
+	"\acommand\x18\x01 \x01(\v2\f.cat.CommandR\acommand2\x87\x01\n" +
+	"\x0eCommandService\x12u\n" +
+	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/abyssin/commands/createCommandBR\n" +
 	"\acom.catB\fCommandProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
