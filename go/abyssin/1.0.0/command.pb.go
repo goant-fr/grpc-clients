@@ -75,130 +75,6 @@ func (x *Position) GetLon() float64 {
 	return 0
 }
 
-type Command struct {
-	state               protoimpl.MessageState `protogen:"open.v1"`
-	Id                  string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Status              int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
-	ValidationCode      string                 `protobuf:"bytes,3,opt,name=validation_code,json=validationCode,proto3" json:"validation_code,omitempty"`
-	Path                string                 `protobuf:"bytes,4,opt,name=path,proto3" json:"path,omitempty"`
-	Size                string                 `protobuf:"bytes,5,opt,name=size,proto3" json:"size,omitempty"`
-	OriginPosition      *Position              `protobuf:"bytes,6,opt,name=origin_position,json=originPosition,proto3" json:"origin_position,omitempty"`
-	DestinationPosition *Position              `protobuf:"bytes,7,opt,name=destination_position,json=destinationPosition,proto3" json:"destination_position,omitempty"`
-	ZoneId              string                 `protobuf:"bytes,8,opt,name=zone_id,json=zoneId,proto3" json:"zone_id,omitempty"`
-	DriverId            *string                `protobuf:"bytes,9,opt,name=driver_id,json=driverId,proto3,oneof" json:"driver_id,omitempty"`
-	CreatedAt           string                 `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt           string                 `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields       protoimpl.UnknownFields
-	sizeCache           protoimpl.SizeCache
-}
-
-func (x *Command) Reset() {
-	*x = Command{}
-	mi := &file_command_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Command) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Command) ProtoMessage() {}
-
-func (x *Command) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Command.ProtoReflect.Descriptor instead.
-func (*Command) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *Command) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Command) GetStatus() int32 {
-	if x != nil {
-		return x.Status
-	}
-	return 0
-}
-
-func (x *Command) GetValidationCode() string {
-	if x != nil {
-		return x.ValidationCode
-	}
-	return ""
-}
-
-func (x *Command) GetPath() string {
-	if x != nil {
-		return x.Path
-	}
-	return ""
-}
-
-func (x *Command) GetSize() string {
-	if x != nil {
-		return x.Size
-	}
-	return ""
-}
-
-func (x *Command) GetOriginPosition() *Position {
-	if x != nil {
-		return x.OriginPosition
-	}
-	return nil
-}
-
-func (x *Command) GetDestinationPosition() *Position {
-	if x != nil {
-		return x.DestinationPosition
-	}
-	return nil
-}
-
-func (x *Command) GetZoneId() string {
-	if x != nil {
-		return x.ZoneId
-	}
-	return ""
-}
-
-func (x *Command) GetDriverId() string {
-	if x != nil && x.DriverId != nil {
-		return *x.DriverId
-	}
-	return ""
-}
-
-func (x *Command) GetCreatedAt() string {
-	if x != nil {
-		return x.CreatedAt
-	}
-	return ""
-}
-
-func (x *Command) GetUpdatedAt() string {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return ""
-}
-
 type CreateCommandRequest struct {
 	state               protoimpl.MessageState `protogen:"open.v1"`
 	OrderId             string                 `protobuf:"bytes,1,opt,name=order_id,json=orderId,proto3" json:"order_id,omitempty"`
@@ -211,7 +87,7 @@ type CreateCommandRequest struct {
 
 func (x *CreateCommandRequest) Reset() {
 	*x = CreateCommandRequest{}
-	mi := &file_command_proto_msgTypes[2]
+	mi := &file_command_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -223,7 +99,7 @@ func (x *CreateCommandRequest) String() string {
 func (*CreateCommandRequest) ProtoMessage() {}
 
 func (x *CreateCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[2]
+	mi := &file_command_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -236,7 +112,7 @@ func (x *CreateCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCommandRequest.ProtoReflect.Descriptor instead.
 func (*CreateCommandRequest) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{2}
+	return file_command_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateCommandRequest) GetOrderId() string {
@@ -276,7 +152,7 @@ type CreateCommandResponse struct {
 
 func (x *CreateCommandResponse) Reset() {
 	*x = CreateCommandResponse{}
-	mi := &file_command_proto_msgTypes[3]
+	mi := &file_command_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -288,7 +164,7 @@ func (x *CreateCommandResponse) String() string {
 func (*CreateCommandResponse) ProtoMessage() {}
 
 func (x *CreateCommandResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[3]
+	mi := &file_command_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -301,7 +177,7 @@ func (x *CreateCommandResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCommandResponse.ProtoReflect.Descriptor instead.
 func (*CreateCommandResponse) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{3}
+	return file_command_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *CreateCommandResponse) GetResponse() int32 {
@@ -318,24 +194,7 @@ const file_command_proto_rawDesc = "" +
 	"\rcommand.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"`\n" +
 	"\bPosition\x12)\n" +
 	"\x03lat\x18\x01 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80V@!\x00\x00\x00\x00\x00\x80V\xc0R\x03lat\x12)\n" +
-	"\x03lon\x18\x02 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80f@!\x00\x00\x00\x00\x00\x80f\xc0R\x03lon\"\x97\x03\n" +
-	"\aCommand\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\x05R\x06status\x12'\n" +
-	"\x0fvalidation_code\x18\x03 \x01(\tR\x0evalidationCode\x12\x12\n" +
-	"\x04path\x18\x04 \x01(\tR\x04path\x12\x12\n" +
-	"\x04size\x18\x05 \x01(\tR\x04size\x126\n" +
-	"\x0forigin_position\x18\x06 \x01(\v2\r.cat.PositionR\x0eoriginPosition\x12@\n" +
-	"\x14destination_position\x18\a \x01(\v2\r.cat.PositionR\x13destinationPosition\x12!\n" +
-	"\azone_id\x18\b \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06zoneId\x12*\n" +
-	"\tdriver_id\x18\t \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01H\x00R\bdriverId\x88\x01\x01\x12\x1d\n" +
-	"\n" +
-	"created_at\x18\n" +
-	" \x01(\tR\tcreatedAt\x12\x1d\n" +
-	"\n" +
-	"updated_at\x18\v \x01(\tR\tupdatedAtB\f\n" +
-	"\n" +
-	"_driver_id\"\xdd\x01\n" +
+	"\x03lon\x18\x02 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80f@!\x00\x00\x00\x00\x00\x80f\xc0R\x03lon\"\xdd\x01\n" +
 	"\x14CreateCommandRequest\x12#\n" +
 	"\border_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aorderId\x12&\n" +
 	"\x04size\x18\x02 \x01(\tB\x12\xbaH\x0fr\rR\x01SR\x01MR\x01LR\x02XlR\x04size\x126\n" +
@@ -359,25 +218,22 @@ func file_command_proto_rawDescGZIP() []byte {
 	return file_command_proto_rawDescData
 }
 
-var file_command_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_command_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_command_proto_goTypes = []any{
 	(*Position)(nil),              // 0: cat.Position
-	(*Command)(nil),               // 1: cat.Command
-	(*CreateCommandRequest)(nil),  // 2: cat.CreateCommandRequest
-	(*CreateCommandResponse)(nil), // 3: cat.CreateCommandResponse
+	(*CreateCommandRequest)(nil),  // 1: cat.CreateCommandRequest
+	(*CreateCommandResponse)(nil), // 2: cat.CreateCommandResponse
 }
 var file_command_proto_depIdxs = []int32{
-	0, // 0: cat.Command.origin_position:type_name -> cat.Position
-	0, // 1: cat.Command.destination_position:type_name -> cat.Position
-	0, // 2: cat.CreateCommandRequest.origin_position:type_name -> cat.Position
-	0, // 3: cat.CreateCommandRequest.destination_position:type_name -> cat.Position
-	2, // 4: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
-	3, // 5: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
-	5, // [5:6] is the sub-list for method output_type
-	4, // [4:5] is the sub-list for method input_type
-	4, // [4:4] is the sub-list for extension type_name
-	4, // [4:4] is the sub-list for extension extendee
-	0, // [0:4] is the sub-list for field type_name
+	0, // 0: cat.CreateCommandRequest.origin_position:type_name -> cat.Position
+	0, // 1: cat.CreateCommandRequest.destination_position:type_name -> cat.Position
+	1, // 2: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
+	2, // 3: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_command_proto_init() }
@@ -385,14 +241,13 @@ func file_command_proto_init() {
 	if File_command_proto != nil {
 		return
 	}
-	file_command_proto_msgTypes[1].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_command_proto_rawDesc), len(file_command_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
