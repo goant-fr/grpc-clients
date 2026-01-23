@@ -11,6 +11,9 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	durationpb "google.golang.org/protobuf/types/known/durationpb"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -143,6 +146,334 @@ func (x *CreateCommandRequest) GetDestinationPosition() *Position {
 	return nil
 }
 
+type GetCommandsByDriverIdRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCommandsByDriverIdRequest) Reset() {
+	*x = GetCommandsByDriverIdRequest{}
+	mi := &file_command_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCommandsByDriverIdRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCommandsByDriverIdRequest) ProtoMessage() {}
+
+func (x *GetCommandsByDriverIdRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_command_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCommandsByDriverIdRequest.ProtoReflect.Descriptor instead.
+func (*GetCommandsByDriverIdRequest) Descriptor() ([]byte, []int) {
+	return file_command_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *GetCommandsByDriverIdRequest) GetDriverId() string {
+	if x != nil {
+		return x.DriverId
+	}
+	return ""
+}
+
+type CmdInterchange struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Lat           float64                `protobuf:"fixed64,2,opt,name=lat,proto3" json:"lat,omitempty"`
+	Lng           float64                `protobuf:"fixed64,3,opt,name=lng,proto3" json:"lng,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CmdInterchange) Reset() {
+	*x = CmdInterchange{}
+	mi := &file_command_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CmdInterchange) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CmdInterchange) ProtoMessage() {}
+
+func (x *CmdInterchange) ProtoReflect() protoreflect.Message {
+	mi := &file_command_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CmdInterchange.ProtoReflect.Descriptor instead.
+func (*CmdInterchange) Descriptor() ([]byte, []int) {
+	return file_command_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CmdInterchange) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *CmdInterchange) GetLat() float64 {
+	if x != nil {
+		return x.Lat
+	}
+	return 0
+}
+
+func (x *CmdInterchange) GetLng() float64 {
+	if x != nil {
+		return x.Lng
+	}
+	return 0
+}
+
+type Command struct {
+	state               protoimpl.MessageState  `protogen:"open.v1"`
+	Id                  string                  `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Status              int32                   `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
+	ValidationCode      string                  `protobuf:"bytes,3,opt,name=validation_code,json=validationCode,proto3" json:"validation_code,omitempty"`
+	Interchanges        []*CmdInterchange       `protobuf:"bytes,4,rep,name=interchanges,proto3" json:"interchanges,omitempty"`
+	Size                string                  `protobuf:"bytes,5,opt,name=size,proto3" json:"size,omitempty"`
+	OriginPosition      *Position               `protobuf:"bytes,6,opt,name=origin_position,json=originPosition,proto3" json:"origin_position,omitempty"`
+	DestinationPosition *Position               `protobuf:"bytes,7,opt,name=destination_position,json=destinationPosition,proto3" json:"destination_position,omitempty"`
+	ZoneId              string                  `protobuf:"bytes,8,opt,name=zone_id,json=zoneId,proto3" json:"zone_id,omitempty"`
+	DriverId            *wrapperspb.StringValue `protobuf:"bytes,9,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
+	CreatedAt           *timestamppb.Timestamp  `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt           *timestamppb.Timestamp  `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	FinalArriveAt       *timestamppb.Timestamp  `protobuf:"bytes,12,opt,name=final_arrive_at,json=finalArriveAt,proto3" json:"final_arrive_at,omitempty"`
+	DeliveredAt         *timestamppb.Timestamp  `protobuf:"bytes,13,opt,name=delivered_at,json=deliveredAt,proto3" json:"delivered_at,omitempty"`
+	TotalTaktTime       *durationpb.Duration    `protobuf:"bytes,14,opt,name=total_takt_time,json=totalTaktTime,proto3" json:"total_takt_time,omitempty"`
+	TotalWaitTime       *durationpb.Duration    `protobuf:"bytes,15,opt,name=total_wait_time,json=totalWaitTime,proto3" json:"total_wait_time,omitempty"`
+	TotalMoveTime       *durationpb.Duration    `protobuf:"bytes,16,opt,name=total_move_time,json=totalMoveTime,proto3" json:"total_move_time,omitempty"`
+	TotalExTime         *durationpb.Duration    `protobuf:"bytes,17,opt,name=total_ex_time,json=totalExTime,proto3" json:"total_ex_time,omitempty"`
+	SelectedZones       []string                `protobuf:"bytes,18,rep,name=selected_zones,json=selectedZones,proto3" json:"selected_zones,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *Command) Reset() {
+	*x = Command{}
+	mi := &file_command_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Command) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Command) ProtoMessage() {}
+
+func (x *Command) ProtoReflect() protoreflect.Message {
+	mi := &file_command_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Command.ProtoReflect.Descriptor instead.
+func (*Command) Descriptor() ([]byte, []int) {
+	return file_command_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *Command) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *Command) GetStatus() int32 {
+	if x != nil {
+		return x.Status
+	}
+	return 0
+}
+
+func (x *Command) GetValidationCode() string {
+	if x != nil {
+		return x.ValidationCode
+	}
+	return ""
+}
+
+func (x *Command) GetInterchanges() []*CmdInterchange {
+	if x != nil {
+		return x.Interchanges
+	}
+	return nil
+}
+
+func (x *Command) GetSize() string {
+	if x != nil {
+		return x.Size
+	}
+	return ""
+}
+
+func (x *Command) GetOriginPosition() *Position {
+	if x != nil {
+		return x.OriginPosition
+	}
+	return nil
+}
+
+func (x *Command) GetDestinationPosition() *Position {
+	if x != nil {
+		return x.DestinationPosition
+	}
+	return nil
+}
+
+func (x *Command) GetZoneId() string {
+	if x != nil {
+		return x.ZoneId
+	}
+	return ""
+}
+
+func (x *Command) GetDriverId() *wrapperspb.StringValue {
+	if x != nil {
+		return x.DriverId
+	}
+	return nil
+}
+
+func (x *Command) GetCreatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.CreatedAt
+	}
+	return nil
+}
+
+func (x *Command) GetUpdatedAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *Command) GetFinalArriveAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.FinalArriveAt
+	}
+	return nil
+}
+
+func (x *Command) GetDeliveredAt() *timestamppb.Timestamp {
+	if x != nil {
+		return x.DeliveredAt
+	}
+	return nil
+}
+
+func (x *Command) GetTotalTaktTime() *durationpb.Duration {
+	if x != nil {
+		return x.TotalTaktTime
+	}
+	return nil
+}
+
+func (x *Command) GetTotalWaitTime() *durationpb.Duration {
+	if x != nil {
+		return x.TotalWaitTime
+	}
+	return nil
+}
+
+func (x *Command) GetTotalMoveTime() *durationpb.Duration {
+	if x != nil {
+		return x.TotalMoveTime
+	}
+	return nil
+}
+
+func (x *Command) GetTotalExTime() *durationpb.Duration {
+	if x != nil {
+		return x.TotalExTime
+	}
+	return nil
+}
+
+func (x *Command) GetSelectedZones() []string {
+	if x != nil {
+		return x.SelectedZones
+	}
+	return nil
+}
+
+type GetCommandsByDriverIdResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Commands      []*Command             `protobuf:"bytes,1,rep,name=commands,proto3" json:"commands,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCommandsByDriverIdResponse) Reset() {
+	*x = GetCommandsByDriverIdResponse{}
+	mi := &file_command_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCommandsByDriverIdResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCommandsByDriverIdResponse) ProtoMessage() {}
+
+func (x *GetCommandsByDriverIdResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_command_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCommandsByDriverIdResponse.ProtoReflect.Descriptor instead.
+func (*GetCommandsByDriverIdResponse) Descriptor() ([]byte, []int) {
+	return file_command_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *GetCommandsByDriverIdResponse) GetCommands() []*Command {
+	if x != nil {
+		return x.Commands
+	}
+	return nil
+}
+
 type CreateCommandResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Response      int32                  `protobuf:"varint,1,opt,name=response,proto3" json:"response,omitempty"`
@@ -152,7 +483,7 @@ type CreateCommandResponse struct {
 
 func (x *CreateCommandResponse) Reset() {
 	*x = CreateCommandResponse{}
-	mi := &file_command_proto_msgTypes[2]
+	mi := &file_command_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -164,7 +495,7 @@ func (x *CreateCommandResponse) String() string {
 func (*CreateCommandResponse) ProtoMessage() {}
 
 func (x *CreateCommandResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[2]
+	mi := &file_command_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -177,7 +508,7 @@ func (x *CreateCommandResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCommandResponse.ProtoReflect.Descriptor instead.
 func (*CreateCommandResponse) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{2}
+	return file_command_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *CreateCommandResponse) GetResponse() int32 {
@@ -191,7 +522,7 @@ var File_command_proto protoreflect.FileDescriptor
 
 const file_command_proto_rawDesc = "" +
 	"\n" +
-	"\rcommand.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"`\n" +
+	"\rcommand.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\x1a\x1egoogle/protobuf/wrappers.proto\"`\n" +
 	"\bPosition\x12)\n" +
 	"\x03lat\x18\x01 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80V@!\x00\x00\x00\x00\x00\x80V\xc0R\x03lat\x12)\n" +
 	"\x03lon\x18\x02 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80f@!\x00\x00\x00\x00\x00\x80f\xc0R\x03lon\"\xed\x01\n" +
@@ -199,11 +530,42 @@ const file_command_proto_rawDesc = "" +
 	"\border_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aorderId\x12&\n" +
 	"\x04size\x18\x02 \x01(\tB\x12\xbaH\x0fr\rR\x01SR\x01MR\x01LR\x02XlR\x04size\x12>\n" +
 	"\x0forigin_position\x18\x03 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x0eoriginPosition\x12H\n" +
-	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x13destinationPosition\"3\n" +
+	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x13destinationPosition\"E\n" +
+	"\x1cGetCommandsByDriverIdRequest\x12%\n" +
+	"\tdriver_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdriverId\"D\n" +
+	"\x0eCmdInterchange\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
+	"\x03lat\x18\x02 \x01(\x01R\x03lat\x12\x10\n" +
+	"\x03lng\x18\x03 \x01(\x01R\x03lng\"\x9d\a\n" +
+	"\aCommand\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\x05R\x06status\x12'\n" +
+	"\x0fvalidation_code\x18\x03 \x01(\tR\x0evalidationCode\x127\n" +
+	"\finterchanges\x18\x04 \x03(\v2\x13.cat.CmdInterchangeR\finterchanges\x12\x12\n" +
+	"\x04size\x18\x05 \x01(\tR\x04size\x126\n" +
+	"\x0forigin_position\x18\x06 \x01(\v2\r.cat.PositionR\x0eoriginPosition\x12@\n" +
+	"\x14destination_position\x18\a \x01(\v2\r.cat.PositionR\x13destinationPosition\x12\x17\n" +
+	"\azone_id\x18\b \x01(\tR\x06zoneId\x129\n" +
+	"\tdriver_id\x18\t \x01(\v2\x1c.google.protobuf.StringValueR\bdriverId\x129\n" +
+	"\n" +
+	"created_at\x18\n" +
+	" \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
+	"\n" +
+	"updated_at\x18\v \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12B\n" +
+	"\x0ffinal_arrive_at\x18\f \x01(\v2\x1a.google.protobuf.TimestampR\rfinalArriveAt\x12=\n" +
+	"\fdelivered_at\x18\r \x01(\v2\x1a.google.protobuf.TimestampR\vdeliveredAt\x12A\n" +
+	"\x0ftotal_takt_time\x18\x0e \x01(\v2\x19.google.protobuf.DurationR\rtotalTaktTime\x12A\n" +
+	"\x0ftotal_wait_time\x18\x0f \x01(\v2\x19.google.protobuf.DurationR\rtotalWaitTime\x12A\n" +
+	"\x0ftotal_move_time\x18\x10 \x01(\v2\x19.google.protobuf.DurationR\rtotalMoveTime\x12=\n" +
+	"\rtotal_ex_time\x18\x11 \x01(\v2\x19.google.protobuf.DurationR\vtotalExTime\x12%\n" +
+	"\x0eselected_zones\x18\x12 \x03(\tR\rselectedZones\"I\n" +
+	"\x1dGetCommandsByDriverIdResponse\x12(\n" +
+	"\bcommands\x18\x01 \x03(\v2\f.cat.CommandR\bcommands\"3\n" +
 	"\x15CreateCommandResponse\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\x05R\bresponse2\x87\x01\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse2\x99\x02\n" +
 	"\x0eCommandService\x12u\n" +
-	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/abyssin/commands/createCommandBR\n" +
+	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/abyssin/commands/createCommand\x12\x8f\x01\n" +
+	"\x15GetCommandsByDriverId\x12!.cat.GetCommandsByDriverIdRequest\x1a\".cat.GetCommandsByDriverIdResponse\"/\x82\xd3\xe4\x93\x02)\x12'/v1/abyssin/commands/driver/{driver_id}BR\n" +
 	"\acom.catB\fCommandProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
@@ -218,22 +580,44 @@ func file_command_proto_rawDescGZIP() []byte {
 	return file_command_proto_rawDescData
 }
 
-var file_command_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_command_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_command_proto_goTypes = []any{
-	(*Position)(nil),              // 0: cat.Position
-	(*CreateCommandRequest)(nil),  // 1: cat.CreateCommandRequest
-	(*CreateCommandResponse)(nil), // 2: cat.CreateCommandResponse
+	(*Position)(nil),                      // 0: cat.Position
+	(*CreateCommandRequest)(nil),          // 1: cat.CreateCommandRequest
+	(*GetCommandsByDriverIdRequest)(nil),  // 2: cat.GetCommandsByDriverIdRequest
+	(*CmdInterchange)(nil),                // 3: cat.CmdInterchange
+	(*Command)(nil),                       // 4: cat.Command
+	(*GetCommandsByDriverIdResponse)(nil), // 5: cat.GetCommandsByDriverIdResponse
+	(*CreateCommandResponse)(nil),         // 6: cat.CreateCommandResponse
+	(*wrapperspb.StringValue)(nil),        // 7: google.protobuf.StringValue
+	(*timestamppb.Timestamp)(nil),         // 8: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),           // 9: google.protobuf.Duration
 }
 var file_command_proto_depIdxs = []int32{
-	0, // 0: cat.CreateCommandRequest.origin_position:type_name -> cat.Position
-	0, // 1: cat.CreateCommandRequest.destination_position:type_name -> cat.Position
-	1, // 2: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
-	2, // 3: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0,  // 0: cat.CreateCommandRequest.origin_position:type_name -> cat.Position
+	0,  // 1: cat.CreateCommandRequest.destination_position:type_name -> cat.Position
+	3,  // 2: cat.Command.interchanges:type_name -> cat.CmdInterchange
+	0,  // 3: cat.Command.origin_position:type_name -> cat.Position
+	0,  // 4: cat.Command.destination_position:type_name -> cat.Position
+	7,  // 5: cat.Command.driver_id:type_name -> google.protobuf.StringValue
+	8,  // 6: cat.Command.created_at:type_name -> google.protobuf.Timestamp
+	8,  // 7: cat.Command.updated_at:type_name -> google.protobuf.Timestamp
+	8,  // 8: cat.Command.final_arrive_at:type_name -> google.protobuf.Timestamp
+	8,  // 9: cat.Command.delivered_at:type_name -> google.protobuf.Timestamp
+	9,  // 10: cat.Command.total_takt_time:type_name -> google.protobuf.Duration
+	9,  // 11: cat.Command.total_wait_time:type_name -> google.protobuf.Duration
+	9,  // 12: cat.Command.total_move_time:type_name -> google.protobuf.Duration
+	9,  // 13: cat.Command.total_ex_time:type_name -> google.protobuf.Duration
+	4,  // 14: cat.GetCommandsByDriverIdResponse.commands:type_name -> cat.Command
+	1,  // 15: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
+	2,  // 16: cat.CommandService.GetCommandsByDriverId:input_type -> cat.GetCommandsByDriverIdRequest
+	6,  // 17: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
+	5,  // 18: cat.CommandService.GetCommandsByDriverId:output_type -> cat.GetCommandsByDriverIdResponse
+	17, // [17:19] is the sub-list for method output_type
+	15, // [15:17] is the sub-list for method input_type
+	15, // [15:15] is the sub-list for extension type_name
+	15, // [15:15] is the sub-list for extension extendee
+	0,  // [0:15] is the sub-list for field type_name
 }
 
 func init() { file_command_proto_init() }
@@ -247,7 +631,7 @@ func file_command_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_command_proto_rawDesc), len(file_command_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

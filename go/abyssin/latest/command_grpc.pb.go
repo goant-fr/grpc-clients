@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	CommandService_CreateCommand_FullMethodName = "/cat.CommandService/CreateCommand"
+	CommandService_CreateCommand_FullMethodName         = "/cat.CommandService/CreateCommand"
+	CommandService_GetCommandsByDriverId_FullMethodName = "/cat.CommandService/GetCommandsByDriverId"
 )
 
 // CommandServiceClient is the client API for CommandService service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type CommandServiceClient interface {
 	CreateCommand(ctx context.Context, in *CreateCommandRequest, opts ...grpc.CallOption) (*CreateCommandResponse, error)
+	GetCommandsByDriverId(ctx context.Context, in *GetCommandsByDriverIdRequest, opts ...grpc.CallOption) (*GetCommandsByDriverIdResponse, error)
 }
 
 type commandServiceClient struct {
@@ -47,11 +49,22 @@ func (c *commandServiceClient) CreateCommand(ctx context.Context, in *CreateComm
 	return out, nil
 }
 
+func (c *commandServiceClient) GetCommandsByDriverId(ctx context.Context, in *GetCommandsByDriverIdRequest, opts ...grpc.CallOption) (*GetCommandsByDriverIdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCommandsByDriverIdResponse)
+	err := c.cc.Invoke(ctx, CommandService_GetCommandsByDriverId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CommandServiceServer is the server API for CommandService service.
 // All implementations must embed UnimplementedCommandServiceServer
 // for forward compatibility.
 type CommandServiceServer interface {
 	CreateCommand(context.Context, *CreateCommandRequest) (*CreateCommandResponse, error)
+	GetCommandsByDriverId(context.Context, *GetCommandsByDriverIdRequest) (*GetCommandsByDriverIdResponse, error)
 	mustEmbedUnimplementedCommandServiceServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedCommandServiceServer struct{}
 
 func (UnimplementedCommandServiceServer) CreateCommand(context.Context, *CreateCommandRequest) (*CreateCommandResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateCommand not implemented")
+}
+func (UnimplementedCommandServiceServer) GetCommandsByDriverId(context.Context, *GetCommandsByDriverIdRequest) (*GetCommandsByDriverIdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCommandsByDriverId not implemented")
 }
 func (UnimplementedCommandServiceServer) mustEmbedUnimplementedCommandServiceServer() {}
 func (UnimplementedCommandServiceServer) testEmbeddedByValue()                        {}
@@ -104,6 +120,24 @@ func _CommandService_CreateCommand_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CommandService_GetCommandsByDriverId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommandsByDriverIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommandServiceServer).GetCommandsByDriverId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommandService_GetCommandsByDriverId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommandServiceServer).GetCommandsByDriverId(ctx, req.(*GetCommandsByDriverIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CommandService_ServiceDesc is the grpc.ServiceDesc for CommandService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var CommandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateCommand",
 			Handler:    _CommandService_CreateCommand_Handler,
+		},
+		{
+			MethodName: "GetCommandsByDriverId",
+			Handler:    _CommandService_GetCommandsByDriverId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

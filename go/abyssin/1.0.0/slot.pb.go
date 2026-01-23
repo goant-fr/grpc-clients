@@ -38,6 +38,7 @@ type Slot struct {
 	Exchange      *durationpb.Duration   `protobuf:"bytes,9,opt,name=exchange,proto3" json:"exchange,omitempty"`
 	AfterExAt     *timestamppb.Timestamp `protobuf:"bytes,10,opt,name=after_ex_at,json=afterExAt,proto3" json:"after_ex_at,omitempty"`
 	DriverId      string                 `protobuf:"bytes,11,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
+	NextDriverId  string                 `protobuf:"bytes,12,opt,name=next_driver_id,json=nextDriverId,proto3" json:"next_driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -145,6 +146,13 @@ func (x *Slot) GetAfterExAt() *timestamppb.Timestamp {
 func (x *Slot) GetDriverId() string {
 	if x != nil {
 		return x.DriverId
+	}
+	return ""
+}
+
+func (x *Slot) GetNextDriverId() string {
+	if x != nil {
+		return x.NextDriverId
 	}
 	return ""
 }
@@ -318,7 +326,7 @@ var File_slot_proto protoreflect.FileDescriptor
 const file_slot_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"slot.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\xef\x03\n" +
+	"slot.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\x95\x04\n" +
 	"\x04Slot\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12'\n" +
 	"\n" +
@@ -333,7 +341,8 @@ const file_slot_proto_rawDesc = "" +
 	"\bexchange\x18\t \x01(\v2\x19.google.protobuf.DurationR\bexchange\x12:\n" +
 	"\vafter_ex_at\x18\n" +
 	" \x01(\v2\x1a.google.protobuf.TimestampR\tafterExAt\x12\x1b\n" +
-	"\tdriver_id\x18\v \x01(\tR\bdriverId\"\x81\x01\n" +
+	"\tdriver_id\x18\v \x01(\tR\bdriverId\x12$\n" +
+	"\x0enext_driver_id\x18\f \x01(\tR\fnextDriverId\"\x81\x01\n" +
 	"\x15GetSlotsByZoneRequest\x12%\n" +
 	"\tnext_zone\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bnextZone\x12\x1f\n" +
 	"\x06offset\x18\x02 \x01(\x05B\a\xbaH\x04\x1a\x02(\x00R\x06offset\x12 \n" +
