@@ -98,8 +98,8 @@ type Address struct {
 	Label         string                 `protobuf:"bytes,3,opt,name=label,proto3" json:"label,omitempty"`
 	City          string                 `protobuf:"bytes,4,opt,name=city,proto3" json:"city,omitempty"`
 	PostalCode    string                 `protobuf:"bytes,5,opt,name=postal_code,json=postalCode,proto3" json:"postal_code,omitempty"`
-	X             float64                `protobuf:"fixed64,6,opt,name=x,proto3" json:"x,omitempty"`
-	Y             float64                `protobuf:"fixed64,7,opt,name=y,proto3" json:"y,omitempty"`
+	Latitude      float64                `protobuf:"fixed64,6,opt,name=latitude,proto3" json:"latitude,omitempty"`
+	Longitude     float64                `protobuf:"fixed64,7,opt,name=longitude,proto3" json:"longitude,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -169,16 +169,16 @@ func (x *Address) GetPostalCode() string {
 	return ""
 }
 
-func (x *Address) GetX() float64 {
+func (x *Address) GetLatitude() float64 {
 	if x != nil {
-		return x.X
+		return x.Latitude
 	}
 	return 0
 }
 
-func (x *Address) GetY() float64 {
+func (x *Address) GetLongitude() float64 {
 	if x != nil {
-		return x.Y
+		return x.Longitude
 	}
 	return 0
 }
@@ -760,7 +760,7 @@ const file_user_address_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x14\n" +
 	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
 	"\x05label\x18\x03 \x01(\tR\x05label\x12&\n" +
-	"\x0fis_main_address\x18\x04 \x01(\bR\risMainAddress\"\xdc\x01\n" +
+	"\x0fis_main_address\x18\x04 \x01(\bR\risMainAddress\"\xfa\x01\n" +
 	"\aAddress\x12 \n" +
 	"\x05title\x18\x01 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05title\x12&\n" +
@@ -769,9 +769,9 @@ const file_user_address_proto_rawDesc = "" +
 	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05label\x12\x1d\n" +
 	"\x04city\x18\x04 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x04city\x12*\n" +
 	"\vpostal_code\x18\x05 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18\x14R\n" +
-	"postalCode\x12\f\n" +
-	"\x01x\x18\x06 \x01(\x01R\x01x\x12\f\n" +
-	"\x01y\x18\a \x01(\x01R\x01y\"\x1c\n" +
+	"postalCode\x12\x1a\n" +
+	"\blatitude\x18\x06 \x01(\x01R\blatitude\x12\x1c\n" +
+	"\tlongitude\x18\a \x01(\x01R\tlongitude\"\x1c\n" +
 	"\x1aGetAddressesByTokenRequest\"1\n" +
 	"\x15GetAddressByIDRequest\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"I\n" +
