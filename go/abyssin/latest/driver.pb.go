@@ -23,6 +23,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type PickupType int32
+
+const (
+	PickupType_PICKUP_TYPE_UNSPECIFIED PickupType = 0
+	PickupType_PICKUP                  PickupType = 1
+	PickupType_INTERCHANGE             PickupType = 2
+)
+
+// Enum value maps for PickupType.
+var (
+	PickupType_name = map[int32]string{
+		0: "PICKUP_TYPE_UNSPECIFIED",
+		1: "PICKUP",
+		2: "INTERCHANGE",
+	}
+	PickupType_value = map[string]int32{
+		"PICKUP_TYPE_UNSPECIFIED": 0,
+		"PICKUP":                  1,
+		"INTERCHANGE":             2,
+	}
+)
+
+func (x PickupType) Enum() *PickupType {
+	p := new(PickupType)
+	*p = x
+	return p
+}
+
+func (x PickupType) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (PickupType) Descriptor() protoreflect.EnumDescriptor {
+	return file_driver_proto_enumTypes[0].Descriptor()
+}
+
+func (PickupType) Type() protoreflect.EnumType {
+	return &file_driver_proto_enumTypes[0]
+}
+
+func (x PickupType) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use PickupType.Descriptor instead.
+func (PickupType) EnumDescriptor() ([]byte, []int) {
+	return file_driver_proto_rawDescGZIP(), []int{0}
+}
+
 type LeaveZoneRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -342,7 +391,7 @@ func (x *AcceptCommandRequest) GetCommandId() string {
 type PickupCommandRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommandId     string                 `protobuf:"bytes,1,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
-	Type          string                 `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Type          PickupType             `protobuf:"varint,2,opt,name=type,proto3,enum=cat.PickupType" json:"type,omitempty"`
 	Code          *string                `protobuf:"bytes,3,opt,name=code,proto3,oneof" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -385,11 +434,11 @@ func (x *PickupCommandRequest) GetCommandId() string {
 	return ""
 }
 
-func (x *PickupCommandRequest) GetType() string {
+func (x *PickupCommandRequest) GetType() PickupType {
 	if x != nil {
 		return x.Type
 	}
-	return ""
+	return PickupType_PICKUP_TYPE_UNSPECIFIED
 }
 
 func (x *PickupCommandRequest) GetCode() string {
@@ -688,11 +737,11 @@ const file_driver_proto_rawDesc = "" +
 	"\bresponse\x18\x01 \x01(\x05R\bresponse\"?\n" +
 	"\x14AcceptCommandRequest\x12'\n" +
 	"\n" +
-	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"\x9c\x01\n" +
+	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"\x9b\x01\n" +
 	"\x14PickupCommandRequest\x12'\n" +
 	"\n" +
-	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\x12.\n" +
-	"\x04type\x18\x02 \x01(\tB\x1a\xbaH\x17r\x15R\x06PICKUPR\vINTERCHANGER\x04type\x12\"\n" +
+	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\x12-\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x0f.cat.PickupTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04type\x12\"\n" +
 	"\x04code\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x04\x18\n" +
 	"H\x00R\x04code\x88\x01\x01B\a\n" +
 	"\x05_code\"3\n" +
@@ -707,7 +756,13 @@ const file_driver_proto_rawDesc = "" +
 	"\x11AcceptSlotRequest\x12!\n" +
 	"\aslot_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06slotId\"0\n" +
 	"\x12AcceptSlotResponse\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\x05R\bresponse2\xc6\x05\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse*F\n" +
+	"\n" +
+	"PickupType\x12\x1b\n" +
+	"\x17PICKUP_TYPE_UNSPECIFIED\x10\x00\x12\n" +
+	"\n" +
+	"\x06PICKUP\x10\x01\x12\x0f\n" +
+	"\vINTERCHANGE\x10\x022\xc6\x05\n" +
 	"\rDriverService\x12U\n" +
 	"\tLeaveZone\x12\x15.cat.LeaveZoneRequest\x1a\x16.cat.LeaveZoneResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/abyssin/leave\x12Z\n" +
 	"\bJoinZone\x12\x14.cat.JoinZoneRequest\x1a\x14.cat.JoinZoneRespone\"\"\x82\xd3\xe4\x93\x02\x1c\"\x1a/v1/abyssin/join/{zone_id}\x12b\n" +
@@ -732,45 +787,48 @@ func file_driver_proto_rawDescGZIP() []byte {
 	return file_driver_proto_rawDescData
 }
 
+var file_driver_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_driver_proto_msgTypes = make([]protoimpl.MessageInfo, 14)
 var file_driver_proto_goTypes = []any{
-	(*LeaveZoneRequest)(nil),      // 0: cat.LeaveZoneRequest
-	(*JoinZoneRequest)(nil),       // 1: cat.JoinZoneRequest
-	(*JoinZoneRespone)(nil),       // 2: cat.JoinZoneRespone
-	(*LeaveZoneResponse)(nil),     // 3: cat.LeaveZoneResponse
-	(*UpdateStatusRequest)(nil),   // 4: cat.UpdateStatusRequest
-	(*UpdateStatusResponse)(nil),  // 5: cat.UpdateStatusResponse
-	(*AcceptCommandRequest)(nil),  // 6: cat.AcceptCommandRequest
-	(*PickupCommandRequest)(nil),  // 7: cat.PickupCommandRequest
-	(*PickupCommandResponse)(nil), // 8: cat.PickupCommandResponse
-	(*ChangeSlotRequest)(nil),     // 9: cat.ChangeSlotRequest
-	(*ChangeSlotResponse)(nil),    // 10: cat.ChangeSlotResponse
-	(*AcceptCommandResponse)(nil), // 11: cat.AcceptCommandResponse
-	(*AcceptSlotRequest)(nil),     // 12: cat.AcceptSlotRequest
-	(*AcceptSlotResponse)(nil),    // 13: cat.AcceptSlotResponse
-	(*Zone)(nil),                  // 14: cat.Zone
+	(PickupType)(0),               // 0: cat.PickupType
+	(*LeaveZoneRequest)(nil),      // 1: cat.LeaveZoneRequest
+	(*JoinZoneRequest)(nil),       // 2: cat.JoinZoneRequest
+	(*JoinZoneRespone)(nil),       // 3: cat.JoinZoneRespone
+	(*LeaveZoneResponse)(nil),     // 4: cat.LeaveZoneResponse
+	(*UpdateStatusRequest)(nil),   // 5: cat.UpdateStatusRequest
+	(*UpdateStatusResponse)(nil),  // 6: cat.UpdateStatusResponse
+	(*AcceptCommandRequest)(nil),  // 7: cat.AcceptCommandRequest
+	(*PickupCommandRequest)(nil),  // 8: cat.PickupCommandRequest
+	(*PickupCommandResponse)(nil), // 9: cat.PickupCommandResponse
+	(*ChangeSlotRequest)(nil),     // 10: cat.ChangeSlotRequest
+	(*ChangeSlotResponse)(nil),    // 11: cat.ChangeSlotResponse
+	(*AcceptCommandResponse)(nil), // 12: cat.AcceptCommandResponse
+	(*AcceptSlotRequest)(nil),     // 13: cat.AcceptSlotRequest
+	(*AcceptSlotResponse)(nil),    // 14: cat.AcceptSlotResponse
+	(*Zone)(nil),                  // 15: cat.Zone
 }
 var file_driver_proto_depIdxs = []int32{
-	14, // 0: cat.JoinZoneRespone.zone:type_name -> cat.Zone
-	0,  // 1: cat.DriverService.LeaveZone:input_type -> cat.LeaveZoneRequest
-	1,  // 2: cat.DriverService.JoinZone:input_type -> cat.JoinZoneRequest
-	4,  // 3: cat.DriverService.UpdateStatus:input_type -> cat.UpdateStatusRequest
-	6,  // 4: cat.DriverService.AcceptCommand:input_type -> cat.AcceptCommandRequest
-	7,  // 5: cat.DriverService.PickupCommand:input_type -> cat.PickupCommandRequest
-	12, // 6: cat.DriverService.AcceptSlot:input_type -> cat.AcceptSlotRequest
-	9,  // 7: cat.DriverService.ChangeSlot:input_type -> cat.ChangeSlotRequest
-	3,  // 8: cat.DriverService.LeaveZone:output_type -> cat.LeaveZoneResponse
-	2,  // 9: cat.DriverService.JoinZone:output_type -> cat.JoinZoneRespone
-	5,  // 10: cat.DriverService.UpdateStatus:output_type -> cat.UpdateStatusResponse
-	11, // 11: cat.DriverService.AcceptCommand:output_type -> cat.AcceptCommandResponse
-	8,  // 12: cat.DriverService.PickupCommand:output_type -> cat.PickupCommandResponse
-	13, // 13: cat.DriverService.AcceptSlot:output_type -> cat.AcceptSlotResponse
-	10, // 14: cat.DriverService.ChangeSlot:output_type -> cat.ChangeSlotResponse
-	8,  // [8:15] is the sub-list for method output_type
-	1,  // [1:8] is the sub-list for method input_type
-	1,  // [1:1] is the sub-list for extension type_name
-	1,  // [1:1] is the sub-list for extension extendee
-	0,  // [0:1] is the sub-list for field type_name
+	15, // 0: cat.JoinZoneRespone.zone:type_name -> cat.Zone
+	0,  // 1: cat.PickupCommandRequest.type:type_name -> cat.PickupType
+	1,  // 2: cat.DriverService.LeaveZone:input_type -> cat.LeaveZoneRequest
+	2,  // 3: cat.DriverService.JoinZone:input_type -> cat.JoinZoneRequest
+	5,  // 4: cat.DriverService.UpdateStatus:input_type -> cat.UpdateStatusRequest
+	7,  // 5: cat.DriverService.AcceptCommand:input_type -> cat.AcceptCommandRequest
+	8,  // 6: cat.DriverService.PickupCommand:input_type -> cat.PickupCommandRequest
+	13, // 7: cat.DriverService.AcceptSlot:input_type -> cat.AcceptSlotRequest
+	10, // 8: cat.DriverService.ChangeSlot:input_type -> cat.ChangeSlotRequest
+	4,  // 9: cat.DriverService.LeaveZone:output_type -> cat.LeaveZoneResponse
+	3,  // 10: cat.DriverService.JoinZone:output_type -> cat.JoinZoneRespone
+	6,  // 11: cat.DriverService.UpdateStatus:output_type -> cat.UpdateStatusResponse
+	12, // 12: cat.DriverService.AcceptCommand:output_type -> cat.AcceptCommandResponse
+	9,  // 13: cat.DriverService.PickupCommand:output_type -> cat.PickupCommandResponse
+	14, // 14: cat.DriverService.AcceptSlot:output_type -> cat.AcceptSlotResponse
+	11, // 15: cat.DriverService.ChangeSlot:output_type -> cat.ChangeSlotResponse
+	9,  // [9:16] is the sub-list for method output_type
+	2,  // [2:9] is the sub-list for method input_type
+	2,  // [2:2] is the sub-list for extension type_name
+	2,  // [2:2] is the sub-list for extension extendee
+	0,  // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_driver_proto_init() }
@@ -785,13 +843,14 @@ func file_driver_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_driver_proto_rawDesc), len(file_driver_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   14,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_driver_proto_goTypes,
 		DependencyIndexes: file_driver_proto_depIdxs,
+		EnumInfos:         file_driver_proto_enumTypes,
 		MessageInfos:      file_driver_proto_msgTypes,
 	}.Build()
 	File_driver_proto = out.File
