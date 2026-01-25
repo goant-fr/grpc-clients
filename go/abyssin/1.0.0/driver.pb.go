@@ -392,7 +392,7 @@ type PickupCommandRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommandId     string                 `protobuf:"bytes,1,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
 	Type          PickupType             `protobuf:"varint,2,opt,name=type,proto3,enum=cat.PickupType" json:"type,omitempty"`
-	Code          *string                `protobuf:"bytes,3,opt,name=code,proto3,oneof" json:"code,omitempty"`
+	Code          string                 `protobuf:"bytes,3,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -442,8 +442,8 @@ func (x *PickupCommandRequest) GetType() PickupType {
 }
 
 func (x *PickupCommandRequest) GetCode() string {
-	if x != nil && x.Code != nil {
-		return *x.Code
+	if x != nil {
+		return x.Code
 	}
 	return ""
 }
@@ -737,14 +737,12 @@ const file_driver_proto_rawDesc = "" +
 	"\bresponse\x18\x01 \x01(\x05R\bresponse\"?\n" +
 	"\x14AcceptCommandRequest\x12'\n" +
 	"\n" +
-	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"\x9b\x01\n" +
+	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"\x82\x01\n" +
 	"\x14PickupCommandRequest\x12'\n" +
 	"\n" +
 	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\x12-\n" +
-	"\x04type\x18\x02 \x01(\x0e2\x0f.cat.PickupTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04type\x12\"\n" +
-	"\x04code\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x04\x18\n" +
-	"H\x00R\x04code\x88\x01\x01B\a\n" +
-	"\x05_code\"3\n" +
+	"\x04type\x18\x02 \x01(\x0e2\x0f.cat.PickupTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04type\x12\x12\n" +
+	"\x04code\x18\x03 \x01(\tR\x04code\"3\n" +
 	"\x15PickupCommandResponse\x12\x1a\n" +
 	"\bresponse\x18\x01 \x01(\x05R\bresponse\"6\n" +
 	"\x11ChangeSlotRequest\x12!\n" +
@@ -837,7 +835,6 @@ func file_driver_proto_init() {
 		return
 	}
 	file_zone_proto_init()
-	file_driver_proto_msgTypes[7].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
