@@ -101,10 +101,11 @@ func (x *User) GetPassword() string {
 
 type PersonalInformation struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Lastname      string                 `protobuf:"bytes,1,opt,name=lastname,proto3" json:"lastname,omitempty"`
-	Firstname     string                 `protobuf:"bytes,2,opt,name=firstname,proto3" json:"firstname,omitempty"`
-	Mail          string                 `protobuf:"bytes,3,opt,name=mail,proto3" json:"mail,omitempty"`
-	Phone         string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Lastname      string                 `protobuf:"bytes,2,opt,name=lastname,proto3" json:"lastname,omitempty"`
+	Firstname     string                 `protobuf:"bytes,3,opt,name=firstname,proto3" json:"firstname,omitempty"`
+	Mail          string                 `protobuf:"bytes,4,opt,name=mail,proto3" json:"mail,omitempty"`
+	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -137,6 +138,13 @@ func (x *PersonalInformation) ProtoReflect() protoreflect.Message {
 // Deprecated: Use PersonalInformation.ProtoReflect.Descriptor instead.
 func (*PersonalInformation) Descriptor() ([]byte, []int) {
 	return file_user_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *PersonalInformation) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
 }
 
 func (x *PersonalInformation) GetLastname() string {
@@ -626,12 +634,13 @@ const file_user_proto_rawDesc = "" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x03 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
 	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\x12#\n" +
-	"\bpassword\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\"\xac\x01\n" +
-	"\x13PersonalInformation\x12%\n" +
-	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
-	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
-	"\x04mail\x18\x03 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
-	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"Q\n" +
+	"\bpassword\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\"\xc6\x01\n" +
+	"\x13PersonalInformation\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12%\n" +
+	"\blastname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
+	"\tfirstname\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
+	"\x04mail\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
+	"\x05phone\x18\x05 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"Q\n" +
 	"\x11UpdateUserRequest\x12<\n" +
 	"\x04user\x18\x01 \x01(\v2 .sphinx.user.PersonalInformationB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
 	"\x12UpdateUserResponse\x12\x0e\n" +
