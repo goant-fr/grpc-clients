@@ -148,7 +148,6 @@ func (x *CreateCommandRequest) GetDestinationPosition() *Position {
 
 type GetCommandsByDriverIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	DriverId      string                 `protobuf:"bytes,1,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -181,13 +180,6 @@ func (x *GetCommandsByDriverIdRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use GetCommandsByDriverIdRequest.ProtoReflect.Descriptor instead.
 func (*GetCommandsByDriverIdRequest) Descriptor() ([]byte, []int) {
 	return file_command_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *GetCommandsByDriverIdRequest) GetDriverId() string {
-	if x != nil {
-		return x.DriverId
-	}
-	return ""
 }
 
 type CmdInterchange struct {
@@ -530,9 +522,8 @@ const file_command_proto_rawDesc = "" +
 	"\border_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aorderId\x12&\n" +
 	"\x04size\x18\x02 \x01(\tB\x12\xbaH\x0fr\rR\x01SR\x01MR\x01LR\x02XlR\x04size\x12>\n" +
 	"\x0forigin_position\x18\x03 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x0eoriginPosition\x12H\n" +
-	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x13destinationPosition\"E\n" +
-	"\x1cGetCommandsByDriverIdRequest\x12%\n" +
-	"\tdriver_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bdriverId\"D\n" +
+	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x13destinationPosition\"\x1e\n" +
+	"\x1cGetCommandsByDriverIdRequest\"D\n" +
 	"\x0eCmdInterchange\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03lat\x18\x02 \x01(\x01R\x03lat\x12\x10\n" +
@@ -562,10 +553,10 @@ const file_command_proto_rawDesc = "" +
 	"\x1dGetCommandsByDriverIdResponse\x12(\n" +
 	"\bcommands\x18\x01 \x03(\v2\f.cat.CommandR\bcommands\"3\n" +
 	"\x15CreateCommandResponse\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\x05R\bresponse2\x99\x02\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse2\x8d\x02\n" +
 	"\x0eCommandService\x12u\n" +
-	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/abyssin/commands/createCommand\x12\x8f\x01\n" +
-	"\x15GetCommandsByDriverId\x12!.cat.GetCommandsByDriverIdRequest\x1a\".cat.GetCommandsByDriverIdResponse\"/\x82\xd3\xe4\x93\x02)\x12'/v1/abyssin/commands/driver/{driver_id}BR\n" +
+	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/abyssin/commands/createCommand\x12\x83\x01\n" +
+	"\x15GetCommandsByDriverId\x12!.cat.GetCommandsByDriverIdRequest\x1a\".cat.GetCommandsByDriverIdResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/abyssin/commands/driverBR\n" +
 	"\acom.catB\fCommandProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
