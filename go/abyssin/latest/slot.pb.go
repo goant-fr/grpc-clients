@@ -277,6 +277,58 @@ func (x *GetSlotsByInterchangeRequest) GetLimit() int32 {
 	return 0
 }
 
+type GetSlotsByDriverIDRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Offset        int32                  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
+	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetSlotsByDriverIDRequest) Reset() {
+	*x = GetSlotsByDriverIDRequest{}
+	mi := &file_slot_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetSlotsByDriverIDRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetSlotsByDriverIDRequest) ProtoMessage() {}
+
+func (x *GetSlotsByDriverIDRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_slot_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetSlotsByDriverIDRequest.ProtoReflect.Descriptor instead.
+func (*GetSlotsByDriverIDRequest) Descriptor() ([]byte, []int) {
+	return file_slot_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *GetSlotsByDriverIDRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
+func (x *GetSlotsByDriverIDRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
 type GetSlotsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Slots         []*Slot                `protobuf:"bytes,1,rep,name=slots,proto3" json:"slots,omitempty"`
@@ -286,7 +338,7 @@ type GetSlotsResponse struct {
 
 func (x *GetSlotsResponse) Reset() {
 	*x = GetSlotsResponse{}
-	mi := &file_slot_proto_msgTypes[3]
+	mi := &file_slot_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -298,7 +350,7 @@ func (x *GetSlotsResponse) String() string {
 func (*GetSlotsResponse) ProtoMessage() {}
 
 func (x *GetSlotsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_slot_proto_msgTypes[3]
+	mi := &file_slot_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -311,7 +363,7 @@ func (x *GetSlotsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetSlotsResponse.ProtoReflect.Descriptor instead.
 func (*GetSlotsResponse) Descriptor() ([]byte, []int) {
-	return file_slot_proto_rawDescGZIP(), []int{3}
+	return file_slot_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetSlotsResponse) GetSlots() []*Slot {
@@ -352,12 +404,17 @@ const file_slot_proto_rawDesc = "" +
 	"\x0einterchange_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterchangeId\x12\x1f\n" +
 	"\x06offset\x18\x02 \x01(\x05B\a\xbaH\x04\x1a\x02(\x00R\x06offset\x12 \n" +
 	"\x05limit\x18\x03 \x01(\x05B\n" +
+	"\xbaH\a\x1a\x05\x18\xe8\a(\x01R\x05limit\"^\n" +
+	"\x19GetSlotsByDriverIDRequest\x12\x1f\n" +
+	"\x06offset\x18\x01 \x01(\x05B\a\xbaH\x04\x1a\x02(\x00R\x06offset\x12 \n" +
+	"\x05limit\x18\x02 \x01(\x05B\n" +
 	"\xbaH\a\x1a\x05\x18\xe8\a(\x01R\x05limit\"3\n" +
 	"\x10GetSlotsResponse\x12\x1f\n" +
-	"\x05slots\x18\x01 \x03(\v2\t.cat.SlotR\x05slots2\x88\x02\n" +
+	"\x05slots\x18\x01 \x03(\v2\t.cat.SlotR\x05slots2\x8e\x03\n" +
 	"\vSlotService\x12m\n" +
 	"\x0eGetSlotsByZone\x12\x1a.cat.GetSlotsByZoneRequest\x1a\x15.cat.GetSlotsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v1/abyssin/slots/zone/{zone_id}\x12\x89\x01\n" +
-	"\x15GetSlotsByInterchange\x12!.cat.GetSlotsByInterchangeRequest\x1a\x15.cat.GetSlotsResponse\"6\x82\xd3\xe4\x93\x020\x12./v1/abyssin/slots/interchange/{interchange_id}BO\n" +
+	"\x15GetSlotsByInterchange\x12!.cat.GetSlotsByInterchangeRequest\x1a\x15.cat.GetSlotsResponse\"6\x82\xd3\xe4\x93\x020\x12./v1/abyssin/slots/interchange/{interchange_id}\x12\x83\x01\n" +
+	"\x12GetSlotsByDriverID\x12\x1e.cat.GetSlotsByDriverIDRequest\x1a\x15.cat.GetSlotsResponse\"6\x82\xd3\xe4\x93\x020\x12./v1/abyssin/slots/interchange/{interchange_id}BO\n" +
 	"\acom.catB\tSlotProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
@@ -372,28 +429,31 @@ func file_slot_proto_rawDescGZIP() []byte {
 	return file_slot_proto_rawDescData
 }
 
-var file_slot_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_slot_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_slot_proto_goTypes = []any{
 	(*Slot)(nil),                         // 0: cat.Slot
 	(*GetSlotsByZoneRequest)(nil),        // 1: cat.GetSlotsByZoneRequest
 	(*GetSlotsByInterchangeRequest)(nil), // 2: cat.GetSlotsByInterchangeRequest
-	(*GetSlotsResponse)(nil),             // 3: cat.GetSlotsResponse
-	(*timestamppb.Timestamp)(nil),        // 4: google.protobuf.Timestamp
-	(*durationpb.Duration)(nil),          // 5: google.protobuf.Duration
+	(*GetSlotsByDriverIDRequest)(nil),    // 3: cat.GetSlotsByDriverIDRequest
+	(*GetSlotsResponse)(nil),             // 4: cat.GetSlotsResponse
+	(*timestamppb.Timestamp)(nil),        // 5: google.protobuf.Timestamp
+	(*durationpb.Duration)(nil),          // 6: google.protobuf.Duration
 }
 var file_slot_proto_depIdxs = []int32{
-	4, // 0: cat.Slot.arrive_at:type_name -> google.protobuf.Timestamp
-	4, // 1: cat.Slot.slot_at:type_name -> google.protobuf.Timestamp
-	5, // 2: cat.Slot.wait:type_name -> google.protobuf.Duration
-	5, // 3: cat.Slot.exchange:type_name -> google.protobuf.Duration
-	4, // 4: cat.Slot.after_ex_at:type_name -> google.protobuf.Timestamp
+	5, // 0: cat.Slot.arrive_at:type_name -> google.protobuf.Timestamp
+	5, // 1: cat.Slot.slot_at:type_name -> google.protobuf.Timestamp
+	6, // 2: cat.Slot.wait:type_name -> google.protobuf.Duration
+	6, // 3: cat.Slot.exchange:type_name -> google.protobuf.Duration
+	5, // 4: cat.Slot.after_ex_at:type_name -> google.protobuf.Timestamp
 	0, // 5: cat.GetSlotsResponse.slots:type_name -> cat.Slot
 	1, // 6: cat.SlotService.GetSlotsByZone:input_type -> cat.GetSlotsByZoneRequest
 	2, // 7: cat.SlotService.GetSlotsByInterchange:input_type -> cat.GetSlotsByInterchangeRequest
-	3, // 8: cat.SlotService.GetSlotsByZone:output_type -> cat.GetSlotsResponse
-	3, // 9: cat.SlotService.GetSlotsByInterchange:output_type -> cat.GetSlotsResponse
-	8, // [8:10] is the sub-list for method output_type
-	6, // [6:8] is the sub-list for method input_type
+	3, // 8: cat.SlotService.GetSlotsByDriverID:input_type -> cat.GetSlotsByDriverIDRequest
+	4, // 9: cat.SlotService.GetSlotsByZone:output_type -> cat.GetSlotsResponse
+	4, // 10: cat.SlotService.GetSlotsByInterchange:output_type -> cat.GetSlotsResponse
+	4, // 11: cat.SlotService.GetSlotsByDriverID:output_type -> cat.GetSlotsResponse
+	9, // [9:12] is the sub-list for method output_type
+	6, // [6:9] is the sub-list for method input_type
 	6, // [6:6] is the sub-list for extension type_name
 	6, // [6:6] is the sub-list for extension extendee
 	0, // [0:6] is the sub-list for field type_name
@@ -410,7 +470,7 @@ func file_slot_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_slot_proto_rawDesc), len(file_slot_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   4,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

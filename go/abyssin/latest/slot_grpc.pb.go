@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	SlotService_GetSlotsByZone_FullMethodName        = "/cat.SlotService/GetSlotsByZone"
 	SlotService_GetSlotsByInterchange_FullMethodName = "/cat.SlotService/GetSlotsByInterchange"
+	SlotService_GetSlotsByDriverID_FullMethodName    = "/cat.SlotService/GetSlotsByDriverID"
 )
 
 // SlotServiceClient is the client API for SlotService service.
@@ -29,6 +30,7 @@ const (
 type SlotServiceClient interface {
 	GetSlotsByZone(ctx context.Context, in *GetSlotsByZoneRequest, opts ...grpc.CallOption) (*GetSlotsResponse, error)
 	GetSlotsByInterchange(ctx context.Context, in *GetSlotsByInterchangeRequest, opts ...grpc.CallOption) (*GetSlotsResponse, error)
+	GetSlotsByDriverID(ctx context.Context, in *GetSlotsByDriverIDRequest, opts ...grpc.CallOption) (*GetSlotsResponse, error)
 }
 
 type slotServiceClient struct {
@@ -59,12 +61,23 @@ func (c *slotServiceClient) GetSlotsByInterchange(ctx context.Context, in *GetSl
 	return out, nil
 }
 
+func (c *slotServiceClient) GetSlotsByDriverID(ctx context.Context, in *GetSlotsByDriverIDRequest, opts ...grpc.CallOption) (*GetSlotsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSlotsResponse)
+	err := c.cc.Invoke(ctx, SlotService_GetSlotsByDriverID_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SlotServiceServer is the server API for SlotService service.
 // All implementations must embed UnimplementedSlotServiceServer
 // for forward compatibility.
 type SlotServiceServer interface {
 	GetSlotsByZone(context.Context, *GetSlotsByZoneRequest) (*GetSlotsResponse, error)
 	GetSlotsByInterchange(context.Context, *GetSlotsByInterchangeRequest) (*GetSlotsResponse, error)
+	GetSlotsByDriverID(context.Context, *GetSlotsByDriverIDRequest) (*GetSlotsResponse, error)
 	mustEmbedUnimplementedSlotServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedSlotServiceServer) GetSlotsByZone(context.Context, *GetSlotsB
 }
 func (UnimplementedSlotServiceServer) GetSlotsByInterchange(context.Context, *GetSlotsByInterchangeRequest) (*GetSlotsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSlotsByInterchange not implemented")
+}
+func (UnimplementedSlotServiceServer) GetSlotsByDriverID(context.Context, *GetSlotsByDriverIDRequest) (*GetSlotsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSlotsByDriverID not implemented")
 }
 func (UnimplementedSlotServiceServer) mustEmbedUnimplementedSlotServiceServer() {}
 func (UnimplementedSlotServiceServer) testEmbeddedByValue()                     {}
@@ -138,6 +154,24 @@ func _SlotService_GetSlotsByInterchange_Handler(srv interface{}, ctx context.Con
 	return interceptor(ctx, in, info, handler)
 }
 
+func _SlotService_GetSlotsByDriverID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSlotsByDriverIDRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SlotServiceServer).GetSlotsByDriverID(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: SlotService_GetSlotsByDriverID_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SlotServiceServer).GetSlotsByDriverID(ctx, req.(*GetSlotsByDriverIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // SlotService_ServiceDesc is the grpc.ServiceDesc for SlotService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var SlotService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetSlotsByInterchange",
 			Handler:    _SlotService_GetSlotsByInterchange_Handler,
+		},
+		{
+			MethodName: "GetSlotsByDriverID",
+			Handler:    _SlotService_GetSlotsByDriverID_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
