@@ -410,11 +410,11 @@ const file_slot_proto_rawDesc = "" +
 	"\x05limit\x18\x02 \x01(\x05B\n" +
 	"\xbaH\a\x1a\x05\x18\xe8\a(\x01R\x05limit\"3\n" +
 	"\x10GetSlotsResponse\x12\x1f\n" +
-	"\x05slots\x18\x01 \x03(\v2\t.cat.SlotR\x05slots2\x8e\x03\n" +
+	"\x05slots\x18\x01 \x03(\v2\t.cat.SlotR\x05slots2\xf7\x02\n" +
 	"\vSlotService\x12m\n" +
 	"\x0eGetSlotsByZone\x12\x1a.cat.GetSlotsByZoneRequest\x1a\x15.cat.GetSlotsResponse\"(\x82\xd3\xe4\x93\x02\"\x12 /v1/abyssin/slots/zone/{zone_id}\x12\x89\x01\n" +
-	"\x15GetSlotsByInterchange\x12!.cat.GetSlotsByInterchangeRequest\x1a\x15.cat.GetSlotsResponse\"6\x82\xd3\xe4\x93\x020\x12./v1/abyssin/slots/interchange/{interchange_id}\x12\x83\x01\n" +
-	"\x12GetSlotsByDriverID\x12\x1e.cat.GetSlotsByDriverIDRequest\x1a\x15.cat.GetSlotsResponse\"6\x82\xd3\xe4\x93\x020\x12./v1/abyssin/slots/interchange/{interchange_id}BO\n" +
+	"\x15GetSlotsByInterchange\x12!.cat.GetSlotsByInterchangeRequest\x1a\x15.cat.GetSlotsResponse\"6\x82\xd3\xe4\x93\x020\x12./v1/abyssin/slots/interchange/{interchange_id}\x12m\n" +
+	"\x12GetSlotsByDriverID\x12\x1e.cat.GetSlotsByDriverIDRequest\x1a\x15.cat.GetSlotsResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/abyssin/slots/driverBO\n" +
 	"\acom.catB\tSlotProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
