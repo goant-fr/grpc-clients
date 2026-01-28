@@ -21,6 +21,7 @@ const _ = grpc.SupportPackageIsVersion9
 const (
 	CommandService_CreateCommand_FullMethodName         = "/cat.CommandService/CreateCommand"
 	CommandService_GetCommandsByDriverId_FullMethodName = "/cat.CommandService/GetCommandsByDriverId"
+	CommandService_GetCommandById_FullMethodName        = "/cat.CommandService/GetCommandById"
 )
 
 // CommandServiceClient is the client API for CommandService service.
@@ -29,6 +30,7 @@ const (
 type CommandServiceClient interface {
 	CreateCommand(ctx context.Context, in *CreateCommandRequest, opts ...grpc.CallOption) (*CreateCommandResponse, error)
 	GetCommandsByDriverId(ctx context.Context, in *GetCommandsByDriverIdRequest, opts ...grpc.CallOption) (*GetCommandsByDriverIdResponse, error)
+	GetCommandById(ctx context.Context, in *GetCommandByIdRequest, opts ...grpc.CallOption) (*Command, error)
 }
 
 type commandServiceClient struct {
@@ -59,12 +61,23 @@ func (c *commandServiceClient) GetCommandsByDriverId(ctx context.Context, in *Ge
 	return out, nil
 }
 
+func (c *commandServiceClient) GetCommandById(ctx context.Context, in *GetCommandByIdRequest, opts ...grpc.CallOption) (*Command, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Command)
+	err := c.cc.Invoke(ctx, CommandService_GetCommandById_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CommandServiceServer is the server API for CommandService service.
 // All implementations must embed UnimplementedCommandServiceServer
 // for forward compatibility.
 type CommandServiceServer interface {
 	CreateCommand(context.Context, *CreateCommandRequest) (*CreateCommandResponse, error)
 	GetCommandsByDriverId(context.Context, *GetCommandsByDriverIdRequest) (*GetCommandsByDriverIdResponse, error)
+	GetCommandById(context.Context, *GetCommandByIdRequest) (*Command, error)
 	mustEmbedUnimplementedCommandServiceServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedCommandServiceServer) CreateCommand(context.Context, *CreateC
 }
 func (UnimplementedCommandServiceServer) GetCommandsByDriverId(context.Context, *GetCommandsByDriverIdRequest) (*GetCommandsByDriverIdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommandsByDriverId not implemented")
+}
+func (UnimplementedCommandServiceServer) GetCommandById(context.Context, *GetCommandByIdRequest) (*Command, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetCommandById not implemented")
 }
 func (UnimplementedCommandServiceServer) mustEmbedUnimplementedCommandServiceServer() {}
 func (UnimplementedCommandServiceServer) testEmbeddedByValue()                        {}
@@ -138,6 +154,24 @@ func _CommandService_GetCommandsByDriverId_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CommandService_GetCommandById_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCommandByIdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommandServiceServer).GetCommandById(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommandService_GetCommandById_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommandServiceServer).GetCommandById(ctx, req.(*GetCommandByIdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CommandService_ServiceDesc is the grpc.ServiceDesc for CommandService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var CommandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCommandsByDriverId",
 			Handler:    _CommandService_GetCommandsByDriverId_Handler,
+		},
+		{
+			MethodName: "GetCommandById",
+			Handler:    _CommandService_GetCommandById_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
