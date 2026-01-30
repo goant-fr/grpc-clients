@@ -95,12 +95,11 @@ var File_galery_proto protoreflect.FileDescriptor
 
 const file_galery_proto_rawDesc = "" +
 	"\n" +
-	"\fgalery.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\x95\x01\n" +
+	"\fgalery.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\x94\x01\n" +
 	"\x06Galery\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12$\n" +
-	"\btargetid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\btargetid\x12)\n" +
-	"\bimageurl\x18\x03 \x01(\tB\r\xbaH\n" +
-	"r\b\x10\x01\x18\xf4\x03\x88\x01\x01R\bimageurl\x12 \n" +
+	"\btargetid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\btargetid\x12(\n" +
+	"\bimageurl\x18\x03 \x01(\tB\f\xbaH\tr\a\x10\x01\x18d\x88\x01\x01R\bimageurl\x12 \n" +
 	"\vismainimage\x18\x04 \x01(\bR\vismainimageBQ\n" +
 	"\acom.catB\vGaleryProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 

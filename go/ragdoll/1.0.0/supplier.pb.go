@@ -28,7 +28,6 @@ type Supplier struct {
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
 	Description   string                 `protobuf:"bytes,3,opt,name=description,proto3" json:"description,omitempty"`
-	Galeries      []*Suppliergalery      `protobuf:"bytes,4,rep,name=galeries,proto3" json:"galeries,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -84,24 +83,16 @@ func (x *Supplier) GetDescription() string {
 	return ""
 }
 
-func (x *Supplier) GetGaleries() []*Suppliergalery {
-	if x != nil {
-		return x.Galeries
-	}
-	return nil
-}
-
 var File_supplier_proto protoreflect.FileDescriptor
 
 const file_supplier_proto_rawDesc = "" +
 	"\n" +
-	"\x0esupplier.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x14suppliergalery.proto\"\xa4\x01\n" +
+	"\x0esupplier.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"s\n" +
 	"\bSupplier\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1f\n" +
 	"\x05title\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x05title\x12,\n" +
 	"\vdescription\x18\x03 \x01(\tB\n" +
-	"\xbaH\ar\x05\x10\x01\x18\xf4\x03R\vdescription\x12/\n" +
-	"\bgaleries\x18\x04 \x03(\v2\x13.cat.SuppliergaleryR\bgaleriesBS\n" +
+	"\xbaH\ar\x05\x10\x01\x18\xf4\x03R\vdescriptionBS\n" +
 	"\acom.catB\rSupplierProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
@@ -118,16 +109,14 @@ func file_supplier_proto_rawDescGZIP() []byte {
 
 var file_supplier_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_supplier_proto_goTypes = []any{
-	(*Supplier)(nil),       // 0: cat.Supplier
-	(*Suppliergalery)(nil), // 1: cat.Suppliergalery
+	(*Supplier)(nil), // 0: cat.Supplier
 }
 var file_supplier_proto_depIdxs = []int32{
-	1, // 0: cat.Supplier.galeries:type_name -> cat.Suppliergalery
-	1, // [1:1] is the sub-list for method output_type
-	1, // [1:1] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_supplier_proto_init() }
@@ -135,7 +124,6 @@ func file_supplier_proto_init() {
 	if File_supplier_proto != nil {
 		return
 	}
-	file_suppliergalery_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
