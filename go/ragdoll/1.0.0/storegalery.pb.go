@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        (unknown)
-// source: galery.proto
+// source: storegalery.proto
 
 package pb
 
@@ -23,7 +23,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Galery struct {
+type Storegalery struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Targetid      string                 `protobuf:"bytes,2,opt,name=targetid,proto3" json:"targetid,omitempty"`
@@ -33,21 +33,21 @@ type Galery struct {
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Galery) Reset() {
-	*x = Galery{}
-	mi := &file_galery_proto_msgTypes[0]
+func (x *Storegalery) Reset() {
+	*x = Storegalery{}
+	mi := &file_storegalery_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Galery) String() string {
+func (x *Storegalery) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Galery) ProtoMessage() {}
+func (*Storegalery) ProtoMessage() {}
 
-func (x *Galery) ProtoReflect() protoreflect.Message {
-	mi := &file_galery_proto_msgTypes[0]
+func (x *Storegalery) ProtoReflect() protoreflect.Message {
+	mi := &file_storegalery_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,69 +58,69 @@ func (x *Galery) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Galery.ProtoReflect.Descriptor instead.
-func (*Galery) Descriptor() ([]byte, []int) {
-	return file_galery_proto_rawDescGZIP(), []int{0}
+// Deprecated: Use Storegalery.ProtoReflect.Descriptor instead.
+func (*Storegalery) Descriptor() ([]byte, []int) {
+	return file_storegalery_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Galery) GetId() string {
+func (x *Storegalery) GetId() string {
 	if x != nil {
 		return x.Id
 	}
 	return ""
 }
 
-func (x *Galery) GetTargetid() string {
+func (x *Storegalery) GetTargetid() string {
 	if x != nil {
 		return x.Targetid
 	}
 	return ""
 }
 
-func (x *Galery) GetImageurl() string {
+func (x *Storegalery) GetImageurl() string {
 	if x != nil {
 		return x.Imageurl
 	}
 	return ""
 }
 
-func (x *Galery) GetIsmainimage() bool {
+func (x *Storegalery) GetIsmainimage() bool {
 	if x != nil {
 		return x.Ismainimage
 	}
 	return false
 }
 
-var File_galery_proto protoreflect.FileDescriptor
+var File_storegalery_proto protoreflect.FileDescriptor
 
-const file_galery_proto_rawDesc = "" +
+const file_storegalery_proto_rawDesc = "" +
 	"\n" +
-	"\fgalery.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\x95\x01\n" +
-	"\x06Galery\x12\x18\n" +
+	"\x11storegalery.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\x9a\x01\n" +
+	"\vStoregalery\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12$\n" +
 	"\btargetid\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\btargetid\x12)\n" +
 	"\bimageurl\x18\x03 \x01(\tB\r\xbaH\n" +
 	"r\b\x10\x01\x18\xf4\x03\x88\x01\x01R\bimageurl\x12 \n" +
-	"\vismainimage\x18\x04 \x01(\bR\vismainimageBQ\n" +
-	"\acom.catB\vGaleryProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
+	"\vismainimage\x18\x04 \x01(\bR\vismainimageBV\n" +
+	"\acom.catB\x10StoregaleryProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
-	file_galery_proto_rawDescOnce sync.Once
-	file_galery_proto_rawDescData []byte
+	file_storegalery_proto_rawDescOnce sync.Once
+	file_storegalery_proto_rawDescData []byte
 )
 
-func file_galery_proto_rawDescGZIP() []byte {
-	file_galery_proto_rawDescOnce.Do(func() {
-		file_galery_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_galery_proto_rawDesc), len(file_galery_proto_rawDesc)))
+func file_storegalery_proto_rawDescGZIP() []byte {
+	file_storegalery_proto_rawDescOnce.Do(func() {
+		file_storegalery_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_storegalery_proto_rawDesc), len(file_storegalery_proto_rawDesc)))
 	})
-	return file_galery_proto_rawDescData
+	return file_storegalery_proto_rawDescData
 }
 
-var file_galery_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_galery_proto_goTypes = []any{
-	(*Galery)(nil), // 0: cat.Galery
+var file_storegalery_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_storegalery_proto_goTypes = []any{
+	(*Storegalery)(nil), // 0: cat.Storegalery
 }
-var file_galery_proto_depIdxs = []int32{
+var file_storegalery_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -128,26 +128,26 @@ var file_galery_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_galery_proto_init() }
-func file_galery_proto_init() {
-	if File_galery_proto != nil {
+func init() { file_storegalery_proto_init() }
+func file_storegalery_proto_init() {
+	if File_storegalery_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_galery_proto_rawDesc), len(file_galery_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_storegalery_proto_rawDesc), len(file_storegalery_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_galery_proto_goTypes,
-		DependencyIndexes: file_galery_proto_depIdxs,
-		MessageInfos:      file_galery_proto_msgTypes,
+		GoTypes:           file_storegalery_proto_goTypes,
+		DependencyIndexes: file_storegalery_proto_depIdxs,
+		MessageInfos:      file_storegalery_proto_msgTypes,
 	}.Build()
-	File_galery_proto = out.File
-	file_galery_proto_goTypes = nil
-	file_galery_proto_depIdxs = nil
+	File_storegalery_proto = out.File
+	file_storegalery_proto_goTypes = nil
+	file_storegalery_proto_depIdxs = nil
 }
