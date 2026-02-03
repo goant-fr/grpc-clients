@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	DriverService_GetDrvier_FullMethodName     = "/cat.DriverService/GetDrvier"
 	DriverService_LeaveZone_FullMethodName     = "/cat.DriverService/LeaveZone"
 	DriverService_JoinZone_FullMethodName      = "/cat.DriverService/JoinZone"
 	DriverService_UpdateStatus_FullMethodName  = "/cat.DriverService/UpdateStatus"
@@ -32,6 +33,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DriverServiceClient interface {
+	GetDrvier(ctx context.Context, in *LeaveZoneRequest, opts ...grpc.CallOption) (*Driver, error)
 	LeaveZone(ctx context.Context, in *LeaveZoneRequest, opts ...grpc.CallOption) (*LeaveZoneResponse, error)
 	JoinZone(ctx context.Context, in *JoinZoneRequest, opts ...grpc.CallOption) (*JoinZoneRespone, error)
 	UpdateStatus(ctx context.Context, in *UpdateStatusRequest, opts ...grpc.CallOption) (*UpdateStatusResponse, error)
@@ -47,6 +49,16 @@ type driverServiceClient struct {
 
 func NewDriverServiceClient(cc grpc.ClientConnInterface) DriverServiceClient {
 	return &driverServiceClient{cc}
+}
+
+func (c *driverServiceClient) GetDrvier(ctx context.Context, in *LeaveZoneRequest, opts ...grpc.CallOption) (*Driver, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Driver)
+	err := c.cc.Invoke(ctx, DriverService_GetDrvier_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func (c *driverServiceClient) LeaveZone(ctx context.Context, in *LeaveZoneRequest, opts ...grpc.CallOption) (*LeaveZoneResponse, error) {
@@ -123,6 +135,7 @@ func (c *driverServiceClient) ChangeSlot(ctx context.Context, in *ChangeSlotRequ
 // All implementations must embed UnimplementedDriverServiceServer
 // for forward compatibility.
 type DriverServiceServer interface {
+	GetDrvier(context.Context, *LeaveZoneRequest) (*Driver, error)
 	LeaveZone(context.Context, *LeaveZoneRequest) (*LeaveZoneResponse, error)
 	JoinZone(context.Context, *JoinZoneRequest) (*JoinZoneRespone, error)
 	UpdateStatus(context.Context, *UpdateStatusRequest) (*UpdateStatusResponse, error)
@@ -140,6 +153,9 @@ type DriverServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDriverServiceServer struct{}
 
+func (UnimplementedDriverServiceServer) GetDrvier(context.Context, *LeaveZoneRequest) (*Driver, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDrvier not implemented")
+}
 func (UnimplementedDriverServiceServer) LeaveZone(context.Context, *LeaveZoneRequest) (*LeaveZoneResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method LeaveZone not implemented")
 }
@@ -180,6 +196,24 @@ func RegisterDriverServiceServer(s grpc.ServiceRegistrar, srv DriverServiceServe
 		t.testEmbeddedByValue()
 	}
 	s.RegisterService(&DriverService_ServiceDesc, srv)
+}
+
+func _DriverService_GetDrvier_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LeaveZoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverServiceServer).GetDrvier(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverService_GetDrvier_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverServiceServer).GetDrvier(ctx, req.(*LeaveZoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
 }
 
 func _DriverService_LeaveZone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -315,6 +349,10 @@ var DriverService_ServiceDesc = grpc.ServiceDesc{
 	ServiceName: "cat.DriverService",
 	HandlerType: (*DriverServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetDrvier",
+			Handler:    _DriverService_GetDrvier_Handler,
+		},
 		{
 			MethodName: "LeaveZone",
 			Handler:    _DriverService_LeaveZone_Handler,
