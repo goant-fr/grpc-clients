@@ -32,6 +32,7 @@ type Slot struct {
 	NextZone      string                 `protobuf:"bytes,3,opt,name=next_zone,json=nextZone,proto3" json:"next_zone,omitempty"`
 	InterchangeId string                 `protobuf:"bytes,4,opt,name=interchange_id,json=interchangeId,proto3" json:"interchange_id,omitempty"`
 	RelayIndex    int32                  `protobuf:"varint,5,opt,name=relay_index,json=relayIndex,proto3" json:"relay_index,omitempty"`
+	Status        int32                  `protobuf:"varint,13,opt,name=status,proto3" json:"status,omitempty"`
 	ArriveAt      *timestamppb.Timestamp `protobuf:"bytes,6,opt,name=arrive_at,json=arriveAt,proto3" json:"arrive_at,omitempty"`
 	SlotAt        *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=slot_at,json=slotAt,proto3" json:"slot_at,omitempty"`
 	Wait          *durationpb.Duration   `protobuf:"bytes,8,opt,name=wait,proto3" json:"wait,omitempty"`
@@ -104,6 +105,13 @@ func (x *Slot) GetInterchangeId() string {
 func (x *Slot) GetRelayIndex() int32 {
 	if x != nil {
 		return x.RelayIndex
+	}
+	return 0
+}
+
+func (x *Slot) GetStatus() int32 {
+	if x != nil {
+		return x.Status
 	}
 	return 0
 }
@@ -378,7 +386,7 @@ var File_slot_proto protoreflect.FileDescriptor
 const file_slot_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"slot.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\x95\x04\n" +
+	"slot.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1egoogle/protobuf/duration.proto\"\xad\x04\n" +
 	"\x04Slot\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12'\n" +
 	"\n" +
@@ -386,7 +394,8 @@ const file_slot_proto_rawDesc = "" +
 	"\tnext_zone\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\bnextZone\x12/\n" +
 	"\x0einterchange_id\x18\x04 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\rinterchangeId\x12\x1f\n" +
 	"\vrelay_index\x18\x05 \x01(\x05R\n" +
-	"relayIndex\x127\n" +
+	"relayIndex\x12\x16\n" +
+	"\x06status\x18\r \x01(\x05R\x06status\x127\n" +
 	"\tarrive_at\x18\x06 \x01(\v2\x1a.google.protobuf.TimestampR\barriveAt\x123\n" +
 	"\aslot_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\x06slotAt\x12-\n" +
 	"\x04wait\x18\b \x01(\v2\x19.google.protobuf.DurationR\x04wait\x125\n" +
