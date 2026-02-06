@@ -262,6 +262,7 @@ type Command struct {
 	TotalMoveTime       *durationpb.Duration    `protobuf:"bytes,16,opt,name=total_move_time,json=totalMoveTime,proto3" json:"total_move_time,omitempty"`
 	TotalExTime         *durationpb.Duration    `protobuf:"bytes,17,opt,name=total_ex_time,json=totalExTime,proto3" json:"total_ex_time,omitempty"`
 	SelectedZones       []string                `protobuf:"bytes,18,rep,name=selected_zones,json=selectedZones,proto3" json:"selected_zones,omitempty"`
+	RelayIndex          int32                   `protobuf:"varint,19,opt,name=relay_index,json=relayIndex,proto3" json:"relay_index,omitempty"`
 	unknownFields       protoimpl.UnknownFields
 	sizeCache           protoimpl.SizeCache
 }
@@ -422,6 +423,13 @@ func (x *Command) GetSelectedZones() []string {
 	return nil
 }
 
+func (x *Command) GetRelayIndex() int32 {
+	if x != nil {
+		return x.RelayIndex
+	}
+	return 0
+}
+
 type GetCommandsByDriverIdResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Commands      []*Command             `protobuf:"bytes,1,rep,name=commands,proto3" json:"commands,omitempty"`
@@ -571,7 +579,7 @@ const file_command_proto_rawDesc = "" +
 	"\x0eCmdInterchange\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
 	"\x03lat\x18\x02 \x01(\x01R\x03lat\x12\x10\n" +
-	"\x03lng\x18\x03 \x01(\x01R\x03lng\"\x9d\a\n" +
+	"\x03lng\x18\x03 \x01(\x01R\x03lng\"\xbe\a\n" +
 	"\aCommand\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\x05R\x06status\x12'\n" +
@@ -593,7 +601,9 @@ const file_command_proto_rawDesc = "" +
 	"\x0ftotal_wait_time\x18\x0f \x01(\v2\x19.google.protobuf.DurationR\rtotalWaitTime\x12A\n" +
 	"\x0ftotal_move_time\x18\x10 \x01(\v2\x19.google.protobuf.DurationR\rtotalMoveTime\x12=\n" +
 	"\rtotal_ex_time\x18\x11 \x01(\v2\x19.google.protobuf.DurationR\vtotalExTime\x12%\n" +
-	"\x0eselected_zones\x18\x12 \x03(\tR\rselectedZones\"I\n" +
+	"\x0eselected_zones\x18\x12 \x03(\tR\rselectedZones\x12\x1f\n" +
+	"\vrelay_index\x18\x13 \x01(\x05R\n" +
+	"relayIndex\"I\n" +
 	"\x1dGetCommandsByDriverIdResponse\x12(\n" +
 	"\bcommands\x18\x01 \x03(\v2\f.cat.CommandR\bcommands\"@\n" +
 	"\x15GetCommandByIdRequest\x12'\n" +
