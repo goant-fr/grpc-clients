@@ -22,6 +22,7 @@ const (
 	OrderService_CreateOrder_FullMethodName       = "/cat.OrderService/CreateOrder"
 	OrderService_GetOrderByID_FullMethodName      = "/cat.OrderService/GetOrderByID"
 	OrderService_GetOrderByStoreID_FullMethodName = "/cat.OrderService/GetOrderByStoreID"
+	OrderService_GetOrderByToken_FullMethodName   = "/cat.OrderService/GetOrderByToken"
 )
 
 // OrderServiceClient is the client API for OrderService service.
@@ -31,6 +32,7 @@ type OrderServiceClient interface {
 	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
 	GetOrderByID(ctx context.Context, in *GetOrderByIDRequest, opts ...grpc.CallOption) (*GetOrderByIDResponse, error)
 	GetOrderByStoreID(ctx context.Context, in *GetOrderByStoreIDRequest, opts ...grpc.CallOption) (*GetOrderByStoreIDResponse, error)
+	GetOrderByToken(ctx context.Context, in *GetOrderByTokenRequest, opts ...grpc.CallOption) (*GetOrderByTokenResponse, error)
 }
 
 type orderServiceClient struct {
@@ -71,6 +73,16 @@ func (c *orderServiceClient) GetOrderByStoreID(ctx context.Context, in *GetOrder
 	return out, nil
 }
 
+func (c *orderServiceClient) GetOrderByToken(ctx context.Context, in *GetOrderByTokenRequest, opts ...grpc.CallOption) (*GetOrderByTokenResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOrderByTokenResponse)
+	err := c.cc.Invoke(ctx, OrderService_GetOrderByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // OrderServiceServer is the server API for OrderService service.
 // All implementations must embed UnimplementedOrderServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type OrderServiceServer interface {
 	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
 	GetOrderByID(context.Context, *GetOrderByIDRequest) (*GetOrderByIDResponse, error)
 	GetOrderByStoreID(context.Context, *GetOrderByStoreIDRequest) (*GetOrderByStoreIDResponse, error)
+	GetOrderByToken(context.Context, *GetOrderByTokenRequest) (*GetOrderByTokenResponse, error)
 	mustEmbedUnimplementedOrderServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedOrderServiceServer) GetOrderByID(context.Context, *GetOrderBy
 }
 func (UnimplementedOrderServiceServer) GetOrderByStoreID(context.Context, *GetOrderByStoreIDRequest) (*GetOrderByStoreIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByStoreID not implemented")
+}
+func (UnimplementedOrderServiceServer) GetOrderByToken(context.Context, *GetOrderByTokenRequest) (*GetOrderByTokenResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByToken not implemented")
 }
 func (UnimplementedOrderServiceServer) mustEmbedUnimplementedOrderServiceServer() {}
 func (UnimplementedOrderServiceServer) testEmbeddedByValue()                      {}
@@ -172,6 +188,24 @@ func _OrderService_GetOrderByStoreID_Handler(srv interface{}, ctx context.Contex
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderService_GetOrderByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOrderByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).GetOrderByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderService_GetOrderByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).GetOrderByToken(ctx, req.(*GetOrderByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetOrderByStoreID",
 			Handler:    _OrderService_GetOrderByStoreID_Handler,
+		},
+		{
+			MethodName: "GetOrderByToken",
+			Handler:    _OrderService_GetOrderByToken_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
