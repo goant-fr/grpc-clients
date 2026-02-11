@@ -634,13 +634,13 @@ const file_order_proto_rawDesc = "" +
 	"\x05limit\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\"Y\n" +
 	"\x19GetOrderByStoreIDResponse\x12&\n" +
 	"\x06orders\x18\x01 \x03(\v2\x0e.cat.OrderListR\x06orders\x12\x14\n" +
-	"\x05count\x18\x02 \x01(\x05R\x05count2\x9e\x03\n" +
+	"\x05count\x18\x02 \x01(\x05R\x05count2\x9f\x03\n" +
 	"\fOrderService\x12W\n" +
 	"\vCreateOrder\x12\x17.cat.CreateOrderRequest\x1a\x18.cat.CreateOrderResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
 	"/v1/orders\x12\\\n" +
-	"\fGetOrderByID\x12\x18.cat.GetOrderByIDRequest\x1a\x19.cat.GetOrderByIDResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/{id}\x12k\n" +
-	"\x11GetOrderByStoreID\x12\x1d.cat.GetOrderByStoreIDRequest\x1a\x1e.cat.GetOrderByStoreIDResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/{id}\x12j\n" +
-	"\x0fGetOrderByToken\x12\x1b.cat.GetOrderByTokenRequest\x1a\x1c.cat.GetOrderByTokenResponse\"\x1c\x82\xd3\xe4\x93\x02\x16\x12\x14/v1/orders/user/{id}BP\n" +
+	"\fGetOrderByID\x12\x18.cat.GetOrderByIDRequest\x1a\x19.cat.GetOrderByIDResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/{id}\x12q\n" +
+	"\x11GetOrderByStoreID\x12\x1d.cat.GetOrderByStoreIDRequest\x1a\x1e.cat.GetOrderByStoreIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/orders/store/{id}\x12e\n" +
+	"\x0fGetOrderByToken\x12\x1b.cat.GetOrderByTokenRequest\x1a\x1c.cat.GetOrderByTokenResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/userBP\n" +
 	"\acom.catB\n" +
 	"OrderProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
