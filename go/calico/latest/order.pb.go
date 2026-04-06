@@ -595,6 +595,102 @@ func (x *GetOrderByStoreIDResponse) GetCount() int32 {
 	return 0
 }
 
+type UpdateOrderStatusRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Status        int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateOrderStatusRequest) Reset() {
+	*x = UpdateOrderStatusRequest{}
+	mi := &file_order_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateOrderStatusRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateOrderStatusRequest) ProtoMessage() {}
+
+func (x *UpdateOrderStatusRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_order_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateOrderStatusRequest.ProtoReflect.Descriptor instead.
+func (*UpdateOrderStatusRequest) Descriptor() ([]byte, []int) {
+	return file_order_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *UpdateOrderStatusRequest) GetId() string {
+	if x != nil {
+		return x.Id
+	}
+	return ""
+}
+
+func (x *UpdateOrderStatusRequest) GetStatus() int32 {
+	if x != nil {
+		return x.Status
+	}
+	return 0
+}
+
+type UpdateOrderStatusResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateOrderStatusResponse) Reset() {
+	*x = UpdateOrderStatusResponse{}
+	mi := &file_order_proto_msgTypes[12]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateOrderStatusResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateOrderStatusResponse) ProtoMessage() {}
+
+func (x *UpdateOrderStatusResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_order_proto_msgTypes[12]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateOrderStatusResponse.ProtoReflect.Descriptor instead.
+func (*UpdateOrderStatusResponse) Descriptor() ([]byte, []int) {
+	return file_order_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *UpdateOrderStatusResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
 var File_order_proto protoreflect.FileDescriptor
 
 const file_order_proto_rawDesc = "" +
@@ -634,10 +730,16 @@ const file_order_proto_rawDesc = "" +
 	"\x05limit\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\"Y\n" +
 	"\x19GetOrderByStoreIDResponse\x12&\n" +
 	"\x06orders\x18\x01 \x03(\v2\x0e.cat.OrderListR\x06orders\x12\x14\n" +
-	"\x05count\x18\x02 \x01(\x05R\x05count2\x9f\x03\n" +
+	"\x05count\x18\x02 \x01(\x05R\x05count\"W\n" +
+	"\x18UpdateOrderStatusRequest\x12\x18\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12!\n" +
+	"\x06status\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x18\x05(\x00R\x06status\"5\n" +
+	"\x19UpdateOrderStatusResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x96\x04\n" +
 	"\fOrderService\x12W\n" +
 	"\vCreateOrder\x12\x17.cat.CreateOrderRequest\x1a\x18.cat.CreateOrderResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
-	"/v1/orders\x12\\\n" +
+	"/v1/orders\x12u\n" +
+	"\x11updateOrderStatus\x12\x1d.cat.UpdateOrderStatusRequest\x1a\x1e.cat.UpdateOrderStatusResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*2\x16/v1/orders/{id}/status\x12\\\n" +
 	"\fGetOrderByID\x12\x18.cat.GetOrderByIDRequest\x1a\x19.cat.GetOrderByIDResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/{id}\x12q\n" +
 	"\x11GetOrderByStoreID\x12\x1d.cat.GetOrderByStoreIDRequest\x1a\x1e.cat.GetOrderByStoreIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/orders/store/{id}\x12e\n" +
 	"\x0fGetOrderByToken\x12\x1b.cat.GetOrderByTokenRequest\x1a\x1c.cat.GetOrderByTokenResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/userBP\n" +
@@ -656,7 +758,7 @@ func file_order_proto_rawDescGZIP() []byte {
 	return file_order_proto_rawDescData
 }
 
-var file_order_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_order_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_order_proto_goTypes = []any{
 	(*Order)(nil),                     // 0: cat.Order
 	(*OrderList)(nil),                 // 1: cat.OrderList
@@ -669,26 +771,30 @@ var file_order_proto_goTypes = []any{
 	(*GetOrderByTokenResponse)(nil),   // 8: cat.GetOrderByTokenResponse
 	(*GetOrderByStoreIDRequest)(nil),  // 9: cat.GetOrderByStoreIDRequest
 	(*GetOrderByStoreIDResponse)(nil), // 10: cat.GetOrderByStoreIDResponse
-	(*Item)(nil),                      // 11: cat.Item
-	(*ItemDetail)(nil),                // 12: cat.ItemDetail
+	(*UpdateOrderStatusRequest)(nil),  // 11: cat.UpdateOrderStatusRequest
+	(*UpdateOrderStatusResponse)(nil), // 12: cat.UpdateOrderStatusResponse
+	(*Item)(nil),                      // 13: cat.Item
+	(*ItemDetail)(nil),                // 14: cat.ItemDetail
 }
 var file_order_proto_depIdxs = []int32{
-	11, // 0: cat.Order.items:type_name -> cat.Item
-	12, // 1: cat.OrderDetail.items:type_name -> cat.ItemDetail
+	13, // 0: cat.Order.items:type_name -> cat.Item
+	14, // 1: cat.OrderDetail.items:type_name -> cat.ItemDetail
 	0,  // 2: cat.CreateOrderRequest.order:type_name -> cat.Order
 	2,  // 3: cat.GetOrderByIDResponse.order:type_name -> cat.OrderDetail
 	1,  // 4: cat.GetOrderByTokenResponse.orders:type_name -> cat.OrderList
 	1,  // 5: cat.GetOrderByStoreIDResponse.orders:type_name -> cat.OrderList
 	3,  // 6: cat.OrderService.CreateOrder:input_type -> cat.CreateOrderRequest
-	5,  // 7: cat.OrderService.GetOrderByID:input_type -> cat.GetOrderByIDRequest
-	9,  // 8: cat.OrderService.GetOrderByStoreID:input_type -> cat.GetOrderByStoreIDRequest
-	7,  // 9: cat.OrderService.GetOrderByToken:input_type -> cat.GetOrderByTokenRequest
-	4,  // 10: cat.OrderService.CreateOrder:output_type -> cat.CreateOrderResponse
-	6,  // 11: cat.OrderService.GetOrderByID:output_type -> cat.GetOrderByIDResponse
-	10, // 12: cat.OrderService.GetOrderByStoreID:output_type -> cat.GetOrderByStoreIDResponse
-	8,  // 13: cat.OrderService.GetOrderByToken:output_type -> cat.GetOrderByTokenResponse
-	10, // [10:14] is the sub-list for method output_type
-	6,  // [6:10] is the sub-list for method input_type
+	11, // 7: cat.OrderService.updateOrderStatus:input_type -> cat.UpdateOrderStatusRequest
+	5,  // 8: cat.OrderService.GetOrderByID:input_type -> cat.GetOrderByIDRequest
+	9,  // 9: cat.OrderService.GetOrderByStoreID:input_type -> cat.GetOrderByStoreIDRequest
+	7,  // 10: cat.OrderService.GetOrderByToken:input_type -> cat.GetOrderByTokenRequest
+	4,  // 11: cat.OrderService.CreateOrder:output_type -> cat.CreateOrderResponse
+	12, // 12: cat.OrderService.updateOrderStatus:output_type -> cat.UpdateOrderStatusResponse
+	6,  // 13: cat.OrderService.GetOrderByID:output_type -> cat.GetOrderByIDResponse
+	10, // 14: cat.OrderService.GetOrderByStoreID:output_type -> cat.GetOrderByStoreIDResponse
+	8,  // 15: cat.OrderService.GetOrderByToken:output_type -> cat.GetOrderByTokenResponse
+	11, // [11:16] is the sub-list for method output_type
+	6,  // [6:11] is the sub-list for method input_type
 	6,  // [6:6] is the sub-list for extension type_name
 	6,  // [6:6] is the sub-list for extension extendee
 	0,  // [0:6] is the sub-list for field type_name
@@ -706,7 +812,7 @@ func file_order_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_order_proto_rawDesc), len(file_order_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
