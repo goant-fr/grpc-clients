@@ -19,11 +19,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_CreateUser_FullMethodName       = "/sphinx.user.UserService/CreateUser"
-	UserService_AuthenticateUser_FullMethodName = "/sphinx.user.UserService/AuthenticateUser"
-	UserService_GetUserByToken_FullMethodName   = "/sphinx.user.UserService/GetUserByToken"
-	UserService_UpdateUser_FullMethodName       = "/sphinx.user.UserService/UpdateUser"
-	UserService_UpdatePassword_FullMethodName   = "/sphinx.user.UserService/UpdatePassword"
+	UserService_CreateUser_FullMethodName          = "/sphinx.user.UserService/CreateUser"
+	UserService_AuthenticateUser_FullMethodName    = "/sphinx.user.UserService/AuthenticateUser"
+	UserService_GetUserByToken_FullMethodName      = "/sphinx.user.UserService/GetUserByToken"
+	UserService_UpdateUser_FullMethodName          = "/sphinx.user.UserService/UpdateUser"
+	UserService_UpdatePassword_FullMethodName      = "/sphinx.user.UserService/UpdatePassword"
+	UserService_DemandKYC_FullMethodName           = "/sphinx.user.UserService/DemandKYC"
+	UserService_HandleStripeWebhook_FullMethodName = "/sphinx.user.UserService/HandleStripeWebhook"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -35,6 +37,8 @@ type UserServiceClient interface {
 	GetUserByToken(ctx context.Context, in *GetUserByTokenRequest, opts ...grpc.CallOption) (*GetUserByTokenResponse, error)
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
 	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*UpdatePasswordResponse, error)
+	DemandKYC(ctx context.Context, in *DemandKYCRequest, opts ...grpc.CallOption) (*DemandKYCResponse, error)
+	HandleStripeWebhook(ctx context.Context, in *StripeWebhookRequest, opts ...grpc.CallOption) (*StripeWebhookResponse, error)
 }
 
 type userServiceClient struct {
@@ -95,6 +99,26 @@ func (c *userServiceClient) UpdatePassword(ctx context.Context, in *UpdatePasswo
 	return out, nil
 }
 
+func (c *userServiceClient) DemandKYC(ctx context.Context, in *DemandKYCRequest, opts ...grpc.CallOption) (*DemandKYCResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DemandKYCResponse)
+	err := c.cc.Invoke(ctx, UserService_DemandKYC_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userServiceClient) HandleStripeWebhook(ctx context.Context, in *StripeWebhookRequest, opts ...grpc.CallOption) (*StripeWebhookResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StripeWebhookResponse)
+	err := c.cc.Invoke(ctx, UserService_HandleStripeWebhook_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility.
@@ -104,6 +128,8 @@ type UserServiceServer interface {
 	GetUserByToken(context.Context, *GetUserByTokenRequest) (*GetUserByTokenResponse, error)
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
 	UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error)
+	DemandKYC(context.Context, *DemandKYCRequest) (*DemandKYCResponse, error)
+	HandleStripeWebhook(context.Context, *StripeWebhookRequest) (*StripeWebhookResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -128,6 +154,12 @@ func (UnimplementedUserServiceServer) UpdateUser(context.Context, *UpdateUserReq
 }
 func (UnimplementedUserServiceServer) UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdatePassword not implemented")
+}
+func (UnimplementedUserServiceServer) DemandKYC(context.Context, *DemandKYCRequest) (*DemandKYCResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DemandKYC not implemented")
+}
+func (UnimplementedUserServiceServer) HandleStripeWebhook(context.Context, *StripeWebhookRequest) (*StripeWebhookResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HandleStripeWebhook not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -240,6 +272,42 @@ func _UserService_UpdatePassword_Handler(srv interface{}, ctx context.Context, d
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_DemandKYC_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DemandKYCRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).DemandKYC(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_DemandKYC_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).DemandKYC(ctx, req.(*DemandKYCRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _UserService_HandleStripeWebhook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StripeWebhookRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).HandleStripeWebhook(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: UserService_HandleStripeWebhook_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).HandleStripeWebhook(ctx, req.(*StripeWebhookRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // UserService_ServiceDesc is the grpc.ServiceDesc for UserService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -266,6 +334,14 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdatePassword",
 			Handler:    _UserService_UpdatePassword_Handler,
+		},
+		{
+			MethodName: "DemandKYC",
+			Handler:    _UserService_DemandKYC_Handler,
+		},
+		{
+			MethodName: "HandleStripeWebhook",
+			Handler:    _UserService_HandleStripeWebhook_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

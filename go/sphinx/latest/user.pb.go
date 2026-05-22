@@ -30,6 +30,7 @@ type User struct {
 	Mail          string                 `protobuf:"bytes,3,opt,name=mail,proto3" json:"mail,omitempty"`
 	Phone         string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
 	Password      string                 `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
+	Verified      bool                   `protobuf:"varint,6,opt,name=verified,proto3" json:"verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -97,6 +98,13 @@ func (x *User) GetPassword() string {
 		return x.Password
 	}
 	return ""
+}
+
+func (x *User) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
 }
 
 type PersonalInformation struct {
@@ -174,6 +182,7 @@ type PersonalInformationWithID struct {
 	Firstname     string                 `protobuf:"bytes,3,opt,name=firstname,proto3" json:"firstname,omitempty"`
 	Mail          string                 `protobuf:"bytes,4,opt,name=mail,proto3" json:"mail,omitempty"`
 	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
+	Verified      bool                   `protobuf:"varint,6,opt,name=verified,proto3" json:"verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -241,6 +250,13 @@ func (x *PersonalInformationWithID) GetPhone() string {
 		return x.Phone
 	}
 	return ""
+}
+
+func (x *PersonalInformationWithID) GetVerified() bool {
+	if x != nil {
+		return x.Verified
+	}
+	return false
 }
 
 type UpdateUserRequest struct {
@@ -691,29 +707,215 @@ func (x *AuthenticateUserResponse) GetToken() string {
 	return ""
 }
 
+type DemandKYCRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DemandKYCRequest) Reset() {
+	*x = DemandKYCRequest{}
+	mi := &file_user_proto_msgTypes[13]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DemandKYCRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DemandKYCRequest) ProtoMessage() {}
+
+func (x *DemandKYCRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[13]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DemandKYCRequest.ProtoReflect.Descriptor instead.
+func (*DemandKYCRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{13}
+}
+
+type DemandKYCResponse struct {
+	state                 protoimpl.MessageState `protogen:"open.v1"`
+	VerificationSessionId string                 `protobuf:"bytes,1,opt,name=verification_session_id,json=verificationSessionId,proto3" json:"verification_session_id,omitempty"`
+	EphemeralKeySecret    string                 `protobuf:"bytes,2,opt,name=ephemeral_key_secret,json=ephemeralKeySecret,proto3" json:"ephemeral_key_secret,omitempty"`
+	unknownFields         protoimpl.UnknownFields
+	sizeCache             protoimpl.SizeCache
+}
+
+func (x *DemandKYCResponse) Reset() {
+	*x = DemandKYCResponse{}
+	mi := &file_user_proto_msgTypes[14]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DemandKYCResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DemandKYCResponse) ProtoMessage() {}
+
+func (x *DemandKYCResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[14]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DemandKYCResponse.ProtoReflect.Descriptor instead.
+func (*DemandKYCResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *DemandKYCResponse) GetVerificationSessionId() string {
+	if x != nil {
+		return x.VerificationSessionId
+	}
+	return ""
+}
+
+func (x *DemandKYCResponse) GetEphemeralKeySecret() string {
+	if x != nil {
+		return x.EphemeralKeySecret
+	}
+	return ""
+}
+
+type StripeWebhookRequest struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	Payload         []byte                 `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
+	StripeSignature string                 `protobuf:"bytes,2,opt,name=stripe_signature,json=stripeSignature,proto3" json:"stripe_signature,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *StripeWebhookRequest) Reset() {
+	*x = StripeWebhookRequest{}
+	mi := &file_user_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StripeWebhookRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StripeWebhookRequest) ProtoMessage() {}
+
+func (x *StripeWebhookRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StripeWebhookRequest.ProtoReflect.Descriptor instead.
+func (*StripeWebhookRequest) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *StripeWebhookRequest) GetPayload() []byte {
+	if x != nil {
+		return x.Payload
+	}
+	return nil
+}
+
+func (x *StripeWebhookRequest) GetStripeSignature() string {
+	if x != nil {
+		return x.StripeSignature
+	}
+	return ""
+}
+
+type StripeWebhookResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *StripeWebhookResponse) Reset() {
+	*x = StripeWebhookResponse{}
+	mi := &file_user_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *StripeWebhookResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*StripeWebhookResponse) ProtoMessage() {}
+
+func (x *StripeWebhookResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use StripeWebhookResponse.ProtoReflect.Descriptor instead.
+func (*StripeWebhookResponse) Descriptor() ([]byte, []int) {
+	return file_user_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *StripeWebhookResponse) GetOk() bool {
+	if x != nil {
+		return x.Ok
+	}
+	return false
+}
+
 var File_user_proto protoreflect.FileDescriptor
 
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xc2\x01\n" +
+	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xde\x01\n" +
 	"\x04User\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x03 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
 	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\x12#\n" +
-	"\bpassword\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\"\xac\x01\n" +
+	"\bpassword\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\x12\x1a\n" +
+	"\bverified\x18\x06 \x01(\bR\bverified\"\xac\x01\n" +
 	"\x13PersonalInformation\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x03 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
-	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"\xcc\x01\n" +
+	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"\xe8\x01\n" +
 	"\x19PersonalInformationWithID\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12%\n" +
 	"\blastname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
-	"\x05phone\x18\x05 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"Q\n" +
+	"\x05phone\x18\x05 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\x12\x1a\n" +
+	"\bverified\x18\x06 \x01(\bR\bverified\"Q\n" +
 	"\x11UpdateUserRequest\x12<\n" +
 	"\x04user\x18\x01 \x01(\v2 .sphinx.user.PersonalInformationB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
 	"\x12UpdateUserResponse\x12\x0e\n" +
@@ -734,7 +936,16 @@ const file_user_proto_rawDesc = "" +
 	"\x04mail\x18\x01 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12#\n" +
 	"\bpassword\x18\x02 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\"0\n" +
 	"\x18AuthenticateUserResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token2\xd3\x04\n" +
+	"\x05token\x18\x01 \x01(\tR\x05token\"\x12\n" +
+	"\x10DemandKYCRequest\"}\n" +
+	"\x11DemandKYCResponse\x126\n" +
+	"\x17verification_session_id\x18\x01 \x01(\tR\x15verificationSessionId\x120\n" +
+	"\x14ephemeral_key_secret\x18\x02 \x01(\tR\x12ephemeralKeySecret\"[\n" +
+	"\x14StripeWebhookRequest\x12\x18\n" +
+	"\apayload\x18\x01 \x01(\fR\apayload\x12)\n" +
+	"\x10stripe_signature\x18\x02 \x01(\tR\x0fstripeSignature\"'\n" +
+	"\x15StripeWebhookResponse\x12\x0e\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok2\xc1\x06\n" +
 	"\vUserService\x12f\n" +
 	"\n" +
 	"CreateUser\x12\x1e.sphinx.user.CreateUserRequest\x1a\x1f.sphinx.user.CreateUserResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x04user\"\t/v1/users\x12\x82\x01\n" +
@@ -742,7 +953,9 @@ const file_user_proto_rawDesc = "" +
 	"\x0eGetUserByToken\x12\".sphinx.user.GetUserByTokenRequest\x1a#.sphinx.user.GetUserByTokenResponse\"\x14\x82\xd3\xe4\x93\x02\x0e\x12\f/v1/users/me\x12i\n" +
 	"\n" +
 	"UpdateUser\x12\x1e.sphinx.user.UpdateUserRequest\x1a\x1f.sphinx.user.UpdateUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x04user\x1a\f/v1/users/me\x12{\n" +
-	"\x0eUpdatePassword\x12\".sphinx.user.UpdatePasswordRequest\x1a#.sphinx.user.UpdatePasswordResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/users/me/passwordBx\n" +
+	"\x0eUpdatePassword\x12\".sphinx.user.UpdatePasswordRequest\x1a#.sphinx.user.UpdatePasswordResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/users/me/password\x12g\n" +
+	"\tDemandKYC\x12\x1d.sphinx.user.DemandKYCRequest\x1a\x1e.sphinx.user.DemandKYCResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/users/me/kyc\x12\x82\x01\n" +
+	"\x13HandleStripeWebhook\x12!.sphinx.user.StripeWebhookRequest\x1a\".sphinx.user.StripeWebhookResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/users/webhooks/stripeBx\n" +
 	"\x0fcom.sphinx.userB\tUserProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03SUX\xaa\x02\vSphinx.User\xca\x02\vSphinx\\User\xe2\x02\x17Sphinx\\User\\GPBMetadata\xea\x02\fSphinx::Userb\x06proto3"
 
 var (
@@ -757,7 +970,7 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_user_proto_goTypes = []any{
 	(*User)(nil),                      // 0: sphinx.user.User
 	(*PersonalInformation)(nil),       // 1: sphinx.user.PersonalInformation
@@ -772,6 +985,10 @@ var file_user_proto_goTypes = []any{
 	(*CreateUserResponse)(nil),        // 10: sphinx.user.CreateUserResponse
 	(*AuthenticateUserRequest)(nil),   // 11: sphinx.user.AuthenticateUserRequest
 	(*AuthenticateUserResponse)(nil),  // 12: sphinx.user.AuthenticateUserResponse
+	(*DemandKYCRequest)(nil),          // 13: sphinx.user.DemandKYCRequest
+	(*DemandKYCResponse)(nil),         // 14: sphinx.user.DemandKYCResponse
+	(*StripeWebhookRequest)(nil),      // 15: sphinx.user.StripeWebhookRequest
+	(*StripeWebhookResponse)(nil),     // 16: sphinx.user.StripeWebhookResponse
 }
 var file_user_proto_depIdxs = []int32{
 	1,  // 0: sphinx.user.UpdateUserRequest.user:type_name -> sphinx.user.PersonalInformation
@@ -782,13 +999,17 @@ var file_user_proto_depIdxs = []int32{
 	5,  // 5: sphinx.user.UserService.GetUserByToken:input_type -> sphinx.user.GetUserByTokenRequest
 	3,  // 6: sphinx.user.UserService.UpdateUser:input_type -> sphinx.user.UpdateUserRequest
 	7,  // 7: sphinx.user.UserService.UpdatePassword:input_type -> sphinx.user.UpdatePasswordRequest
-	10, // 8: sphinx.user.UserService.CreateUser:output_type -> sphinx.user.CreateUserResponse
-	12, // 9: sphinx.user.UserService.AuthenticateUser:output_type -> sphinx.user.AuthenticateUserResponse
-	6,  // 10: sphinx.user.UserService.GetUserByToken:output_type -> sphinx.user.GetUserByTokenResponse
-	4,  // 11: sphinx.user.UserService.UpdateUser:output_type -> sphinx.user.UpdateUserResponse
-	8,  // 12: sphinx.user.UserService.UpdatePassword:output_type -> sphinx.user.UpdatePasswordResponse
-	8,  // [8:13] is the sub-list for method output_type
-	3,  // [3:8] is the sub-list for method input_type
+	13, // 8: sphinx.user.UserService.DemandKYC:input_type -> sphinx.user.DemandKYCRequest
+	15, // 9: sphinx.user.UserService.HandleStripeWebhook:input_type -> sphinx.user.StripeWebhookRequest
+	10, // 10: sphinx.user.UserService.CreateUser:output_type -> sphinx.user.CreateUserResponse
+	12, // 11: sphinx.user.UserService.AuthenticateUser:output_type -> sphinx.user.AuthenticateUserResponse
+	6,  // 12: sphinx.user.UserService.GetUserByToken:output_type -> sphinx.user.GetUserByTokenResponse
+	4,  // 13: sphinx.user.UserService.UpdateUser:output_type -> sphinx.user.UpdateUserResponse
+	8,  // 14: sphinx.user.UserService.UpdatePassword:output_type -> sphinx.user.UpdatePasswordResponse
+	14, // 15: sphinx.user.UserService.DemandKYC:output_type -> sphinx.user.DemandKYCResponse
+	16, // 16: sphinx.user.UserService.HandleStripeWebhook:output_type -> sphinx.user.StripeWebhookResponse
+	10, // [10:17] is the sub-list for method output_type
+	3,  // [3:10] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -806,7 +1027,7 @@ func file_user_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   13,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
