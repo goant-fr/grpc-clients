@@ -8,6 +8,7 @@ package pb
 
 import (
 	context "context"
+	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -19,13 +20,13 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	UserService_CreateUser_FullMethodName          = "/sphinx.user.UserService/CreateUser"
-	UserService_AuthenticateUser_FullMethodName    = "/sphinx.user.UserService/AuthenticateUser"
-	UserService_GetUserByToken_FullMethodName      = "/sphinx.user.UserService/GetUserByToken"
-	UserService_UpdateUser_FullMethodName          = "/sphinx.user.UserService/UpdateUser"
-	UserService_UpdatePassword_FullMethodName      = "/sphinx.user.UserService/UpdatePassword"
-	UserService_DemandKYC_FullMethodName           = "/sphinx.user.UserService/DemandKYC"
-	UserService_HandleStripeWebhook_FullMethodName = "/sphinx.user.UserService/HandleStripeWebhook"
+	UserService_CreateUser_FullMethodName             = "/sphinx.user.UserService/CreateUser"
+	UserService_AuthenticateUser_FullMethodName       = "/sphinx.user.UserService/AuthenticateUser"
+	UserService_GetUserByToken_FullMethodName         = "/sphinx.user.UserService/GetUserByToken"
+	UserService_UpdateUser_FullMethodName             = "/sphinx.user.UserService/UpdateUser"
+	UserService_UpdatePassword_FullMethodName         = "/sphinx.user.UserService/UpdatePassword"
+	UserService_DemandKYC_FullMethodName              = "/sphinx.user.UserService/DemandKYC"
+	UserService_HandleStripeWebhookRaw_FullMethodName = "/sphinx.user.UserService/HandleStripeWebhookRaw"
 )
 
 // UserServiceClient is the client API for UserService service.
@@ -38,7 +39,7 @@ type UserServiceClient interface {
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
 	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*UpdatePasswordResponse, error)
 	DemandKYC(ctx context.Context, in *DemandKYCRequest, opts ...grpc.CallOption) (*DemandKYCResponse, error)
-	HandleStripeWebhook(ctx context.Context, in *StripeWebhookRequest, opts ...grpc.CallOption) (*StripeWebhookResponse, error)
+	HandleStripeWebhookRaw(ctx context.Context, in *httpbody.HttpBody, opts ...grpc.CallOption) (*StripeWebhookResponse, error)
 }
 
 type userServiceClient struct {
@@ -109,10 +110,10 @@ func (c *userServiceClient) DemandKYC(ctx context.Context, in *DemandKYCRequest,
 	return out, nil
 }
 
-func (c *userServiceClient) HandleStripeWebhook(ctx context.Context, in *StripeWebhookRequest, opts ...grpc.CallOption) (*StripeWebhookResponse, error) {
+func (c *userServiceClient) HandleStripeWebhookRaw(ctx context.Context, in *httpbody.HttpBody, opts ...grpc.CallOption) (*StripeWebhookResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(StripeWebhookResponse)
-	err := c.cc.Invoke(ctx, UserService_HandleStripeWebhook_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, UserService_HandleStripeWebhookRaw_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -129,7 +130,7 @@ type UserServiceServer interface {
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
 	UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error)
 	DemandKYC(context.Context, *DemandKYCRequest) (*DemandKYCResponse, error)
-	HandleStripeWebhook(context.Context, *StripeWebhookRequest) (*StripeWebhookResponse, error)
+	HandleStripeWebhookRaw(context.Context, *httpbody.HttpBody) (*StripeWebhookResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -158,8 +159,8 @@ func (UnimplementedUserServiceServer) UpdatePassword(context.Context, *UpdatePas
 func (UnimplementedUserServiceServer) DemandKYC(context.Context, *DemandKYCRequest) (*DemandKYCResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DemandKYC not implemented")
 }
-func (UnimplementedUserServiceServer) HandleStripeWebhook(context.Context, *StripeWebhookRequest) (*StripeWebhookResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method HandleStripeWebhook not implemented")
+func (UnimplementedUserServiceServer) HandleStripeWebhookRaw(context.Context, *httpbody.HttpBody) (*StripeWebhookResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method HandleStripeWebhookRaw not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 func (UnimplementedUserServiceServer) testEmbeddedByValue()                     {}
@@ -290,20 +291,20 @@ func _UserService_DemandKYC_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _UserService_HandleStripeWebhook_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(StripeWebhookRequest)
+func _UserService_HandleStripeWebhookRaw_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(httpbody.HttpBody)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(UserServiceServer).HandleStripeWebhook(ctx, in)
+		return srv.(UserServiceServer).HandleStripeWebhookRaw(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: UserService_HandleStripeWebhook_FullMethodName,
+		FullMethod: UserService_HandleStripeWebhookRaw_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).HandleStripeWebhook(ctx, req.(*StripeWebhookRequest))
+		return srv.(UserServiceServer).HandleStripeWebhookRaw(ctx, req.(*httpbody.HttpBody))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -340,8 +341,8 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _UserService_DemandKYC_Handler,
 		},
 		{
-			MethodName: "HandleStripeWebhook",
-			Handler:    _UserService_HandleStripeWebhook_Handler,
+			MethodName: "HandleStripeWebhookRaw",
+			Handler:    _UserService_HandleStripeWebhookRaw_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
