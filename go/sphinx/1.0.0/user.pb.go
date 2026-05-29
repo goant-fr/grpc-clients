@@ -9,7 +9,6 @@ package pb
 import (
 	_ "buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go/buf/validate"
 	_ "google.golang.org/genproto/googleapis/api/annotations"
-	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -796,58 +795,6 @@ func (x *DemandKYCResponse) GetEphemeralKeySecret() string {
 	return ""
 }
 
-type StripeWebhookRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Payload         []byte                 `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	StripeSignature string                 `protobuf:"bytes,2,opt,name=stripe_signature,json=stripeSignature,proto3" json:"stripe_signature,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *StripeWebhookRequest) Reset() {
-	*x = StripeWebhookRequest{}
-	mi := &file_user_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StripeWebhookRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StripeWebhookRequest) ProtoMessage() {}
-
-func (x *StripeWebhookRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_user_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StripeWebhookRequest.ProtoReflect.Descriptor instead.
-func (*StripeWebhookRequest) Descriptor() ([]byte, []int) {
-	return file_user_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *StripeWebhookRequest) GetPayload() []byte {
-	if x != nil {
-		return x.Payload
-	}
-	return nil
-}
-
-func (x *StripeWebhookRequest) GetStripeSignature() string {
-	if x != nil {
-		return x.StripeSignature
-	}
-	return ""
-}
-
 type StripeWebhookResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Ok            bool                   `protobuf:"varint,1,opt,name=ok,proto3" json:"ok,omitempty"`
@@ -857,7 +804,7 @@ type StripeWebhookResponse struct {
 
 func (x *StripeWebhookResponse) Reset() {
 	*x = StripeWebhookResponse{}
-	mi := &file_user_proto_msgTypes[16]
+	mi := &file_user_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -869,7 +816,7 @@ func (x *StripeWebhookResponse) String() string {
 func (*StripeWebhookResponse) ProtoMessage() {}
 
 func (x *StripeWebhookResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_user_proto_msgTypes[16]
+	mi := &file_user_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -882,7 +829,7 @@ func (x *StripeWebhookResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StripeWebhookResponse.ProtoReflect.Descriptor instead.
 func (*StripeWebhookResponse) Descriptor() ([]byte, []int) {
-	return file_user_proto_rawDescGZIP(), []int{16}
+	return file_user_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *StripeWebhookResponse) GetOk() bool {
@@ -897,7 +844,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x19google/api/httpbody.proto\"\xde\x01\n" +
+	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x0fhttp_body.proto\"\xde\x01\n" +
 	"\x04User\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
@@ -941,10 +888,7 @@ const file_user_proto_rawDesc = "" +
 	"\x10DemandKYCRequest\"}\n" +
 	"\x11DemandKYCResponse\x126\n" +
 	"\x17verification_session_id\x18\x01 \x01(\tR\x15verificationSessionId\x120\n" +
-	"\x14ephemeral_key_secret\x18\x02 \x01(\tR\x12ephemeralKeySecret\"[\n" +
-	"\x14StripeWebhookRequest\x12\x18\n" +
-	"\apayload\x18\x01 \x01(\fR\apayload\x12)\n" +
-	"\x10stripe_signature\x18\x02 \x01(\tR\x0fstripeSignature\"'\n" +
+	"\x14ephemeral_key_secret\x18\x02 \x01(\tR\x12ephemeralKeySecret\"'\n" +
 	"\x15StripeWebhookResponse\x12\x0e\n" +
 	"\x02ok\x18\x01 \x01(\bR\x02ok2\xb6\x06\n" +
 	"\vUserService\x12f\n" +
@@ -971,7 +915,7 @@ func file_user_proto_rawDescGZIP() []byte {
 	return file_user_proto_rawDescData
 }
 
-var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
+var file_user_proto_msgTypes = make([]protoimpl.MessageInfo, 16)
 var file_user_proto_goTypes = []any{
 	(*User)(nil),                      // 0: sphinx.user.User
 	(*PersonalInformation)(nil),       // 1: sphinx.user.PersonalInformation
@@ -988,9 +932,8 @@ var file_user_proto_goTypes = []any{
 	(*AuthenticateUserResponse)(nil),  // 12: sphinx.user.AuthenticateUserResponse
 	(*DemandKYCRequest)(nil),          // 13: sphinx.user.DemandKYCRequest
 	(*DemandKYCResponse)(nil),         // 14: sphinx.user.DemandKYCResponse
-	(*StripeWebhookRequest)(nil),      // 15: sphinx.user.StripeWebhookRequest
-	(*StripeWebhookResponse)(nil),     // 16: sphinx.user.StripeWebhookResponse
-	(*httpbody.HttpBody)(nil),         // 17: google.api.HttpBody
+	(*StripeWebhookResponse)(nil),     // 15: sphinx.user.StripeWebhookResponse
+	(*HttpBody)(nil),                  // 16: google.api.HttpBody
 }
 var file_user_proto_depIdxs = []int32{
 	1,  // 0: sphinx.user.UpdateUserRequest.user:type_name -> sphinx.user.PersonalInformation
@@ -1002,14 +945,14 @@ var file_user_proto_depIdxs = []int32{
 	3,  // 6: sphinx.user.UserService.UpdateUser:input_type -> sphinx.user.UpdateUserRequest
 	7,  // 7: sphinx.user.UserService.UpdatePassword:input_type -> sphinx.user.UpdatePasswordRequest
 	13, // 8: sphinx.user.UserService.DemandKYC:input_type -> sphinx.user.DemandKYCRequest
-	17, // 9: sphinx.user.UserService.HandleStripeWebhookRaw:input_type -> google.api.HttpBody
+	16, // 9: sphinx.user.UserService.HandleStripeWebhookRaw:input_type -> google.api.HttpBody
 	10, // 10: sphinx.user.UserService.CreateUser:output_type -> sphinx.user.CreateUserResponse
 	12, // 11: sphinx.user.UserService.AuthenticateUser:output_type -> sphinx.user.AuthenticateUserResponse
 	6,  // 12: sphinx.user.UserService.GetUserByToken:output_type -> sphinx.user.GetUserByTokenResponse
 	4,  // 13: sphinx.user.UserService.UpdateUser:output_type -> sphinx.user.UpdateUserResponse
 	8,  // 14: sphinx.user.UserService.UpdatePassword:output_type -> sphinx.user.UpdatePasswordResponse
 	14, // 15: sphinx.user.UserService.DemandKYC:output_type -> sphinx.user.DemandKYCResponse
-	16, // 16: sphinx.user.UserService.HandleStripeWebhookRaw:output_type -> sphinx.user.StripeWebhookResponse
+	15, // 16: sphinx.user.UserService.HandleStripeWebhookRaw:output_type -> sphinx.user.StripeWebhookResponse
 	10, // [10:17] is the sub-list for method output_type
 	3,  // [3:10] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
@@ -1023,13 +966,14 @@ func file_user_proto_init() {
 		return
 	}
 	file_user_address_proto_init()
+	file_http_body_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_user_proto_rawDesc), len(file_user_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   17,
+			NumMessages:   16,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

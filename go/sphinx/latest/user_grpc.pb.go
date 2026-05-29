@@ -8,7 +8,6 @@ package pb
 
 import (
 	context "context"
-	httpbody "google.golang.org/genproto/googleapis/api/httpbody"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
@@ -39,7 +38,7 @@ type UserServiceClient interface {
 	UpdateUser(ctx context.Context, in *UpdateUserRequest, opts ...grpc.CallOption) (*UpdateUserResponse, error)
 	UpdatePassword(ctx context.Context, in *UpdatePasswordRequest, opts ...grpc.CallOption) (*UpdatePasswordResponse, error)
 	DemandKYC(ctx context.Context, in *DemandKYCRequest, opts ...grpc.CallOption) (*DemandKYCResponse, error)
-	HandleStripeWebhookRaw(ctx context.Context, in *httpbody.HttpBody, opts ...grpc.CallOption) (*StripeWebhookResponse, error)
+	HandleStripeWebhookRaw(ctx context.Context, in *HttpBody, opts ...grpc.CallOption) (*StripeWebhookResponse, error)
 }
 
 type userServiceClient struct {
@@ -110,7 +109,7 @@ func (c *userServiceClient) DemandKYC(ctx context.Context, in *DemandKYCRequest,
 	return out, nil
 }
 
-func (c *userServiceClient) HandleStripeWebhookRaw(ctx context.Context, in *httpbody.HttpBody, opts ...grpc.CallOption) (*StripeWebhookResponse, error) {
+func (c *userServiceClient) HandleStripeWebhookRaw(ctx context.Context, in *HttpBody, opts ...grpc.CallOption) (*StripeWebhookResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(StripeWebhookResponse)
 	err := c.cc.Invoke(ctx, UserService_HandleStripeWebhookRaw_FullMethodName, in, out, cOpts...)
@@ -130,7 +129,7 @@ type UserServiceServer interface {
 	UpdateUser(context.Context, *UpdateUserRequest) (*UpdateUserResponse, error)
 	UpdatePassword(context.Context, *UpdatePasswordRequest) (*UpdatePasswordResponse, error)
 	DemandKYC(context.Context, *DemandKYCRequest) (*DemandKYCResponse, error)
-	HandleStripeWebhookRaw(context.Context, *httpbody.HttpBody) (*StripeWebhookResponse, error)
+	HandleStripeWebhookRaw(context.Context, *HttpBody) (*StripeWebhookResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -159,7 +158,7 @@ func (UnimplementedUserServiceServer) UpdatePassword(context.Context, *UpdatePas
 func (UnimplementedUserServiceServer) DemandKYC(context.Context, *DemandKYCRequest) (*DemandKYCResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DemandKYC not implemented")
 }
-func (UnimplementedUserServiceServer) HandleStripeWebhookRaw(context.Context, *httpbody.HttpBody) (*StripeWebhookResponse, error) {
+func (UnimplementedUserServiceServer) HandleStripeWebhookRaw(context.Context, *HttpBody) (*StripeWebhookResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method HandleStripeWebhookRaw not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
@@ -292,7 +291,7 @@ func _UserService_DemandKYC_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _UserService_HandleStripeWebhookRaw_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(httpbody.HttpBody)
+	in := new(HttpBody)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -304,7 +303,7 @@ func _UserService_HandleStripeWebhookRaw_Handler(srv interface{}, ctx context.Co
 		FullMethod: UserService_HandleStripeWebhookRaw_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(UserServiceServer).HandleStripeWebhookRaw(ctx, req.(*httpbody.HttpBody))
+		return srv.(UserServiceServer).HandleStripeWebhookRaw(ctx, req.(*HttpBody))
 	}
 	return interceptor(ctx, in, info, handler)
 }
