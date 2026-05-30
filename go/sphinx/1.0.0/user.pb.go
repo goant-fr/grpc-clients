@@ -844,7 +844,7 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x0fhttp_body.proto\"\xde\x01\n" +
+	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xde\x01\n" +
 	"\x04User\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
@@ -890,7 +890,7 @@ const file_user_proto_rawDesc = "" +
 	"\x17verification_session_id\x18\x01 \x01(\tR\x15verificationSessionId\x120\n" +
 	"\x14ephemeral_key_secret\x18\x02 \x01(\tR\x12ephemeralKeySecret\"'\n" +
 	"\x15StripeWebhookResponse\x12\x0e\n" +
-	"\x02ok\x18\x01 \x01(\bR\x02ok2\xb6\x06\n" +
+	"\x02ok\x18\x01 \x01(\bR\x02ok2\xbc\x05\n" +
 	"\vUserService\x12f\n" +
 	"\n" +
 	"CreateUser\x12\x1e.sphinx.user.CreateUserRequest\x1a\x1f.sphinx.user.CreateUserResponse\"\x17\x82\xd3\xe4\x93\x02\x11:\x04user\"\t/v1/users\x12\x82\x01\n" +
@@ -899,8 +899,7 @@ const file_user_proto_rawDesc = "" +
 	"\n" +
 	"UpdateUser\x12\x1e.sphinx.user.UpdateUserRequest\x1a\x1f.sphinx.user.UpdateUserResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x04user\x1a\f/v1/users/me\x12{\n" +
 	"\x0eUpdatePassword\x12\".sphinx.user.UpdatePasswordRequest\x1a#.sphinx.user.UpdatePasswordResponse\" \x82\xd3\xe4\x93\x02\x1a:\x01*2\x15/v1/users/me/password\x12g\n" +
-	"\tDemandKYC\x12\x1d.sphinx.user.DemandKYCRequest\x1a\x1e.sphinx.user.DemandKYCResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/users/me/kyc\x12x\n" +
-	"\x16HandleStripeWebhookRaw\x12\x14.google.api.HttpBody\x1a\".sphinx.user.StripeWebhookResponse\"$\x82\xd3\xe4\x93\x02\x1e:\x01*\"\x19/v1/users/webhooks/stripeBx\n" +
+	"\tDemandKYC\x12\x1d.sphinx.user.DemandKYCRequest\x1a\x1e.sphinx.user.DemandKYCResponse\"\x1b\x82\xd3\xe4\x93\x02\x15:\x01*\"\x10/v1/users/me/kycBx\n" +
 	"\x0fcom.sphinx.userB\tUserProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03SUX\xaa\x02\vSphinx.User\xca\x02\vSphinx\\User\xe2\x02\x17Sphinx\\User\\GPBMetadata\xea\x02\fSphinx::Userb\x06proto3"
 
 var (
@@ -933,7 +932,6 @@ var file_user_proto_goTypes = []any{
 	(*DemandKYCRequest)(nil),          // 13: sphinx.user.DemandKYCRequest
 	(*DemandKYCResponse)(nil),         // 14: sphinx.user.DemandKYCResponse
 	(*StripeWebhookResponse)(nil),     // 15: sphinx.user.StripeWebhookResponse
-	(*HttpBody)(nil),                  // 16: google.api.HttpBody
 }
 var file_user_proto_depIdxs = []int32{
 	1,  // 0: sphinx.user.UpdateUserRequest.user:type_name -> sphinx.user.PersonalInformation
@@ -945,16 +943,14 @@ var file_user_proto_depIdxs = []int32{
 	3,  // 6: sphinx.user.UserService.UpdateUser:input_type -> sphinx.user.UpdateUserRequest
 	7,  // 7: sphinx.user.UserService.UpdatePassword:input_type -> sphinx.user.UpdatePasswordRequest
 	13, // 8: sphinx.user.UserService.DemandKYC:input_type -> sphinx.user.DemandKYCRequest
-	16, // 9: sphinx.user.UserService.HandleStripeWebhookRaw:input_type -> google.api.HttpBody
-	10, // 10: sphinx.user.UserService.CreateUser:output_type -> sphinx.user.CreateUserResponse
-	12, // 11: sphinx.user.UserService.AuthenticateUser:output_type -> sphinx.user.AuthenticateUserResponse
-	6,  // 12: sphinx.user.UserService.GetUserByToken:output_type -> sphinx.user.GetUserByTokenResponse
-	4,  // 13: sphinx.user.UserService.UpdateUser:output_type -> sphinx.user.UpdateUserResponse
-	8,  // 14: sphinx.user.UserService.UpdatePassword:output_type -> sphinx.user.UpdatePasswordResponse
-	14, // 15: sphinx.user.UserService.DemandKYC:output_type -> sphinx.user.DemandKYCResponse
-	15, // 16: sphinx.user.UserService.HandleStripeWebhookRaw:output_type -> sphinx.user.StripeWebhookResponse
-	10, // [10:17] is the sub-list for method output_type
-	3,  // [3:10] is the sub-list for method input_type
+	10, // 9: sphinx.user.UserService.CreateUser:output_type -> sphinx.user.CreateUserResponse
+	12, // 10: sphinx.user.UserService.AuthenticateUser:output_type -> sphinx.user.AuthenticateUserResponse
+	6,  // 11: sphinx.user.UserService.GetUserByToken:output_type -> sphinx.user.GetUserByTokenResponse
+	4,  // 12: sphinx.user.UserService.UpdateUser:output_type -> sphinx.user.UpdateUserResponse
+	8,  // 13: sphinx.user.UserService.UpdatePassword:output_type -> sphinx.user.UpdatePasswordResponse
+	14, // 14: sphinx.user.UserService.DemandKYC:output_type -> sphinx.user.DemandKYCResponse
+	9,  // [9:15] is the sub-list for method output_type
+	3,  // [3:9] is the sub-list for method input_type
 	3,  // [3:3] is the sub-list for extension type_name
 	3,  // [3:3] is the sub-list for extension extendee
 	0,  // [0:3] is the sub-list for field type_name
@@ -966,7 +962,6 @@ func file_user_proto_init() {
 		return
 	}
 	file_user_address_proto_init()
-	file_http_body_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
