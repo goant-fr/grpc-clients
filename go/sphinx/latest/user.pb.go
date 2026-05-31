@@ -30,7 +30,6 @@ type User struct {
 	Mail          string                 `protobuf:"bytes,3,opt,name=mail,proto3" json:"mail,omitempty"`
 	Phone         string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
 	Password      string                 `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
-	Verified      bool                   `protobuf:"varint,6,opt,name=verified,proto3" json:"verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -98,13 +97,6 @@ func (x *User) GetPassword() string {
 		return x.Password
 	}
 	return ""
-}
-
-func (x *User) GetVerified() bool {
-	if x != nil {
-		return x.Verified
-	}
-	return false
 }
 
 type PersonalInformation struct {
@@ -182,7 +174,6 @@ type PersonalInformationWithID struct {
 	Firstname     string                 `protobuf:"bytes,3,opt,name=firstname,proto3" json:"firstname,omitempty"`
 	Mail          string                 `protobuf:"bytes,4,opt,name=mail,proto3" json:"mail,omitempty"`
 	Phone         string                 `protobuf:"bytes,5,opt,name=phone,proto3" json:"phone,omitempty"`
-	Verified      bool                   `protobuf:"varint,6,opt,name=verified,proto3" json:"verified,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -250,13 +241,6 @@ func (x *PersonalInformationWithID) GetPhone() string {
 		return x.Phone
 	}
 	return ""
-}
-
-func (x *PersonalInformationWithID) GetVerified() bool {
-	if x != nil {
-		return x.Verified
-	}
-	return false
 }
 
 type UpdateUserRequest struct {
@@ -844,26 +828,24 @@ var File_user_proto protoreflect.FileDescriptor
 const file_user_proto_rawDesc = "" +
 	"\n" +
 	"\n" +
-	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xde\x01\n" +
+	"user.proto\x12\vsphinx.user\x1a\x12user_address.proto\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"\xc2\x01\n" +
 	"\x04User\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x03 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
 	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\x12#\n" +
-	"\bpassword\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\x12\x1a\n" +
-	"\bverified\x18\x06 \x01(\bR\bverified\"\xac\x01\n" +
+	"\bpassword\x18\x05 \x01(\tB\a\xbaH\x04r\x02\x10\bR\bpassword\"\xac\x01\n" +
 	"\x13PersonalInformation\x12%\n" +
 	"\blastname\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x03 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
-	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"\xe8\x01\n" +
+	"\x05phone\x18\x04 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"\xcc\x01\n" +
 	"\x19PersonalInformationWithID\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12%\n" +
 	"\blastname\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\blastname\x12'\n" +
 	"\tfirstname\x18\x03 \x01(\tB\t\xbaH\x06r\x04\x10\x02\x182R\tfirstname\x12\x1b\n" +
 	"\x04mail\x18\x04 \x01(\tB\a\xbaH\x04r\x02`\x01R\x04mail\x12(\n" +
-	"\x05phone\x18\x05 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\x12\x1a\n" +
-	"\bverified\x18\x06 \x01(\bR\bverified\"Q\n" +
+	"\x05phone\x18\x05 \x01(\tB\x12\xbaH\x0fr\r2\v^[0-9]{10}$R\x05phone\"Q\n" +
 	"\x11UpdateUserRequest\x12<\n" +
 	"\x04user\x18\x01 \x01(\v2 .sphinx.user.PersonalInformationB\x06\xbaH\x03\xc8\x01\x01R\x04user\"$\n" +
 	"\x12UpdateUserResponse\x12\x0e\n" +
