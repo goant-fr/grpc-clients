@@ -22,6 +22,7 @@ const (
 	CommandService_CreateCommand_FullMethodName         = "/cat.CommandService/CreateCommand"
 	CommandService_GetCommandsByDriverId_FullMethodName = "/cat.CommandService/GetCommandsByDriverId"
 	CommandService_GetCommandById_FullMethodName        = "/cat.CommandService/GetCommandById"
+	CommandService_CheckEligibility_FullMethodName      = "/cat.CommandService/CheckEligibility"
 )
 
 // CommandServiceClient is the client API for CommandService service.
@@ -31,6 +32,7 @@ type CommandServiceClient interface {
 	CreateCommand(ctx context.Context, in *CreateCommandRequest, opts ...grpc.CallOption) (*CreateCommandResponse, error)
 	GetCommandsByDriverId(ctx context.Context, in *GetCommandsByDriverIdRequest, opts ...grpc.CallOption) (*GetCommandsByDriverIdResponse, error)
 	GetCommandById(ctx context.Context, in *GetCommandByIdRequest, opts ...grpc.CallOption) (*Command, error)
+	CheckEligibility(ctx context.Context, in *EligibilityCommandRequest, opts ...grpc.CallOption) (*EligibilityCommandResponse, error)
 }
 
 type commandServiceClient struct {
@@ -71,6 +73,16 @@ func (c *commandServiceClient) GetCommandById(ctx context.Context, in *GetComman
 	return out, nil
 }
 
+func (c *commandServiceClient) CheckEligibility(ctx context.Context, in *EligibilityCommandRequest, opts ...grpc.CallOption) (*EligibilityCommandResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EligibilityCommandResponse)
+	err := c.cc.Invoke(ctx, CommandService_CheckEligibility_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CommandServiceServer is the server API for CommandService service.
 // All implementations must embed UnimplementedCommandServiceServer
 // for forward compatibility.
@@ -78,6 +90,7 @@ type CommandServiceServer interface {
 	CreateCommand(context.Context, *CreateCommandRequest) (*CreateCommandResponse, error)
 	GetCommandsByDriverId(context.Context, *GetCommandsByDriverIdRequest) (*GetCommandsByDriverIdResponse, error)
 	GetCommandById(context.Context, *GetCommandByIdRequest) (*Command, error)
+	CheckEligibility(context.Context, *EligibilityCommandRequest) (*EligibilityCommandResponse, error)
 	mustEmbedUnimplementedCommandServiceServer()
 }
 
@@ -96,6 +109,9 @@ func (UnimplementedCommandServiceServer) GetCommandsByDriverId(context.Context, 
 }
 func (UnimplementedCommandServiceServer) GetCommandById(context.Context, *GetCommandByIdRequest) (*Command, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetCommandById not implemented")
+}
+func (UnimplementedCommandServiceServer) CheckEligibility(context.Context, *EligibilityCommandRequest) (*EligibilityCommandResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckEligibility not implemented")
 }
 func (UnimplementedCommandServiceServer) mustEmbedUnimplementedCommandServiceServer() {}
 func (UnimplementedCommandServiceServer) testEmbeddedByValue()                        {}
@@ -172,6 +188,24 @@ func _CommandService_GetCommandById_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CommandService_CheckEligibility_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EligibilityCommandRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CommandServiceServer).CheckEligibility(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CommandService_CheckEligibility_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CommandServiceServer).CheckEligibility(ctx, req.(*EligibilityCommandRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CommandService_ServiceDesc is the grpc.ServiceDesc for CommandService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +224,10 @@ var CommandService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetCommandById",
 			Handler:    _CommandService_GetCommandById_Handler,
+		},
+		{
+			MethodName: "CheckEligibility",
+			Handler:    _CommandService_CheckEligibility_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

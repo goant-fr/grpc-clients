@@ -146,6 +146,126 @@ func (x *CreateCommandRequest) GetDestinationPosition() *Position {
 	return nil
 }
 
+type EligibilityCommandRequest struct {
+	state               protoimpl.MessageState `protogen:"open.v1"`
+	Size                string                 `protobuf:"bytes,2,opt,name=size,proto3" json:"size,omitempty"`
+	OriginPosition      *Position              `protobuf:"bytes,3,opt,name=origin_position,json=originPosition,proto3" json:"origin_position,omitempty"`
+	DestinationPosition *Position              `protobuf:"bytes,4,opt,name=destination_position,json=destinationPosition,proto3" json:"destination_position,omitempty"`
+	unknownFields       protoimpl.UnknownFields
+	sizeCache           protoimpl.SizeCache
+}
+
+func (x *EligibilityCommandRequest) Reset() {
+	*x = EligibilityCommandRequest{}
+	mi := &file_command_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EligibilityCommandRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EligibilityCommandRequest) ProtoMessage() {}
+
+func (x *EligibilityCommandRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_command_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EligibilityCommandRequest.ProtoReflect.Descriptor instead.
+func (*EligibilityCommandRequest) Descriptor() ([]byte, []int) {
+	return file_command_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *EligibilityCommandRequest) GetSize() string {
+	if x != nil {
+		return x.Size
+	}
+	return ""
+}
+
+func (x *EligibilityCommandRequest) GetOriginPosition() *Position {
+	if x != nil {
+		return x.OriginPosition
+	}
+	return nil
+}
+
+func (x *EligibilityCommandRequest) GetDestinationPosition() *Position {
+	if x != nil {
+		return x.DestinationPosition
+	}
+	return nil
+}
+
+type EligibilityCommandResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Eligible      bool                   `protobuf:"varint,1,opt,name=eligible,proto3" json:"eligible,omitempty"`
+	Fee           float64                `protobuf:"fixed64,2,opt,name=fee,proto3" json:"fee,omitempty"`
+	EstimatedTime *durationpb.Duration   `protobuf:"bytes,3,opt,name=estimated_time,json=estimatedTime,proto3" json:"estimated_time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *EligibilityCommandResponse) Reset() {
+	*x = EligibilityCommandResponse{}
+	mi := &file_command_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *EligibilityCommandResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*EligibilityCommandResponse) ProtoMessage() {}
+
+func (x *EligibilityCommandResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_command_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use EligibilityCommandResponse.ProtoReflect.Descriptor instead.
+func (*EligibilityCommandResponse) Descriptor() ([]byte, []int) {
+	return file_command_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *EligibilityCommandResponse) GetEligible() bool {
+	if x != nil {
+		return x.Eligible
+	}
+	return false
+}
+
+func (x *EligibilityCommandResponse) GetFee() float64 {
+	if x != nil {
+		return x.Fee
+	}
+	return 0
+}
+
+func (x *EligibilityCommandResponse) GetEstimatedTime() *durationpb.Duration {
+	if x != nil {
+		return x.EstimatedTime
+	}
+	return nil
+}
+
 type GetCommandsByDriverIdRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -154,7 +274,7 @@ type GetCommandsByDriverIdRequest struct {
 
 func (x *GetCommandsByDriverIdRequest) Reset() {
 	*x = GetCommandsByDriverIdRequest{}
-	mi := &file_command_proto_msgTypes[2]
+	mi := &file_command_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -166,7 +286,7 @@ func (x *GetCommandsByDriverIdRequest) String() string {
 func (*GetCommandsByDriverIdRequest) ProtoMessage() {}
 
 func (x *GetCommandsByDriverIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[2]
+	mi := &file_command_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -179,7 +299,7 @@ func (x *GetCommandsByDriverIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommandsByDriverIdRequest.ProtoReflect.Descriptor instead.
 func (*GetCommandsByDriverIdRequest) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{2}
+	return file_command_proto_rawDescGZIP(), []int{4}
 }
 
 type CmdInterchange struct {
@@ -193,7 +313,7 @@ type CmdInterchange struct {
 
 func (x *CmdInterchange) Reset() {
 	*x = CmdInterchange{}
-	mi := &file_command_proto_msgTypes[3]
+	mi := &file_command_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -205,7 +325,7 @@ func (x *CmdInterchange) String() string {
 func (*CmdInterchange) ProtoMessage() {}
 
 func (x *CmdInterchange) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[3]
+	mi := &file_command_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +338,7 @@ func (x *CmdInterchange) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CmdInterchange.ProtoReflect.Descriptor instead.
 func (*CmdInterchange) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{3}
+	return file_command_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *CmdInterchange) GetId() string {
@@ -269,7 +389,7 @@ type Command struct {
 
 func (x *Command) Reset() {
 	*x = Command{}
-	mi := &file_command_proto_msgTypes[4]
+	mi := &file_command_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -281,7 +401,7 @@ func (x *Command) String() string {
 func (*Command) ProtoMessage() {}
 
 func (x *Command) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[4]
+	mi := &file_command_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -294,7 +414,7 @@ func (x *Command) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Command.ProtoReflect.Descriptor instead.
 func (*Command) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{4}
+	return file_command_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *Command) GetId() string {
@@ -439,7 +559,7 @@ type GetCommandsByDriverIdResponse struct {
 
 func (x *GetCommandsByDriverIdResponse) Reset() {
 	*x = GetCommandsByDriverIdResponse{}
-	mi := &file_command_proto_msgTypes[5]
+	mi := &file_command_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -451,7 +571,7 @@ func (x *GetCommandsByDriverIdResponse) String() string {
 func (*GetCommandsByDriverIdResponse) ProtoMessage() {}
 
 func (x *GetCommandsByDriverIdResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[5]
+	mi := &file_command_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -464,7 +584,7 @@ func (x *GetCommandsByDriverIdResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommandsByDriverIdResponse.ProtoReflect.Descriptor instead.
 func (*GetCommandsByDriverIdResponse) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{5}
+	return file_command_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *GetCommandsByDriverIdResponse) GetCommands() []*Command {
@@ -483,7 +603,7 @@ type GetCommandByIdRequest struct {
 
 func (x *GetCommandByIdRequest) Reset() {
 	*x = GetCommandByIdRequest{}
-	mi := &file_command_proto_msgTypes[6]
+	mi := &file_command_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -495,7 +615,7 @@ func (x *GetCommandByIdRequest) String() string {
 func (*GetCommandByIdRequest) ProtoMessage() {}
 
 func (x *GetCommandByIdRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[6]
+	mi := &file_command_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -508,7 +628,7 @@ func (x *GetCommandByIdRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetCommandByIdRequest.ProtoReflect.Descriptor instead.
 func (*GetCommandByIdRequest) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{6}
+	return file_command_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *GetCommandByIdRequest) GetCommandId() string {
@@ -527,7 +647,7 @@ type CreateCommandResponse struct {
 
 func (x *CreateCommandResponse) Reset() {
 	*x = CreateCommandResponse{}
-	mi := &file_command_proto_msgTypes[7]
+	mi := &file_command_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -539,7 +659,7 @@ func (x *CreateCommandResponse) String() string {
 func (*CreateCommandResponse) ProtoMessage() {}
 
 func (x *CreateCommandResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_command_proto_msgTypes[7]
+	mi := &file_command_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -552,7 +672,7 @@ func (x *CreateCommandResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateCommandResponse.ProtoReflect.Descriptor instead.
 func (*CreateCommandResponse) Descriptor() ([]byte, []int) {
-	return file_command_proto_rawDescGZIP(), []int{7}
+	return file_command_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *CreateCommandResponse) GetResponse() int32 {
@@ -574,7 +694,15 @@ const file_command_proto_rawDesc = "" +
 	"\border_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\aorderId\x12&\n" +
 	"\x04size\x18\x02 \x01(\tB\x12\xbaH\x0fr\rR\x01SR\x01MR\x01LR\x02XlR\x04size\x12>\n" +
 	"\x0forigin_position\x18\x03 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x0eoriginPosition\x12H\n" +
-	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x13destinationPosition\"\x1e\n" +
+	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x13destinationPosition\"\xcd\x01\n" +
+	"\x19EligibilityCommandRequest\x12&\n" +
+	"\x04size\x18\x02 \x01(\tB\x12\xbaH\x0fr\rR\x01SR\x01MR\x01LR\x02XlR\x04size\x12>\n" +
+	"\x0forigin_position\x18\x03 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x0eoriginPosition\x12H\n" +
+	"\x14destination_position\x18\x04 \x01(\v2\r.cat.PositionB\x06\xbaH\x03\xc8\x01\x01R\x13destinationPosition\"\x8c\x01\n" +
+	"\x1aEligibilityCommandResponse\x12\x1a\n" +
+	"\beligible\x18\x01 \x01(\bR\beligible\x12\x10\n" +
+	"\x03fee\x18\x02 \x01(\x01R\x03fee\x12@\n" +
+	"\x0eestimated_time\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\restimatedTime\"\x1e\n" +
 	"\x1cGetCommandsByDriverIdRequest\"D\n" +
 	"\x0eCmdInterchange\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x10\n" +
@@ -610,11 +738,12 @@ const file_command_proto_rawDesc = "" +
 	"\n" +
 	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"3\n" +
 	"\x15CreateCommandResponse\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\x05R\bresponse2\xf4\x02\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse2\xfd\x03\n" +
 	"\x0eCommandService\x12u\n" +
 	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/abyssin/commands/createCommand\x12\x83\x01\n" +
 	"\x15GetCommandsByDriverId\x12!.cat.GetCommandsByDriverIdRequest\x1a\".cat.GetCommandsByDriverIdResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/abyssin/commands/driver\x12e\n" +
-	"\x0eGetCommandById\x12\x1a.cat.GetCommandByIdRequest\x1a\f.cat.Command\")\x82\xd3\xe4\x93\x02#\x12!/v1/abyssin/commands/{command_id}BR\n" +
+	"\x0eGetCommandById\x12\x1a.cat.GetCommandByIdRequest\x1a\f.cat.Command\")\x82\xd3\xe4\x93\x02#\x12!/v1/abyssin/commands/{command_id}\x12\x86\x01\n" +
+	"\x10CheckEligibility\x12\x1e.cat.EligibilityCommandRequest\x1a\x1f.cat.EligibilityCommandResponse\"1\x82\xd3\xe4\x93\x02+:\x01*\"&/v1/abyssin/commands/check-eligibilityBR\n" +
 	"\acom.catB\fCommandProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
@@ -629,47 +758,54 @@ func file_command_proto_rawDescGZIP() []byte {
 	return file_command_proto_rawDescData
 }
 
-var file_command_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
+var file_command_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_command_proto_goTypes = []any{
 	(*Position)(nil),                      // 0: cat.Position
 	(*CreateCommandRequest)(nil),          // 1: cat.CreateCommandRequest
-	(*GetCommandsByDriverIdRequest)(nil),  // 2: cat.GetCommandsByDriverIdRequest
-	(*CmdInterchange)(nil),                // 3: cat.CmdInterchange
-	(*Command)(nil),                       // 4: cat.Command
-	(*GetCommandsByDriverIdResponse)(nil), // 5: cat.GetCommandsByDriverIdResponse
-	(*GetCommandByIdRequest)(nil),         // 6: cat.GetCommandByIdRequest
-	(*CreateCommandResponse)(nil),         // 7: cat.CreateCommandResponse
-	(*wrapperspb.StringValue)(nil),        // 8: google.protobuf.StringValue
-	(*timestamppb.Timestamp)(nil),         // 9: google.protobuf.Timestamp
+	(*EligibilityCommandRequest)(nil),     // 2: cat.EligibilityCommandRequest
+	(*EligibilityCommandResponse)(nil),    // 3: cat.EligibilityCommandResponse
+	(*GetCommandsByDriverIdRequest)(nil),  // 4: cat.GetCommandsByDriverIdRequest
+	(*CmdInterchange)(nil),                // 5: cat.CmdInterchange
+	(*Command)(nil),                       // 6: cat.Command
+	(*GetCommandsByDriverIdResponse)(nil), // 7: cat.GetCommandsByDriverIdResponse
+	(*GetCommandByIdRequest)(nil),         // 8: cat.GetCommandByIdRequest
+	(*CreateCommandResponse)(nil),         // 9: cat.CreateCommandResponse
 	(*durationpb.Duration)(nil),           // 10: google.protobuf.Duration
+	(*wrapperspb.StringValue)(nil),        // 11: google.protobuf.StringValue
+	(*timestamppb.Timestamp)(nil),         // 12: google.protobuf.Timestamp
 }
 var file_command_proto_depIdxs = []int32{
 	0,  // 0: cat.CreateCommandRequest.origin_position:type_name -> cat.Position
 	0,  // 1: cat.CreateCommandRequest.destination_position:type_name -> cat.Position
-	3,  // 2: cat.Command.interchanges:type_name -> cat.CmdInterchange
-	0,  // 3: cat.Command.origin_position:type_name -> cat.Position
-	0,  // 4: cat.Command.destination_position:type_name -> cat.Position
-	8,  // 5: cat.Command.driver_id:type_name -> google.protobuf.StringValue
-	9,  // 6: cat.Command.created_at:type_name -> google.protobuf.Timestamp
-	9,  // 7: cat.Command.updated_at:type_name -> google.protobuf.Timestamp
-	9,  // 8: cat.Command.final_arrive_at:type_name -> google.protobuf.Timestamp
-	9,  // 9: cat.Command.delivered_at:type_name -> google.protobuf.Timestamp
-	10, // 10: cat.Command.total_takt_time:type_name -> google.protobuf.Duration
-	10, // 11: cat.Command.total_wait_time:type_name -> google.protobuf.Duration
-	10, // 12: cat.Command.total_move_time:type_name -> google.protobuf.Duration
-	10, // 13: cat.Command.total_ex_time:type_name -> google.protobuf.Duration
-	4,  // 14: cat.GetCommandsByDriverIdResponse.commands:type_name -> cat.Command
-	1,  // 15: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
-	2,  // 16: cat.CommandService.GetCommandsByDriverId:input_type -> cat.GetCommandsByDriverIdRequest
-	6,  // 17: cat.CommandService.GetCommandById:input_type -> cat.GetCommandByIdRequest
-	7,  // 18: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
-	5,  // 19: cat.CommandService.GetCommandsByDriverId:output_type -> cat.GetCommandsByDriverIdResponse
-	4,  // 20: cat.CommandService.GetCommandById:output_type -> cat.Command
-	18, // [18:21] is the sub-list for method output_type
-	15, // [15:18] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	0,  // 2: cat.EligibilityCommandRequest.origin_position:type_name -> cat.Position
+	0,  // 3: cat.EligibilityCommandRequest.destination_position:type_name -> cat.Position
+	10, // 4: cat.EligibilityCommandResponse.estimated_time:type_name -> google.protobuf.Duration
+	5,  // 5: cat.Command.interchanges:type_name -> cat.CmdInterchange
+	0,  // 6: cat.Command.origin_position:type_name -> cat.Position
+	0,  // 7: cat.Command.destination_position:type_name -> cat.Position
+	11, // 8: cat.Command.driver_id:type_name -> google.protobuf.StringValue
+	12, // 9: cat.Command.created_at:type_name -> google.protobuf.Timestamp
+	12, // 10: cat.Command.updated_at:type_name -> google.protobuf.Timestamp
+	12, // 11: cat.Command.final_arrive_at:type_name -> google.protobuf.Timestamp
+	12, // 12: cat.Command.delivered_at:type_name -> google.protobuf.Timestamp
+	10, // 13: cat.Command.total_takt_time:type_name -> google.protobuf.Duration
+	10, // 14: cat.Command.total_wait_time:type_name -> google.protobuf.Duration
+	10, // 15: cat.Command.total_move_time:type_name -> google.protobuf.Duration
+	10, // 16: cat.Command.total_ex_time:type_name -> google.protobuf.Duration
+	6,  // 17: cat.GetCommandsByDriverIdResponse.commands:type_name -> cat.Command
+	1,  // 18: cat.CommandService.CreateCommand:input_type -> cat.CreateCommandRequest
+	4,  // 19: cat.CommandService.GetCommandsByDriverId:input_type -> cat.GetCommandsByDriverIdRequest
+	8,  // 20: cat.CommandService.GetCommandById:input_type -> cat.GetCommandByIdRequest
+	2,  // 21: cat.CommandService.CheckEligibility:input_type -> cat.EligibilityCommandRequest
+	9,  // 22: cat.CommandService.CreateCommand:output_type -> cat.CreateCommandResponse
+	7,  // 23: cat.CommandService.GetCommandsByDriverId:output_type -> cat.GetCommandsByDriverIdResponse
+	6,  // 24: cat.CommandService.GetCommandById:output_type -> cat.Command
+	3,  // 25: cat.CommandService.CheckEligibility:output_type -> cat.EligibilityCommandResponse
+	22, // [22:26] is the sub-list for method output_type
+	18, // [18:22] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_command_proto_init() }
@@ -683,7 +819,7 @@ func file_command_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_command_proto_rawDesc), len(file_command_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   8,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
