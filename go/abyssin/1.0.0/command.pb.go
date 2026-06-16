@@ -641,7 +641,6 @@ func (x *GetCommandByIdRequest) GetCommandId() string {
 type CreateCommandResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Response      int32                  `protobuf:"varint,1,opt,name=response,proto3" json:"response,omitempty"`
-	CommandCode   string                 `protobuf:"bytes,2,opt,name=command_code,json=commandCode,proto3" json:"command_code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -681,13 +680,6 @@ func (x *CreateCommandResponse) GetResponse() int32 {
 		return x.Response
 	}
 	return 0
-}
-
-func (x *CreateCommandResponse) GetCommandCode() string {
-	if x != nil {
-		return x.CommandCode
-	}
-	return ""
 }
 
 var File_command_proto protoreflect.FileDescriptor
@@ -744,10 +736,9 @@ const file_command_proto_rawDesc = "" +
 	"\bcommands\x18\x01 \x03(\v2\f.cat.CommandR\bcommands\"@\n" +
 	"\x15GetCommandByIdRequest\x12'\n" +
 	"\n" +
-	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"V\n" +
+	"command_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"3\n" +
 	"\x15CreateCommandResponse\x12\x1a\n" +
-	"\bresponse\x18\x01 \x01(\x05R\bresponse\x12!\n" +
-	"\fcommand_code\x18\x02 \x01(\tR\vcommandCode2\xfd\x03\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse2\xfd\x03\n" +
 	"\x0eCommandService\x12u\n" +
 	"\rCreateCommand\x12\x19.cat.CreateCommandRequest\x1a\x1a.cat.CreateCommandResponse\"-\x82\xd3\xe4\x93\x02':\x01*\"\"/v1/abyssin/commands/createCommand\x12\x83\x01\n" +
 	"\x15GetCommandsByDriverId\x12!.cat.GetCommandsByDriverIdRequest\x1a\".cat.GetCommandsByDriverIdResponse\"#\x82\xd3\xe4\x93\x02\x1d\x12\x1b/v1/abyssin/commands/driver\x12e\n" +
