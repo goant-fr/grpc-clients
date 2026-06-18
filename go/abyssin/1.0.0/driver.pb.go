@@ -653,6 +653,102 @@ func (x *PickupCommandResponse) GetResponse() int32 {
 	return 0
 }
 
+type DeliverCommandRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
+	CommandId     string                 `protobuf:"bytes,2,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeliverCommandRequest) Reset() {
+	*x = DeliverCommandRequest{}
+	mi := &file_driver_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeliverCommandRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeliverCommandRequest) ProtoMessage() {}
+
+func (x *DeliverCommandRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_driver_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeliverCommandRequest.ProtoReflect.Descriptor instead.
+func (*DeliverCommandRequest) Descriptor() ([]byte, []int) {
+	return file_driver_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *DeliverCommandRequest) GetCode() string {
+	if x != nil {
+		return x.Code
+	}
+	return ""
+}
+
+func (x *DeliverCommandRequest) GetCommandId() string {
+	if x != nil {
+		return x.CommandId
+	}
+	return ""
+}
+
+type DeliverCommandResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Response      int32                  `protobuf:"varint,1,opt,name=response,proto3" json:"response,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DeliverCommandResponse) Reset() {
+	*x = DeliverCommandResponse{}
+	mi := &file_driver_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DeliverCommandResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeliverCommandResponse) ProtoMessage() {}
+
+func (x *DeliverCommandResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_driver_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeliverCommandResponse.ProtoReflect.Descriptor instead.
+func (*DeliverCommandResponse) Descriptor() ([]byte, []int) {
+	return file_driver_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *DeliverCommandResponse) GetResponse() int32 {
+	if x != nil {
+		return x.Response
+	}
+	return 0
+}
+
 type ChangeSlotRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	SlotId        string                 `protobuf:"bytes,1,opt,name=slot_id,json=slotId,proto3" json:"slot_id,omitempty"`
@@ -662,7 +758,7 @@ type ChangeSlotRequest struct {
 
 func (x *ChangeSlotRequest) Reset() {
 	*x = ChangeSlotRequest{}
-	mi := &file_driver_proto_msgTypes[10]
+	mi := &file_driver_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -674,7 +770,7 @@ func (x *ChangeSlotRequest) String() string {
 func (*ChangeSlotRequest) ProtoMessage() {}
 
 func (x *ChangeSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_proto_msgTypes[10]
+	mi := &file_driver_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -687,7 +783,7 @@ func (x *ChangeSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeSlotRequest.ProtoReflect.Descriptor instead.
 func (*ChangeSlotRequest) Descriptor() ([]byte, []int) {
-	return file_driver_proto_rawDescGZIP(), []int{10}
+	return file_driver_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *ChangeSlotRequest) GetSlotId() string {
@@ -706,7 +802,7 @@ type ChangeSlotResponse struct {
 
 func (x *ChangeSlotResponse) Reset() {
 	*x = ChangeSlotResponse{}
-	mi := &file_driver_proto_msgTypes[11]
+	mi := &file_driver_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -718,7 +814,7 @@ func (x *ChangeSlotResponse) String() string {
 func (*ChangeSlotResponse) ProtoMessage() {}
 
 func (x *ChangeSlotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_proto_msgTypes[11]
+	mi := &file_driver_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -731,7 +827,7 @@ func (x *ChangeSlotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeSlotResponse.ProtoReflect.Descriptor instead.
 func (*ChangeSlotResponse) Descriptor() ([]byte, []int) {
-	return file_driver_proto_rawDescGZIP(), []int{11}
+	return file_driver_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *ChangeSlotResponse) GetResponse() int32 {
@@ -750,7 +846,7 @@ type AcceptCommandResponse struct {
 
 func (x *AcceptCommandResponse) Reset() {
 	*x = AcceptCommandResponse{}
-	mi := &file_driver_proto_msgTypes[12]
+	mi := &file_driver_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -762,7 +858,7 @@ func (x *AcceptCommandResponse) String() string {
 func (*AcceptCommandResponse) ProtoMessage() {}
 
 func (x *AcceptCommandResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_proto_msgTypes[12]
+	mi := &file_driver_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -775,7 +871,7 @@ func (x *AcceptCommandResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AcceptCommandResponse.ProtoReflect.Descriptor instead.
 func (*AcceptCommandResponse) Descriptor() ([]byte, []int) {
-	return file_driver_proto_rawDescGZIP(), []int{12}
+	return file_driver_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *AcceptCommandResponse) GetResponse() int32 {
@@ -794,7 +890,7 @@ type AcceptSlotRequest struct {
 
 func (x *AcceptSlotRequest) Reset() {
 	*x = AcceptSlotRequest{}
-	mi := &file_driver_proto_msgTypes[13]
+	mi := &file_driver_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -806,7 +902,7 @@ func (x *AcceptSlotRequest) String() string {
 func (*AcceptSlotRequest) ProtoMessage() {}
 
 func (x *AcceptSlotRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_proto_msgTypes[13]
+	mi := &file_driver_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -819,7 +915,7 @@ func (x *AcceptSlotRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AcceptSlotRequest.ProtoReflect.Descriptor instead.
 func (*AcceptSlotRequest) Descriptor() ([]byte, []int) {
-	return file_driver_proto_rawDescGZIP(), []int{13}
+	return file_driver_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *AcceptSlotRequest) GetSlotId() string {
@@ -838,7 +934,7 @@ type AcceptSlotResponse struct {
 
 func (x *AcceptSlotResponse) Reset() {
 	*x = AcceptSlotResponse{}
-	mi := &file_driver_proto_msgTypes[14]
+	mi := &file_driver_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -850,7 +946,7 @@ func (x *AcceptSlotResponse) String() string {
 func (*AcceptSlotResponse) ProtoMessage() {}
 
 func (x *AcceptSlotResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_proto_msgTypes[14]
+	mi := &file_driver_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -863,7 +959,7 @@ func (x *AcceptSlotResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AcceptSlotResponse.ProtoReflect.Descriptor instead.
 func (*AcceptSlotResponse) Descriptor() ([]byte, []int) {
-	return file_driver_proto_rawDescGZIP(), []int{14}
+	return file_driver_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *AcceptSlotResponse) GetResponse() int32 {
@@ -918,6 +1014,12 @@ const file_driver_proto_rawDesc = "" +
 	"\x04type\x18\x02 \x01(\x0e2\x0f.cat.PickupTypeB\b\xbaH\x05\x82\x01\x02\x10\x01R\x04type\x12\x12\n" +
 	"\x04code\x18\x03 \x01(\tR\x04code\"3\n" +
 	"\x15PickupCommandResponse\x12\x1a\n" +
+	"\bresponse\x18\x01 \x01(\x05R\bresponse\"_\n" +
+	"\x15DeliverCommandRequest\x12\x1d\n" +
+	"\x04code\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x06\x18\x06R\x04code\x12'\n" +
+	"\n" +
+	"command_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tcommandId\"4\n" +
+	"\x16DeliverCommandResponse\x12\x1a\n" +
 	"\bresponse\x18\x01 \x01(\x05R\bresponse\"6\n" +
 	"\x11ChangeSlotRequest\x12!\n" +
 	"\aslot_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x06slotId\"0\n" +
@@ -940,7 +1042,7 @@ const file_driver_proto_rawDesc = "" +
 	"\x17PICKUP_TYPE_UNSPECIFIED\x10\x00\x12\n" +
 	"\n" +
 	"\x06PICKUP\x10\x01\x12\x0f\n" +
-	"\vINTERCHANGE\x10\x022\x96\x06\n" +
+	"\vINTERCHANGE\x10\x022\x88\a\n" +
 	"\rDriverService\x12N\n" +
 	"\tGetDrvier\x12\x15.cat.LeaveZoneRequest\x1a\v.cat.Driver\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/abyssin/driver/me\x12U\n" +
 	"\tLeaveZone\x12\x15.cat.LeaveZoneRequest\x1a\x16.cat.LeaveZoneResponse\"\x19\x82\xd3\xe4\x93\x02\x13\x12\x11/v1/abyssin/leave\x12Z\n" +
@@ -951,7 +1053,8 @@ const file_driver_proto_rawDesc = "" +
 	"\n" +
 	"AcceptSlot\x12\x16.cat.AcceptSlotRequest\x1a\x17.cat.AcceptSlotResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/abyssin/acceptSlot\x12`\n" +
 	"\n" +
-	"ChangeSlot\x12\x16.cat.ChangeSlotRequest\x1a\x17.cat.ChangeSlotResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/abyssin/changeSlotBQ\n" +
+	"ChangeSlot\x12\x16.cat.ChangeSlotRequest\x1a\x17.cat.ChangeSlotResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/abyssin/changeSlot\x12p\n" +
+	"\x0eDeliverCommand\x12\x1a.cat.DeliverCommandRequest\x1a\x1b.cat.DeliverCommandResponse\"%\x82\xd3\xe4\x93\x02\x1f:\x01*\"\x1a/v1/abyssin/deliverCommandBQ\n" +
 	"\acom.catB\vDriverProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
 var (
@@ -967,36 +1070,38 @@ func file_driver_proto_rawDescGZIP() []byte {
 }
 
 var file_driver_proto_enumTypes = make([]protoimpl.EnumInfo, 2)
-var file_driver_proto_msgTypes = make([]protoimpl.MessageInfo, 15)
+var file_driver_proto_msgTypes = make([]protoimpl.MessageInfo, 17)
 var file_driver_proto_goTypes = []any{
-	(DriverStatus)(0),             // 0: cat.DriverStatus
-	(PickupType)(0),               // 1: cat.PickupType
-	(*Driver)(nil),                // 2: cat.Driver
-	(*LeaveZoneRequest)(nil),      // 3: cat.LeaveZoneRequest
-	(*JoinZoneRequest)(nil),       // 4: cat.JoinZoneRequest
-	(*JoinZoneRespone)(nil),       // 5: cat.JoinZoneRespone
-	(*LeaveZoneResponse)(nil),     // 6: cat.LeaveZoneResponse
-	(*UpdateStatusRequest)(nil),   // 7: cat.UpdateStatusRequest
-	(*UpdateStatusResponse)(nil),  // 8: cat.UpdateStatusResponse
-	(*AcceptCommandRequest)(nil),  // 9: cat.AcceptCommandRequest
-	(*PickupCommandRequest)(nil),  // 10: cat.PickupCommandRequest
-	(*PickupCommandResponse)(nil), // 11: cat.PickupCommandResponse
-	(*ChangeSlotRequest)(nil),     // 12: cat.ChangeSlotRequest
-	(*ChangeSlotResponse)(nil),    // 13: cat.ChangeSlotResponse
-	(*AcceptCommandResponse)(nil), // 14: cat.AcceptCommandResponse
-	(*AcceptSlotRequest)(nil),     // 15: cat.AcceptSlotRequest
-	(*AcceptSlotResponse)(nil),    // 16: cat.AcceptSlotResponse
-	(*timestamppb.Timestamp)(nil), // 17: google.protobuf.Timestamp
-	(*Zone)(nil),                  // 18: cat.Zone
-	(*Command)(nil),               // 19: cat.Command
+	(DriverStatus)(0),              // 0: cat.DriverStatus
+	(PickupType)(0),                // 1: cat.PickupType
+	(*Driver)(nil),                 // 2: cat.Driver
+	(*LeaveZoneRequest)(nil),       // 3: cat.LeaveZoneRequest
+	(*JoinZoneRequest)(nil),        // 4: cat.JoinZoneRequest
+	(*JoinZoneRespone)(nil),        // 5: cat.JoinZoneRespone
+	(*LeaveZoneResponse)(nil),      // 6: cat.LeaveZoneResponse
+	(*UpdateStatusRequest)(nil),    // 7: cat.UpdateStatusRequest
+	(*UpdateStatusResponse)(nil),   // 8: cat.UpdateStatusResponse
+	(*AcceptCommandRequest)(nil),   // 9: cat.AcceptCommandRequest
+	(*PickupCommandRequest)(nil),   // 10: cat.PickupCommandRequest
+	(*PickupCommandResponse)(nil),  // 11: cat.PickupCommandResponse
+	(*DeliverCommandRequest)(nil),  // 12: cat.DeliverCommandRequest
+	(*DeliverCommandResponse)(nil), // 13: cat.DeliverCommandResponse
+	(*ChangeSlotRequest)(nil),      // 14: cat.ChangeSlotRequest
+	(*ChangeSlotResponse)(nil),     // 15: cat.ChangeSlotResponse
+	(*AcceptCommandResponse)(nil),  // 16: cat.AcceptCommandResponse
+	(*AcceptSlotRequest)(nil),      // 17: cat.AcceptSlotRequest
+	(*AcceptSlotResponse)(nil),     // 18: cat.AcceptSlotResponse
+	(*timestamppb.Timestamp)(nil),  // 19: google.protobuf.Timestamp
+	(*Zone)(nil),                   // 20: cat.Zone
+	(*Command)(nil),                // 21: cat.Command
 }
 var file_driver_proto_depIdxs = []int32{
 	0,  // 0: cat.Driver.status:type_name -> cat.DriverStatus
-	17, // 1: cat.Driver.created_at:type_name -> google.protobuf.Timestamp
-	17, // 2: cat.Driver.updated_at:type_name -> google.protobuf.Timestamp
-	18, // 3: cat.Driver.zone:type_name -> cat.Zone
-	19, // 4: cat.Driver.commands:type_name -> cat.Command
-	18, // 5: cat.JoinZoneRespone.zone:type_name -> cat.Zone
+	19, // 1: cat.Driver.created_at:type_name -> google.protobuf.Timestamp
+	19, // 2: cat.Driver.updated_at:type_name -> google.protobuf.Timestamp
+	20, // 3: cat.Driver.zone:type_name -> cat.Zone
+	21, // 4: cat.Driver.commands:type_name -> cat.Command
+	20, // 5: cat.JoinZoneRespone.zone:type_name -> cat.Zone
 	1,  // 6: cat.PickupCommandRequest.type:type_name -> cat.PickupType
 	3,  // 7: cat.DriverService.GetDrvier:input_type -> cat.LeaveZoneRequest
 	3,  // 8: cat.DriverService.LeaveZone:input_type -> cat.LeaveZoneRequest
@@ -1004,18 +1109,20 @@ var file_driver_proto_depIdxs = []int32{
 	7,  // 10: cat.DriverService.UpdateStatus:input_type -> cat.UpdateStatusRequest
 	9,  // 11: cat.DriverService.AcceptCommand:input_type -> cat.AcceptCommandRequest
 	10, // 12: cat.DriverService.PickupCommand:input_type -> cat.PickupCommandRequest
-	15, // 13: cat.DriverService.AcceptSlot:input_type -> cat.AcceptSlotRequest
-	12, // 14: cat.DriverService.ChangeSlot:input_type -> cat.ChangeSlotRequest
-	2,  // 15: cat.DriverService.GetDrvier:output_type -> cat.Driver
-	6,  // 16: cat.DriverService.LeaveZone:output_type -> cat.LeaveZoneResponse
-	5,  // 17: cat.DriverService.JoinZone:output_type -> cat.JoinZoneRespone
-	8,  // 18: cat.DriverService.UpdateStatus:output_type -> cat.UpdateStatusResponse
-	14, // 19: cat.DriverService.AcceptCommand:output_type -> cat.AcceptCommandResponse
-	11, // 20: cat.DriverService.PickupCommand:output_type -> cat.PickupCommandResponse
-	16, // 21: cat.DriverService.AcceptSlot:output_type -> cat.AcceptSlotResponse
-	13, // 22: cat.DriverService.ChangeSlot:output_type -> cat.ChangeSlotResponse
-	15, // [15:23] is the sub-list for method output_type
-	7,  // [7:15] is the sub-list for method input_type
+	17, // 13: cat.DriverService.AcceptSlot:input_type -> cat.AcceptSlotRequest
+	14, // 14: cat.DriverService.ChangeSlot:input_type -> cat.ChangeSlotRequest
+	12, // 15: cat.DriverService.DeliverCommand:input_type -> cat.DeliverCommandRequest
+	2,  // 16: cat.DriverService.GetDrvier:output_type -> cat.Driver
+	6,  // 17: cat.DriverService.LeaveZone:output_type -> cat.LeaveZoneResponse
+	5,  // 18: cat.DriverService.JoinZone:output_type -> cat.JoinZoneRespone
+	8,  // 19: cat.DriverService.UpdateStatus:output_type -> cat.UpdateStatusResponse
+	16, // 20: cat.DriverService.AcceptCommand:output_type -> cat.AcceptCommandResponse
+	11, // 21: cat.DriverService.PickupCommand:output_type -> cat.PickupCommandResponse
+	18, // 22: cat.DriverService.AcceptSlot:output_type -> cat.AcceptSlotResponse
+	15, // 23: cat.DriverService.ChangeSlot:output_type -> cat.ChangeSlotResponse
+	13, // 24: cat.DriverService.DeliverCommand:output_type -> cat.DeliverCommandResponse
+	16, // [16:25] is the sub-list for method output_type
+	7,  // [7:16] is the sub-list for method input_type
 	7,  // [7:7] is the sub-list for extension type_name
 	7,  // [7:7] is the sub-list for extension extendee
 	0,  // [0:7] is the sub-list for field type_name
@@ -1034,7 +1141,7 @@ func file_driver_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_driver_proto_rawDesc), len(file_driver_proto_rawDesc)),
 			NumEnums:      2,
-			NumMessages:   15,
+			NumMessages:   17,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
