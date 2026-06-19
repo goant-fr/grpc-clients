@@ -26,7 +26,7 @@ const file_abyssin_proto_rawDesc = "" +
 	"\n" +
 	"\rabyssin.proto\x1a\n" +
 	"zone.proto\x1a\fdriver.proto\x1a\n" +
-	"slot.proto\x1a\rcommand.proto\x1a\x16transfer_session.protoB\x1fB\fAbyssinProtoP\x01Z\rmau/pkg/pb;pb"
+	"slot.proto\x1a\rcommand.proto\x1a\x16transfer_session.proto\x1a\x14driver_history.protoB\x1fB\fAbyssinProtoP\x01Z\rmau/pkg/pb;pb"
 
 var file_abyssin_proto_goTypes = []any{}
 var file_abyssin_proto_depIdxs = []int32{
@@ -47,6 +47,7 @@ func file_abyssin_proto_init() {
 	file_slot_proto_init()
 	file_command_proto_init()
 	file_transfer_session_proto_init()
+	file_driver_history_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
