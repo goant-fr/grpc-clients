@@ -86,10 +86,10 @@ type DriverHistory struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Action        DriverHistoryAction    `protobuf:"varint,2,opt,name=action,proto3,enum=driver_history.DriverHistoryAction" json:"action,omitempty"`
-	CommandId     *string                `protobuf:"bytes,3,opt,name=command_id,json=commandId,proto3,oneof" json:"command_id,omitempty"`
+	CommandId     string                 `protobuf:"bytes,3,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
 	DriverId      string                 `protobuf:"bytes,4,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
-	CommandFee    *float64               `protobuf:"fixed64,5,opt,name=command_fee,json=commandFee,proto3,oneof" json:"command_fee,omitempty"`
-	ZoneId        *string                `protobuf:"bytes,6,opt,name=zone_id,json=zoneId,proto3,oneof" json:"zone_id,omitempty"`
+	CommandFee    float64                `protobuf:"fixed64,5,opt,name=command_fee,json=commandFee,proto3" json:"command_fee,omitempty"`
+	ZoneId        string                 `protobuf:"bytes,6,opt,name=zone_id,json=zoneId,proto3" json:"zone_id,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -141,8 +141,8 @@ func (x *DriverHistory) GetAction() DriverHistoryAction {
 }
 
 func (x *DriverHistory) GetCommandId() string {
-	if x != nil && x.CommandId != nil {
-		return *x.CommandId
+	if x != nil {
+		return x.CommandId
 	}
 	return ""
 }
@@ -155,15 +155,15 @@ func (x *DriverHistory) GetDriverId() string {
 }
 
 func (x *DriverHistory) GetCommandFee() float64 {
-	if x != nil && x.CommandFee != nil {
-		return *x.CommandFee
+	if x != nil {
+		return x.CommandFee
 	}
 	return 0
 }
 
 func (x *DriverHistory) GetZoneId() string {
-	if x != nil && x.ZoneId != nil {
-		return *x.ZoneId
+	if x != nil {
+		return x.ZoneId
 	}
 	return ""
 }
@@ -273,10 +273,10 @@ func (x *DriverHistoryListResponse) GetDriverHistories() []*DriverHistory {
 type CreateDriverHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Action        DriverHistoryAction    `protobuf:"varint,1,opt,name=action,proto3,enum=driver_history.DriverHistoryAction" json:"action,omitempty"`
-	CommandId     *string                `protobuf:"bytes,2,opt,name=command_id,json=commandId,proto3,oneof" json:"command_id,omitempty"`
+	CommandId     string                 `protobuf:"bytes,2,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
 	DriverId      string                 `protobuf:"bytes,3,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
-	CommandFee    *float64               `protobuf:"fixed64,4,opt,name=command_fee,json=commandFee,proto3,oneof" json:"command_fee,omitempty"`
-	ZoneId        *string                `protobuf:"bytes,5,opt,name=zone_id,json=zoneId,proto3,oneof" json:"zone_id,omitempty"`
+	CommandFee    float64                `protobuf:"fixed64,4,opt,name=command_fee,json=commandFee,proto3" json:"command_fee,omitempty"`
+	ZoneId        string                 `protobuf:"bytes,5,opt,name=zone_id,json=zoneId,proto3" json:"zone_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -319,8 +319,8 @@ func (x *CreateDriverHistoryRequest) GetAction() DriverHistoryAction {
 }
 
 func (x *CreateDriverHistoryRequest) GetCommandId() string {
-	if x != nil && x.CommandId != nil {
-		return *x.CommandId
+	if x != nil {
+		return x.CommandId
 	}
 	return ""
 }
@@ -333,15 +333,15 @@ func (x *CreateDriverHistoryRequest) GetDriverId() string {
 }
 
 func (x *CreateDriverHistoryRequest) GetCommandFee() float64 {
-	if x != nil && x.CommandFee != nil {
-		return *x.CommandFee
+	if x != nil {
+		return x.CommandFee
 	}
 	return 0
 }
 
 func (x *CreateDriverHistoryRequest) GetZoneId() string {
-	if x != nil && x.ZoneId != nil {
-		return *x.ZoneId
+	if x != nil {
+		return x.ZoneId
 	}
 	return ""
 }
@@ -446,10 +446,10 @@ type UpdateDriverHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Action        DriverHistoryAction    `protobuf:"varint,2,opt,name=action,proto3,enum=driver_history.DriverHistoryAction" json:"action,omitempty"`
-	CommandId     *string                `protobuf:"bytes,3,opt,name=command_id,json=commandId,proto3,oneof" json:"command_id,omitempty"`
+	CommandId     string                 `protobuf:"bytes,3,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
 	DriverId      string                 `protobuf:"bytes,4,opt,name=driver_id,json=driverId,proto3" json:"driver_id,omitempty"`
-	CommandFee    *float64               `protobuf:"fixed64,5,opt,name=command_fee,json=commandFee,proto3,oneof" json:"command_fee,omitempty"`
-	ZoneId        *string                `protobuf:"bytes,6,opt,name=zone_id,json=zoneId,proto3,oneof" json:"zone_id,omitempty"`
+	CommandFee    float64                `protobuf:"fixed64,5,opt,name=command_fee,json=commandFee,proto3" json:"command_fee,omitempty"`
+	ZoneId        string                 `protobuf:"bytes,6,opt,name=zone_id,json=zoneId,proto3" json:"zone_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -499,8 +499,8 @@ func (x *UpdateDriverHistoryRequest) GetAction() DriverHistoryAction {
 }
 
 func (x *UpdateDriverHistoryRequest) GetCommandId() string {
-	if x != nil && x.CommandId != nil {
-		return *x.CommandId
+	if x != nil {
+		return x.CommandId
 	}
 	return ""
 }
@@ -513,15 +513,15 @@ func (x *UpdateDriverHistoryRequest) GetDriverId() string {
 }
 
 func (x *UpdateDriverHistoryRequest) GetCommandFee() float64 {
-	if x != nil && x.CommandFee != nil {
-		return *x.CommandFee
+	if x != nil {
+		return x.CommandFee
 	}
 	return 0
 }
 
 func (x *UpdateDriverHistoryRequest) GetZoneId() string {
-	if x != nil && x.ZoneId != nil {
-		return *x.ZoneId
+	if x != nil {
+		return x.ZoneId
 	}
 	return ""
 }
@@ -1709,7 +1709,7 @@ func (x *TrackLeaveZoneRequest) GetZoneId() string {
 type TrackAcceptCommandRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommandId     string                 `protobuf:"bytes,2,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
-	CommandFee    *float64               `protobuf:"fixed64,3,opt,name=command_fee,json=commandFee,proto3,oneof" json:"command_fee,omitempty"`
+	CommandFee    float64                `protobuf:"fixed64,3,opt,name=command_fee,json=commandFee,proto3" json:"command_fee,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1752,8 +1752,8 @@ func (x *TrackAcceptCommandRequest) GetCommandId() string {
 }
 
 func (x *TrackAcceptCommandRequest) GetCommandFee() float64 {
-	if x != nil && x.CommandFee != nil {
-		return *x.CommandFee
+	if x != nil {
+		return x.CommandFee
 	}
 	return 0
 }
@@ -1761,7 +1761,7 @@ func (x *TrackAcceptCommandRequest) GetCommandFee() float64 {
 type TrackShareCommandRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommandId     string                 `protobuf:"bytes,2,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
-	CommandFee    *float64               `protobuf:"fixed64,3,opt,name=command_fee,json=commandFee,proto3,oneof" json:"command_fee,omitempty"`
+	CommandFee    float64                `protobuf:"fixed64,3,opt,name=command_fee,json=commandFee,proto3" json:"command_fee,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1804,8 +1804,8 @@ func (x *TrackShareCommandRequest) GetCommandId() string {
 }
 
 func (x *TrackShareCommandRequest) GetCommandFee() float64 {
-	if x != nil && x.CommandFee != nil {
-		return *x.CommandFee
+	if x != nil {
+		return x.CommandFee
 	}
 	return 0
 }
@@ -1813,7 +1813,7 @@ func (x *TrackShareCommandRequest) GetCommandFee() float64 {
 type TrackDeliverCommandRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	CommandId     string                 `protobuf:"bytes,2,opt,name=command_id,json=commandId,proto3" json:"command_id,omitempty"`
-	CommandFee    *float64               `protobuf:"fixed64,3,opt,name=command_fee,json=commandFee,proto3,oneof" json:"command_fee,omitempty"`
+	CommandFee    float64                `protobuf:"fixed64,3,opt,name=command_fee,json=commandFee,proto3" json:"command_fee,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1856,8 +1856,8 @@ func (x *TrackDeliverCommandRequest) GetCommandId() string {
 }
 
 func (x *TrackDeliverCommandRequest) GetCommandFee() float64 {
-	if x != nil && x.CommandFee != nil {
-		return *x.CommandFee
+	if x != nil {
+		return x.CommandFee
 	}
 	return 0
 }
@@ -1866,58 +1866,46 @@ var File_driver_history_proto protoreflect.FileDescriptor
 
 const file_driver_history_proto_rawDesc = "" +
 	"\n" +
-	"\x14driver_history.proto\x12\x0edriver_history\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\"\x82\x03\n" +
+	"\x14driver_history.proto\x12\x0edriver_history\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\"\xc8\x02\n" +
 	"\rDriverHistory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12;\n" +
-	"\x06action\x18\x02 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\"\n" +
+	"\x06action\x18\x02 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\x1d\n" +
 	"\n" +
-	"command_id\x18\x03 \x01(\tH\x00R\tcommandId\x88\x01\x01\x12\x1b\n" +
-	"\tdriver_id\x18\x04 \x01(\tR\bdriverId\x12$\n" +
-	"\vcommand_fee\x18\x05 \x01(\x01H\x01R\n" +
-	"commandFee\x88\x01\x01\x12\x1c\n" +
-	"\azone_id\x18\x06 \x01(\tH\x02R\x06zoneId\x88\x01\x01\x129\n" +
+	"command_id\x18\x03 \x01(\tR\tcommandId\x12\x1b\n" +
+	"\tdriver_id\x18\x04 \x01(\tR\bdriverId\x12\x1f\n" +
+	"\vcommand_fee\x18\x05 \x01(\x01R\n" +
+	"commandFee\x12\x17\n" +
+	"\azone_id\x18\x06 \x01(\tR\x06zoneId\x129\n" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\r\n" +
-	"\v_command_idB\x0e\n" +
-	"\f_command_feeB\n" +
-	"\n" +
-	"\b_zone_id\"]\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"]\n" +
 	"\x15DriverHistoryResponse\x12D\n" +
 	"\x0edriver_history\x18\x01 \x01(\v2\x1d.driver_history.DriverHistoryR\rdriverHistory\"e\n" +
 	"\x19DriverHistoryListResponse\x12H\n" +
-	"\x10driver_histories\x18\x01 \x03(\v2\x1d.driver_history.DriverHistoryR\x0fdriverHistories\"\x89\x02\n" +
+	"\x10driver_histories\x18\x01 \x03(\v2\x1d.driver_history.DriverHistoryR\x0fdriverHistories\"\xcf\x01\n" +
 	"\x1aCreateDriverHistoryRequest\x12;\n" +
-	"\x06action\x18\x01 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\"\n" +
+	"\x06action\x18\x01 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\x1d\n" +
 	"\n" +
-	"command_id\x18\x02 \x01(\tH\x00R\tcommandId\x88\x01\x01\x12\x1b\n" +
-	"\tdriver_id\x18\x03 \x01(\tR\bdriverId\x12$\n" +
-	"\vcommand_fee\x18\x04 \x01(\x01H\x01R\n" +
-	"commandFee\x88\x01\x01\x12\x1c\n" +
-	"\azone_id\x18\x05 \x01(\tH\x02R\x06zoneId\x88\x01\x01B\r\n" +
-	"\v_command_idB\x0e\n" +
-	"\f_command_feeB\n" +
-	"\n" +
-	"\b_zone_id\"-\n" +
+	"command_id\x18\x02 \x01(\tR\tcommandId\x12\x1b\n" +
+	"\tdriver_id\x18\x03 \x01(\tR\bdriverId\x12\x1f\n" +
+	"\vcommand_fee\x18\x04 \x01(\x01R\n" +
+	"commandFee\x12\x17\n" +
+	"\azone_id\x18\x05 \x01(\tR\x06zoneId\"-\n" +
 	"\x1bGetDriverHistoryByIDRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"M\n" +
 	"\x1dReadAllDriverHistoriesRequest\x12\x16\n" +
 	"\x06offset\x18\x01 \x01(\x05R\x06offset\x12\x14\n" +
-	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\x99\x02\n" +
+	"\x05limit\x18\x02 \x01(\x05R\x05limit\"\xdf\x01\n" +
 	"\x1aUpdateDriverHistoryRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12;\n" +
-	"\x06action\x18\x02 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\"\n" +
+	"\x06action\x18\x02 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\x1d\n" +
 	"\n" +
-	"command_id\x18\x03 \x01(\tH\x00R\tcommandId\x88\x01\x01\x12\x1b\n" +
-	"\tdriver_id\x18\x04 \x01(\tR\bdriverId\x12$\n" +
-	"\vcommand_fee\x18\x05 \x01(\x01H\x01R\n" +
-	"commandFee\x88\x01\x01\x12\x1c\n" +
-	"\azone_id\x18\x06 \x01(\tH\x02R\x06zoneId\x88\x01\x01B\r\n" +
-	"\v_command_idB\x0e\n" +
-	"\f_command_feeB\n" +
-	"\n" +
-	"\b_zone_id\",\n" +
+	"command_id\x18\x03 \x01(\tR\tcommandId\x12\x1b\n" +
+	"\tdriver_id\x18\x04 \x01(\tR\bdriverId\x12\x1f\n" +
+	"\vcommand_fee\x18\x05 \x01(\x01R\n" +
+	"commandFee\x12\x17\n" +
+	"\azone_id\x18\x06 \x01(\tR\x06zoneId\",\n" +
 	"\x1aDeleteDriverHistoryRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"p\n" +
 	"#GetDriverHistoriesByDriverIDRequest\x12\x1b\n" +
@@ -1991,25 +1979,22 @@ const file_driver_history_proto_rawDesc = "" +
 	"\x14TrackJoinZoneRequest\x12\x17\n" +
 	"\azone_id\x18\x02 \x01(\tR\x06zoneId\"0\n" +
 	"\x15TrackLeaveZoneRequest\x12\x17\n" +
-	"\azone_id\x18\x02 \x01(\tR\x06zoneId\"p\n" +
+	"\azone_id\x18\x02 \x01(\tR\x06zoneId\"[\n" +
 	"\x19TrackAcceptCommandRequest\x12\x1d\n" +
 	"\n" +
-	"command_id\x18\x02 \x01(\tR\tcommandId\x12$\n" +
-	"\vcommand_fee\x18\x03 \x01(\x01H\x00R\n" +
-	"commandFee\x88\x01\x01B\x0e\n" +
-	"\f_command_fee\"o\n" +
+	"command_id\x18\x02 \x01(\tR\tcommandId\x12\x1f\n" +
+	"\vcommand_fee\x18\x03 \x01(\x01R\n" +
+	"commandFee\"Z\n" +
 	"\x18TrackShareCommandRequest\x12\x1d\n" +
 	"\n" +
-	"command_id\x18\x02 \x01(\tR\tcommandId\x12$\n" +
-	"\vcommand_fee\x18\x03 \x01(\x01H\x00R\n" +
-	"commandFee\x88\x01\x01B\x0e\n" +
-	"\f_command_fee\"q\n" +
+	"command_id\x18\x02 \x01(\tR\tcommandId\x12\x1f\n" +
+	"\vcommand_fee\x18\x03 \x01(\x01R\n" +
+	"commandFee\"\\\n" +
 	"\x1aTrackDeliverCommandRequest\x12\x1d\n" +
 	"\n" +
-	"command_id\x18\x02 \x01(\tR\tcommandId\x12$\n" +
-	"\vcommand_fee\x18\x03 \x01(\x01H\x00R\n" +
-	"commandFee\x88\x01\x01B\x0e\n" +
-	"\f_command_fee*\x97\x01\n" +
+	"command_id\x18\x02 \x01(\tR\tcommandId\x12\x1f\n" +
+	"\vcommand_fee\x18\x03 \x01(\x01R\n" +
+	"commandFee*\x97\x01\n" +
 	"\x13DriverHistoryAction\x12%\n" +
 	"!DRIVER_HISTORY_ACTION_UNSPECIFIED\x10\x00\x12\r\n" +
 	"\tJOIN_ZONE\x10\x01\x12\x0e\n" +
@@ -2180,12 +2165,6 @@ func file_driver_history_proto_init() {
 	if File_driver_history_proto != nil {
 		return
 	}
-	file_driver_history_proto_msgTypes[0].OneofWrappers = []any{}
-	file_driver_history_proto_msgTypes[3].OneofWrappers = []any{}
-	file_driver_history_proto_msgTypes[6].OneofWrappers = []any{}
-	file_driver_history_proto_msgTypes[30].OneofWrappers = []any{}
-	file_driver_history_proto_msgTypes[31].OneofWrappers = []any{}
-	file_driver_history_proto_msgTypes[32].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
