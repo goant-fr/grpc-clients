@@ -140,7 +140,8 @@ type OrderDetail struct {
 	StoreId       string                 `protobuf:"bytes,1,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
 	Status        int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
 	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`
-	Items         []*ItemDetail          `protobuf:"bytes,4,rep,name=items,proto3" json:"items,omitempty"`
+	ClientCode    string                 `protobuf:"bytes,4,opt,name=client_code,json=clientCode,proto3" json:"client_code,omitempty"`
+	Items         []*ItemDetail          `protobuf:"bytes,5,rep,name=items,proto3" json:"items,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -194,6 +195,13 @@ func (x *OrderDetail) GetPrice() float64 {
 		return x.Price
 	}
 	return 0
+}
+
+func (x *OrderDetail) GetClientCode() string {
+	if x != nil {
+		return x.ClientCode
+	}
+	return ""
 }
 
 func (x *OrderDetail) GetItems() []*ItemDetail {
@@ -250,6 +258,7 @@ func (x *CreateOrderRequest) GetOrder() *Order {
 type CreateOrderResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	ClientCode    string                 `protobuf:"bytes,2,opt,name=client_code,json=clientCode,proto3" json:"client_code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -287,6 +296,13 @@ func (*CreateOrderResponse) Descriptor() ([]byte, []int) {
 func (x *CreateOrderResponse) GetId() string {
 	if x != nil {
 		return x.Id
+	}
+	return ""
+}
+
+func (x *CreateOrderResponse) GetClientCode() string {
+	if x != nil {
+		return x.ClientCode
 	}
 	return ""
 }
@@ -703,17 +719,21 @@ const file_order_proto_rawDesc = "" +
 	"\x05items\x18\x03 \x03(\v2\t.cat.ItemR\x05items\"=\n" +
 	"\tOrderList\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\x05R\x06status\"\x87\x01\n" +
+	"\x06status\x18\x02 \x01(\x05R\x06status\"\xa8\x01\n" +
 	"\vOrderDetail\x12#\n" +
 	"\bstore_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreId\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\x05R\x06status\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x01R\x05price\x12%\n" +
-	"\x05items\x18\x04 \x03(\v2\x0f.cat.ItemDetailR\x05items\">\n" +
+	"\x05price\x18\x03 \x01(\x01R\x05price\x12\x1f\n" +
+	"\vclient_code\x18\x04 \x01(\tR\n" +
+	"clientCode\x12%\n" +
+	"\x05items\x18\x05 \x03(\v2\x0f.cat.ItemDetailR\x05items\">\n" +
 	"\x12CreateOrderRequest\x12(\n" +
 	"\x05order\x18\x01 \x01(\v2\n" +
-	".cat.OrderB\x06\xbaH\x03\xc8\x01\x01R\x05order\"/\n" +
+	".cat.OrderB\x06\xbaH\x03\xc8\x01\x01R\x05order\"P\n" +
 	"\x13CreateOrderResponse\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"/\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1f\n" +
+	"\vclient_code\x18\x02 \x01(\tR\n" +
+	"clientCode\"/\n" +
 	"\x13GetOrderByIDRequest\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"F\n" +
 	"\x14GetOrderByIDResponse\x12.\n" +
