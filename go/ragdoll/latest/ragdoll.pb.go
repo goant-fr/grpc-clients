@@ -24,7 +24,7 @@ var File_ragdoll_proto protoreflect.FileDescriptor
 
 const file_ragdoll_proto_rawDesc = "" +
 	"\n" +
-	"\rragdoll.proto\x1a\rproduct.proto\x1a\vstore.proto\x1a\x0fcatalogue.protoB\x1fB\fRagdollProtoP\x01Z\rmau/pkg/pb;pb"
+	"\rragdoll.proto\x1a\vstore.protoB\x1fB\fRagdollProtoP\x01Z\rmau/pkg/pb;pb"
 
 var file_ragdoll_proto_goTypes = []any{}
 var file_ragdoll_proto_depIdxs = []int32{
@@ -40,9 +40,7 @@ func file_ragdoll_proto_init() {
 	if File_ragdoll_proto != nil {
 		return
 	}
-	file_product_proto_init()
 	file_store_proto_init()
-	file_catalogue_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

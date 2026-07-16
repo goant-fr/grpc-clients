@@ -19,16 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	StoreService_SearchStoreByName_FullMethodName    = "/cat.StoreService/SearchStoreByName"
-	StoreService_GetStoreProductsInfo_FullMethodName = "/cat.StoreService/GetStoreProductsInfo"
+	StoreService_GetStore_FullMethodName = "/cat.StoreService/GetStore"
 )
 
 // StoreServiceClient is the client API for StoreService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type StoreServiceClient interface {
-	SearchStoreByName(ctx context.Context, in *SearchStoreByNameRequest, opts ...grpc.CallOption) (*SearchStoreByNameResponse, error)
-	GetStoreProductsInfo(ctx context.Context, in *GetStoreProductsInfoRequest, opts ...grpc.CallOption) (*GetStoreProductsInfoResponse, error)
+	GetStore(ctx context.Context, in *GetStoreRequest, opts ...grpc.CallOption) (*GetStoreResponse, error)
 }
 
 type storeServiceClient struct {
@@ -39,20 +37,10 @@ func NewStoreServiceClient(cc grpc.ClientConnInterface) StoreServiceClient {
 	return &storeServiceClient{cc}
 }
 
-func (c *storeServiceClient) SearchStoreByName(ctx context.Context, in *SearchStoreByNameRequest, opts ...grpc.CallOption) (*SearchStoreByNameResponse, error) {
+func (c *storeServiceClient) GetStore(ctx context.Context, in *GetStoreRequest, opts ...grpc.CallOption) (*GetStoreResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(SearchStoreByNameResponse)
-	err := c.cc.Invoke(ctx, StoreService_SearchStoreByName_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *storeServiceClient) GetStoreProductsInfo(ctx context.Context, in *GetStoreProductsInfoRequest, opts ...grpc.CallOption) (*GetStoreProductsInfoResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetStoreProductsInfoResponse)
-	err := c.cc.Invoke(ctx, StoreService_GetStoreProductsInfo_FullMethodName, in, out, cOpts...)
+	out := new(GetStoreResponse)
+	err := c.cc.Invoke(ctx, StoreService_GetStore_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -63,8 +51,7 @@ func (c *storeServiceClient) GetStoreProductsInfo(ctx context.Context, in *GetSt
 // All implementations must embed UnimplementedStoreServiceServer
 // for forward compatibility.
 type StoreServiceServer interface {
-	SearchStoreByName(context.Context, *SearchStoreByNameRequest) (*SearchStoreByNameResponse, error)
-	GetStoreProductsInfo(context.Context, *GetStoreProductsInfoRequest) (*GetStoreProductsInfoResponse, error)
+	GetStore(context.Context, *GetStoreRequest) (*GetStoreResponse, error)
 	mustEmbedUnimplementedStoreServiceServer()
 }
 
@@ -75,11 +62,8 @@ type StoreServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedStoreServiceServer struct{}
 
-func (UnimplementedStoreServiceServer) SearchStoreByName(context.Context, *SearchStoreByNameRequest) (*SearchStoreByNameResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SearchStoreByName not implemented")
-}
-func (UnimplementedStoreServiceServer) GetStoreProductsInfo(context.Context, *GetStoreProductsInfoRequest) (*GetStoreProductsInfoResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetStoreProductsInfo not implemented")
+func (UnimplementedStoreServiceServer) GetStore(context.Context, *GetStoreRequest) (*GetStoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStore not implemented")
 }
 func (UnimplementedStoreServiceServer) mustEmbedUnimplementedStoreServiceServer() {}
 func (UnimplementedStoreServiceServer) testEmbeddedByValue()                      {}
@@ -102,38 +86,20 @@ func RegisterStoreServiceServer(s grpc.ServiceRegistrar, srv StoreServiceServer)
 	s.RegisterService(&StoreService_ServiceDesc, srv)
 }
 
-func _StoreService_SearchStoreByName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(SearchStoreByNameRequest)
+func _StoreService_GetStore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStoreRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StoreServiceServer).SearchStoreByName(ctx, in)
+		return srv.(StoreServiceServer).GetStore(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: StoreService_SearchStoreByName_FullMethodName,
+		FullMethod: StoreService_GetStore_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StoreServiceServer).SearchStoreByName(ctx, req.(*SearchStoreByNameRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _StoreService_GetStoreProductsInfo_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetStoreProductsInfoRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StoreServiceServer).GetStoreProductsInfo(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: StoreService_GetStoreProductsInfo_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StoreServiceServer).GetStoreProductsInfo(ctx, req.(*GetStoreProductsInfoRequest))
+		return srv.(StoreServiceServer).GetStore(ctx, req.(*GetStoreRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -146,12 +112,8 @@ var StoreService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*StoreServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SearchStoreByName",
-			Handler:    _StoreService_SearchStoreByName_Handler,
-		},
-		{
-			MethodName: "GetStoreProductsInfo",
-			Handler:    _StoreService_GetStoreProductsInfo_Handler,
+			MethodName: "GetStore",
+			Handler:    _StoreService_GetStore_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

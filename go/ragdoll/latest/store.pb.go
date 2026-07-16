@@ -23,106 +23,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Store struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Supplierid    string                 `protobuf:"bytes,3,opt,name=supplierid,proto3" json:"supplierid,omitempty"`
-	Supplier      *Supplier              `protobuf:"bytes,4,opt,name=supplier,proto3" json:"supplier,omitempty"`
-	Address       *Address               `protobuf:"bytes,5,opt,name=address,proto3" json:"address,omitempty"`
-	Products      []*Product             `protobuf:"bytes,6,rep,name=products,proto3" json:"products,omitempty"`
-	Categories    []*Storecategory       `protobuf:"bytes,7,rep,name=categories,proto3" json:"categories,omitempty"`
-	Galeries      []*Storegalery         `protobuf:"bytes,8,rep,name=galeries,proto3" json:"galeries,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Store) Reset() {
-	*x = Store{}
-	mi := &file_store_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Store) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Store) ProtoMessage() {}
-
-func (x *Store) ProtoReflect() protoreflect.Message {
-	mi := &file_store_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Store.ProtoReflect.Descriptor instead.
-func (*Store) Descriptor() ([]byte, []int) {
-	return file_store_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Store) GetId() string {
-	if x != nil {
-		return x.Id
-	}
-	return ""
-}
-
-func (x *Store) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *Store) GetSupplierid() string {
-	if x != nil {
-		return x.Supplierid
-	}
-	return ""
-}
-
-func (x *Store) GetSupplier() *Supplier {
-	if x != nil {
-		return x.Supplier
-	}
-	return nil
-}
-
-func (x *Store) GetAddress() *Address {
-	if x != nil {
-		return x.Address
-	}
-	return nil
-}
-
-func (x *Store) GetProducts() []*Product {
-	if x != nil {
-		return x.Products
-	}
-	return nil
-}
-
-func (x *Store) GetCategories() []*Storecategory {
-	if x != nil {
-		return x.Categories
-	}
-	return nil
-}
-
-func (x *Store) GetGaleries() []*Storegalery {
-	if x != nil {
-		return x.Galeries
-	}
-	return nil
-}
-
 type StoreList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -134,7 +34,7 @@ type StoreList struct {
 
 func (x *StoreList) Reset() {
 	*x = StoreList{}
-	mi := &file_store_proto_msgTypes[1]
+	mi := &file_store_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -146,7 +46,7 @@ func (x *StoreList) String() string {
 func (*StoreList) ProtoMessage() {}
 
 func (x *StoreList) ProtoReflect() protoreflect.Message {
-	mi := &file_store_proto_msgTypes[1]
+	mi := &file_store_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -159,7 +59,7 @@ func (x *StoreList) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StoreList.ProtoReflect.Descriptor instead.
 func (*StoreList) Descriptor() ([]byte, []int) {
-	return file_store_proto_rawDescGZIP(), []int{1}
+	return file_store_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *StoreList) GetId() string {
@@ -183,29 +83,28 @@ func (x *StoreList) GetAddress() *Address {
 	return nil
 }
 
-type GetStoreProductsInfoRequest struct {
+type GetStoreRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StoreId       string                 `protobuf:"bytes,1,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
-	ProductIds    []string               `protobuf:"bytes,2,rep,name=product_ids,json=productIds,proto3" json:"product_ids,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetStoreProductsInfoRequest) Reset() {
-	*x = GetStoreProductsInfoRequest{}
-	mi := &file_store_proto_msgTypes[2]
+func (x *GetStoreRequest) Reset() {
+	*x = GetStoreRequest{}
+	mi := &file_store_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetStoreProductsInfoRequest) String() string {
+func (x *GetStoreRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetStoreProductsInfoRequest) ProtoMessage() {}
+func (*GetStoreRequest) ProtoMessage() {}
 
-func (x *GetStoreProductsInfoRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_store_proto_msgTypes[2]
+func (x *GetStoreRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_store_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -216,49 +115,40 @@ func (x *GetStoreProductsInfoRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetStoreProductsInfoRequest.ProtoReflect.Descriptor instead.
-func (*GetStoreProductsInfoRequest) Descriptor() ([]byte, []int) {
-	return file_store_proto_rawDescGZIP(), []int{2}
+// Deprecated: Use GetStoreRequest.ProtoReflect.Descriptor instead.
+func (*GetStoreRequest) Descriptor() ([]byte, []int) {
+	return file_store_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *GetStoreProductsInfoRequest) GetStoreId() string {
+func (x *GetStoreRequest) GetStoreId() string {
 	if x != nil {
 		return x.StoreId
 	}
 	return ""
 }
 
-func (x *GetStoreProductsInfoRequest) GetProductIds() []string {
-	if x != nil {
-		return x.ProductIds
-	}
-	return nil
-}
-
-type GetStoreProductsInfoResponse struct {
-	state         protoimpl.MessageState    `protogen:"open.v1"`
-	Store         *StoreList                `protobuf:"bytes,1,opt,name=store,proto3" json:"store,omitempty"`
-	Products      []*ProductCharacteristics `protobuf:"bytes,2,rep,name=products,proto3" json:"products,omitempty"`
-	Count         int32                     `protobuf:"varint,3,opt,name=count,proto3" json:"count,omitempty"`
+type GetStoreResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Store         *StoreList             `protobuf:"bytes,1,opt,name=store,proto3" json:"store,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetStoreProductsInfoResponse) Reset() {
-	*x = GetStoreProductsInfoResponse{}
-	mi := &file_store_proto_msgTypes[3]
+func (x *GetStoreResponse) Reset() {
+	*x = GetStoreResponse{}
+	mi := &file_store_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetStoreProductsInfoResponse) String() string {
+func (x *GetStoreResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetStoreProductsInfoResponse) ProtoMessage() {}
+func (*GetStoreResponse) ProtoMessage() {}
 
-func (x *GetStoreProductsInfoResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_store_proto_msgTypes[3]
+func (x *GetStoreResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_store_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -269,185 +159,33 @@ func (x *GetStoreProductsInfoResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetStoreProductsInfoResponse.ProtoReflect.Descriptor instead.
-func (*GetStoreProductsInfoResponse) Descriptor() ([]byte, []int) {
-	return file_store_proto_rawDescGZIP(), []int{3}
+// Deprecated: Use GetStoreResponse.ProtoReflect.Descriptor instead.
+func (*GetStoreResponse) Descriptor() ([]byte, []int) {
+	return file_store_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *GetStoreProductsInfoResponse) GetStore() *StoreList {
+func (x *GetStoreResponse) GetStore() *StoreList {
 	if x != nil {
 		return x.Store
 	}
 	return nil
 }
 
-func (x *GetStoreProductsInfoResponse) GetProducts() []*ProductCharacteristics {
-	if x != nil {
-		return x.Products
-	}
-	return nil
-}
-
-func (x *GetStoreProductsInfoResponse) GetCount() int32 {
-	if x != nil {
-		return x.Count
-	}
-	return 0
-}
-
-type SearchStoreByNameRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Query         string                 `protobuf:"bytes,1,opt,name=query,proto3" json:"query,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchStoreByNameRequest) Reset() {
-	*x = SearchStoreByNameRequest{}
-	mi := &file_store_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchStoreByNameRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchStoreByNameRequest) ProtoMessage() {}
-
-func (x *SearchStoreByNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_store_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchStoreByNameRequest.ProtoReflect.Descriptor instead.
-func (*SearchStoreByNameRequest) Descriptor() ([]byte, []int) {
-	return file_store_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *SearchStoreByNameRequest) GetQuery() string {
-	if x != nil {
-		return x.Query
-	}
-	return ""
-}
-
-func (x *SearchStoreByNameRequest) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-func (x *SearchStoreByNameRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-type SearchStoreByNameResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Stores        []*Store               `protobuf:"bytes,1,rep,name=stores,proto3" json:"stores,omitempty"`
-	Count         int32                  `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SearchStoreByNameResponse) Reset() {
-	*x = SearchStoreByNameResponse{}
-	mi := &file_store_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SearchStoreByNameResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SearchStoreByNameResponse) ProtoMessage() {}
-
-func (x *SearchStoreByNameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_store_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SearchStoreByNameResponse.ProtoReflect.Descriptor instead.
-func (*SearchStoreByNameResponse) Descriptor() ([]byte, []int) {
-	return file_store_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *SearchStoreByNameResponse) GetStores() []*Store {
-	if x != nil {
-		return x.Stores
-	}
-	return nil
-}
-
-func (x *SearchStoreByNameResponse) GetCount() int32 {
-	if x != nil {
-		return x.Count
-	}
-	return 0
-}
-
 var File_store_proto protoreflect.FileDescriptor
 
 const file_store_proto_rawDesc = "" +
 	"\n" +
-	"\vstore.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\raddress.proto\x1a\x0esupplier.proto\x1a\x13storecategory.proto\x1a\rproduct.proto\x1a\x11storegalery.proto\"\xcb\x02\n" +
-	"\x05Store\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1f\n" +
-	"\x05title\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x05title\x12(\n" +
-	"\n" +
-	"supplierid\x18\x03 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\n" +
-	"supplierid\x12)\n" +
-	"\bsupplier\x18\x04 \x01(\v2\r.cat.SupplierR\bsupplier\x12&\n" +
-	"\aaddress\x18\x05 \x01(\v2\f.cat.AddressR\aaddress\x12(\n" +
-	"\bproducts\x18\x06 \x03(\v2\f.cat.ProductR\bproducts\x122\n" +
-	"\n" +
-	"categories\x18\a \x03(\v2\x12.cat.StorecategoryR\n" +
-	"categories\x12,\n" +
-	"\bgaleries\x18\b \x03(\v2\x10.cat.StoregaleryR\bgaleries\"n\n" +
+	"\vstore.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\raddress.proto\x1a\x0esupplier.proto\"n\n" +
 	"\tStoreList\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1f\n" +
 	"\x05title\x18\x02 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x18dR\x05title\x12&\n" +
-	"\aaddress\x18\x03 \x01(\v2\f.cat.AddressR\aaddress\"t\n" +
-	"\x1bGetStoreProductsInfoRequest\x12#\n" +
-	"\bstore_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreId\x120\n" +
-	"\vproduct_ids\x18\x02 \x03(\tB\x0f\xbaH\f\x92\x01\t\b\x01\"\x05r\x03\xb0\x01\x01R\n" +
-	"productIds\"\x93\x01\n" +
-	"\x1cGetStoreProductsInfoResponse\x12$\n" +
-	"\x05store\x18\x01 \x01(\v2\x0e.cat.StoreListR\x05store\x127\n" +
-	"\bproducts\x18\x02 \x03(\v2\x1b.cat.ProductCharacteristicsR\bproducts\x12\x14\n" +
-	"\x05count\x18\x03 \x01(\x05R\x05count\"}\n" +
-	"\x18SearchStoreByNameRequest\x12\x1f\n" +
-	"\x05query\x18\x01 \x01(\tB\t\xbaH\x06r\x04\x10\x01\x182R\x05query\x12\x1f\n" +
-	"\x06offset\x18\x02 \x01(\x05B\a\xbaH\x04\x1a\x02(\x00R\x06offset\x12\x1f\n" +
-	"\x05limit\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\"U\n" +
-	"\x19SearchStoreByNameResponse\x12\"\n" +
-	"\x06stores\x18\x01 \x03(\v2\n" +
-	".cat.StoreR\x06stores\x12\x14\n" +
-	"\x05count\x18\x02 \x01(\x05R\x05count2\x8e\x02\n" +
-	"\fStoreService\x12t\n" +
-	"\x11SearchStoreByName\x12\x1d.cat.SearchStoreByNameRequest\x1a\x1e.cat.SearchStoreByNameResponse\" \x82\xd3\xe4\x93\x02\x1a\x12\x18/v1/ragdoll/store/search\x12\x87\x01\n" +
-	"\x14GetStoreProductsInfo\x12 .cat.GetStoreProductsInfoRequest\x1a!.cat.GetStoreProductsInfoResponse\"*\x82\xd3\xe4\x93\x02$:\x01*\"\x1f/v1/ragdoll/products/get-by-idsBP\n" +
+	"\aaddress\x18\x03 \x01(\v2\f.cat.AddressR\aaddress\"6\n" +
+	"\x0fGetStoreRequest\x12#\n" +
+	"\bstore_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreId\"8\n" +
+	"\x10GetStoreResponse\x12$\n" +
+	"\x05store\x18\x01 \x01(\v2\x0e.cat.StoreListR\x05store2_\n" +
+	"\fStoreService\x12O\n" +
+	"\bGetStore\x12\x14.cat.GetStoreRequest\x1a\x15.cat.GetStoreResponse\"\x16\x82\xd3\xe4\x93\x02\x10\x12\x0e/v1/store/{id}BP\n" +
 	"\acom.catB\n" +
 	"StoreProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
 
@@ -463,40 +201,23 @@ func file_store_proto_rawDescGZIP() []byte {
 	return file_store_proto_rawDescData
 }
 
-var file_store_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_store_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_store_proto_goTypes = []any{
-	(*Store)(nil),                        // 0: cat.Store
-	(*StoreList)(nil),                    // 1: cat.StoreList
-	(*GetStoreProductsInfoRequest)(nil),  // 2: cat.GetStoreProductsInfoRequest
-	(*GetStoreProductsInfoResponse)(nil), // 3: cat.GetStoreProductsInfoResponse
-	(*SearchStoreByNameRequest)(nil),     // 4: cat.SearchStoreByNameRequest
-	(*SearchStoreByNameResponse)(nil),    // 5: cat.SearchStoreByNameResponse
-	(*Supplier)(nil),                     // 6: cat.Supplier
-	(*Address)(nil),                      // 7: cat.Address
-	(*Product)(nil),                      // 8: cat.Product
-	(*Storecategory)(nil),                // 9: cat.Storecategory
-	(*Storegalery)(nil),                  // 10: cat.Storegalery
-	(*ProductCharacteristics)(nil),       // 11: cat.ProductCharacteristics
+	(*StoreList)(nil),        // 0: cat.StoreList
+	(*GetStoreRequest)(nil),  // 1: cat.GetStoreRequest
+	(*GetStoreResponse)(nil), // 2: cat.GetStoreResponse
+	(*Address)(nil),          // 3: cat.Address
 }
 var file_store_proto_depIdxs = []int32{
-	6,  // 0: cat.Store.supplier:type_name -> cat.Supplier
-	7,  // 1: cat.Store.address:type_name -> cat.Address
-	8,  // 2: cat.Store.products:type_name -> cat.Product
-	9,  // 3: cat.Store.categories:type_name -> cat.Storecategory
-	10, // 4: cat.Store.galeries:type_name -> cat.Storegalery
-	7,  // 5: cat.StoreList.address:type_name -> cat.Address
-	1,  // 6: cat.GetStoreProductsInfoResponse.store:type_name -> cat.StoreList
-	11, // 7: cat.GetStoreProductsInfoResponse.products:type_name -> cat.ProductCharacteristics
-	0,  // 8: cat.SearchStoreByNameResponse.stores:type_name -> cat.Store
-	4,  // 9: cat.StoreService.SearchStoreByName:input_type -> cat.SearchStoreByNameRequest
-	2,  // 10: cat.StoreService.GetStoreProductsInfo:input_type -> cat.GetStoreProductsInfoRequest
-	5,  // 11: cat.StoreService.SearchStoreByName:output_type -> cat.SearchStoreByNameResponse
-	3,  // 12: cat.StoreService.GetStoreProductsInfo:output_type -> cat.GetStoreProductsInfoResponse
-	11, // [11:13] is the sub-list for method output_type
-	9,  // [9:11] is the sub-list for method input_type
-	9,  // [9:9] is the sub-list for extension type_name
-	9,  // [9:9] is the sub-list for extension extendee
-	0,  // [0:9] is the sub-list for field type_name
+	3, // 0: cat.StoreList.address:type_name -> cat.Address
+	0, // 1: cat.GetStoreResponse.store:type_name -> cat.StoreList
+	1, // 2: cat.StoreService.GetStore:input_type -> cat.GetStoreRequest
+	2, // 3: cat.StoreService.GetStore:output_type -> cat.GetStoreResponse
+	3, // [3:4] is the sub-list for method output_type
+	2, // [2:3] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_store_proto_init() }
@@ -506,16 +227,13 @@ func file_store_proto_init() {
 	}
 	file_address_proto_init()
 	file_supplier_proto_init()
-	file_storecategory_proto_init()
-	file_product_proto_init()
-	file_storegalery_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_store_proto_rawDesc), len(file_store_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
