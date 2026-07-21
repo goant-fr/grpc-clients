@@ -139,7 +139,7 @@ var File_items_proto protoreflect.FileDescriptor
 
 const file_items_proto_rawDesc = "" +
 	"\n" +
-	"\vitems.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"V\n" +
+	"\vitems.proto\x12\x05order\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"V\n" +
 	"\x04Item\x12'\n" +
 	"\n" +
 	"product_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tproductId\x12%\n" +
@@ -150,9 +150,9 @@ const file_items_proto_rawDesc = "" +
 	"product_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\tproductId\x12\x1d\n" +
 	"\n" +
 	"unit_price\x18\x02 \x01(\x01R\tunitPrice\x12%\n" +
-	"\bquantity\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x18\x05(\x00R\bquantityBP\n" +
-	"\acom.catB\n" +
-	"ItemsProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
+	"\bquantity\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x18\x05(\x00R\bquantityBZ\n" +
+	"\tcom.orderB\n" +
+	"ItemsProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03OXX\xaa\x02\x05Order\xca\x02\x05Order\xe2\x02\x11Order\\GPBMetadata\xea\x02\x05Orderb\x06proto3"
 
 var (
 	file_items_proto_rawDescOnce sync.Once
@@ -168,8 +168,8 @@ func file_items_proto_rawDescGZIP() []byte {
 
 var file_items_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_items_proto_goTypes = []any{
-	(*Item)(nil),       // 0: cat.Item
-	(*ItemDetail)(nil), // 1: cat.ItemDetail
+	(*Item)(nil),       // 0: order.Item
+	(*ItemDetail)(nil), // 1: order.ItemDetail
 }
 var file_items_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type

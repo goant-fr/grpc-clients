@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	OrderService_CreateOrder_FullMethodName       = "/cat.OrderService/CreateOrder"
-	OrderService_UpdateOrderStatus_FullMethodName = "/cat.OrderService/updateOrderStatus"
-	OrderService_GetOrderByID_FullMethodName      = "/cat.OrderService/GetOrderByID"
-	OrderService_GetOrderByStoreID_FullMethodName = "/cat.OrderService/GetOrderByStoreID"
-	OrderService_GetOrderByToken_FullMethodName   = "/cat.OrderService/GetOrderByToken"
+	OrderService_CreateOrder_FullMethodName       = "/order.OrderService/CreateOrder"
+	OrderService_UpdateOrderStatus_FullMethodName = "/order.OrderService/UpdateOrderStatus"
+	OrderService_GetOrderByID_FullMethodName      = "/order.OrderService/GetOrderByID"
+	OrderService_GetOrderByToken_FullMethodName   = "/order.OrderService/GetOrderByToken"
+	OrderService_CheckEligibility_FullMethodName  = "/order.OrderService/CheckEligibility"
 )
 
 // OrderServiceClient is the client API for OrderService service.
@@ -33,8 +33,8 @@ type OrderServiceClient interface {
 	CreateOrder(ctx context.Context, in *CreateOrderRequest, opts ...grpc.CallOption) (*CreateOrderResponse, error)
 	UpdateOrderStatus(ctx context.Context, in *UpdateOrderStatusRequest, opts ...grpc.CallOption) (*UpdateOrderStatusResponse, error)
 	GetOrderByID(ctx context.Context, in *GetOrderByIDRequest, opts ...grpc.CallOption) (*GetOrderByIDResponse, error)
-	GetOrderByStoreID(ctx context.Context, in *GetOrderByStoreIDRequest, opts ...grpc.CallOption) (*GetOrderByStoreIDResponse, error)
 	GetOrderByToken(ctx context.Context, in *GetOrderByTokenRequest, opts ...grpc.CallOption) (*GetOrderByTokenResponse, error)
+	CheckEligibility(ctx context.Context, in *CheckEligibilityRequest, opts ...grpc.CallOption) (*CheckEligibilityResponse, error)
 }
 
 type orderServiceClient struct {
@@ -75,20 +75,20 @@ func (c *orderServiceClient) GetOrderByID(ctx context.Context, in *GetOrderByIDR
 	return out, nil
 }
 
-func (c *orderServiceClient) GetOrderByStoreID(ctx context.Context, in *GetOrderByStoreIDRequest, opts ...grpc.CallOption) (*GetOrderByStoreIDResponse, error) {
+func (c *orderServiceClient) GetOrderByToken(ctx context.Context, in *GetOrderByTokenRequest, opts ...grpc.CallOption) (*GetOrderByTokenResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetOrderByStoreIDResponse)
-	err := c.cc.Invoke(ctx, OrderService_GetOrderByStoreID_FullMethodName, in, out, cOpts...)
+	out := new(GetOrderByTokenResponse)
+	err := c.cc.Invoke(ctx, OrderService_GetOrderByToken_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *orderServiceClient) GetOrderByToken(ctx context.Context, in *GetOrderByTokenRequest, opts ...grpc.CallOption) (*GetOrderByTokenResponse, error) {
+func (c *orderServiceClient) CheckEligibility(ctx context.Context, in *CheckEligibilityRequest, opts ...grpc.CallOption) (*CheckEligibilityResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(GetOrderByTokenResponse)
-	err := c.cc.Invoke(ctx, OrderService_GetOrderByToken_FullMethodName, in, out, cOpts...)
+	out := new(CheckEligibilityResponse)
+	err := c.cc.Invoke(ctx, OrderService_CheckEligibility_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -102,8 +102,8 @@ type OrderServiceServer interface {
 	CreateOrder(context.Context, *CreateOrderRequest) (*CreateOrderResponse, error)
 	UpdateOrderStatus(context.Context, *UpdateOrderStatusRequest) (*UpdateOrderStatusResponse, error)
 	GetOrderByID(context.Context, *GetOrderByIDRequest) (*GetOrderByIDResponse, error)
-	GetOrderByStoreID(context.Context, *GetOrderByStoreIDRequest) (*GetOrderByStoreIDResponse, error)
 	GetOrderByToken(context.Context, *GetOrderByTokenRequest) (*GetOrderByTokenResponse, error)
+	CheckEligibility(context.Context, *CheckEligibilityRequest) (*CheckEligibilityResponse, error)
 	mustEmbedUnimplementedOrderServiceServer()
 }
 
@@ -123,11 +123,11 @@ func (UnimplementedOrderServiceServer) UpdateOrderStatus(context.Context, *Updat
 func (UnimplementedOrderServiceServer) GetOrderByID(context.Context, *GetOrderByIDRequest) (*GetOrderByIDResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByID not implemented")
 }
-func (UnimplementedOrderServiceServer) GetOrderByStoreID(context.Context, *GetOrderByStoreIDRequest) (*GetOrderByStoreIDResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByStoreID not implemented")
-}
 func (UnimplementedOrderServiceServer) GetOrderByToken(context.Context, *GetOrderByTokenRequest) (*GetOrderByTokenResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOrderByToken not implemented")
+}
+func (UnimplementedOrderServiceServer) CheckEligibility(context.Context, *CheckEligibilityRequest) (*CheckEligibilityResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CheckEligibility not implemented")
 }
 func (UnimplementedOrderServiceServer) mustEmbedUnimplementedOrderServiceServer() {}
 func (UnimplementedOrderServiceServer) testEmbeddedByValue()                      {}
@@ -204,24 +204,6 @@ func _OrderService_GetOrderByID_Handler(srv interface{}, ctx context.Context, de
 	return interceptor(ctx, in, info, handler)
 }
 
-func _OrderService_GetOrderByStoreID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetOrderByStoreIDRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(OrderServiceServer).GetOrderByStoreID(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: OrderService_GetOrderByStoreID_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(OrderServiceServer).GetOrderByStoreID(ctx, req.(*GetOrderByStoreIDRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _OrderService_GetOrderByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOrderByTokenRequest)
 	if err := dec(in); err != nil {
@@ -240,11 +222,29 @@ func _OrderService_GetOrderByToken_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _OrderService_CheckEligibility_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CheckEligibilityRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(OrderServiceServer).CheckEligibility(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: OrderService_CheckEligibility_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(OrderServiceServer).CheckEligibility(ctx, req.(*CheckEligibilityRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // OrderService_ServiceDesc is the grpc.ServiceDesc for OrderService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var OrderService_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "cat.OrderService",
+	ServiceName: "order.OrderService",
 	HandlerType: (*OrderServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -252,7 +252,7 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OrderService_CreateOrder_Handler,
 		},
 		{
-			MethodName: "updateOrderStatus",
+			MethodName: "UpdateOrderStatus",
 			Handler:    _OrderService_UpdateOrderStatus_Handler,
 		},
 		{
@@ -260,12 +260,12 @@ var OrderService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _OrderService_GetOrderByID_Handler,
 		},
 		{
-			MethodName: "GetOrderByStoreID",
-			Handler:    _OrderService_GetOrderByStoreID_Handler,
-		},
-		{
 			MethodName: "GetOrderByToken",
 			Handler:    _OrderService_GetOrderByToken_Handler,
+		},
+		{
+			MethodName: "CheckEligibility",
+			Handler:    _OrderService_CheckEligibility_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

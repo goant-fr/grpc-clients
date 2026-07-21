@@ -26,8 +26,7 @@ const (
 type Order struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StoreId       string                 `protobuf:"bytes,1,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
-	AddressId     string                 `protobuf:"bytes,2,opt,name=address_id,json=addressId,proto3" json:"address_id,omitempty"`
-	Items         []*Item                `protobuf:"bytes,3,rep,name=items,proto3" json:"items,omitempty"`
+	Label         string                 `protobuf:"bytes,2,opt,name=label,proto3" json:"label,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -69,18 +68,11 @@ func (x *Order) GetStoreId() string {
 	return ""
 }
 
-func (x *Order) GetAddressId() string {
+func (x *Order) GetLabel() string {
 	if x != nil {
-		return x.AddressId
+		return x.Label
 	}
 	return ""
-}
-
-func (x *Order) GetItems() []*Item {
-	if x != nil {
-		return x.Items
-	}
-	return nil
 }
 
 type OrderList struct {
@@ -139,9 +131,7 @@ type OrderDetail struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StoreId       string                 `protobuf:"bytes,1,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
 	Status        int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
-	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`
-	ClientCode    string                 `protobuf:"bytes,4,opt,name=client_code,json=clientCode,proto3" json:"client_code,omitempty"`
-	Items         []*ItemDetail          `protobuf:"bytes,5,rep,name=items,proto3" json:"items,omitempty"`
+	Fee           float64                `protobuf:"fixed64,3,opt,name=fee,proto3" json:"fee,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -190,25 +180,11 @@ func (x *OrderDetail) GetStatus() int32 {
 	return 0
 }
 
-func (x *OrderDetail) GetPrice() float64 {
+func (x *OrderDetail) GetFee() float64 {
 	if x != nil {
-		return x.Price
+		return x.Fee
 	}
 	return 0
-}
-
-func (x *OrderDetail) GetClientCode() string {
-	if x != nil {
-		return x.ClientCode
-	}
-	return ""
-}
-
-func (x *OrderDetail) GetItems() []*ItemDetail {
-	if x != nil {
-		return x.Items
-	}
-	return nil
 }
 
 type CreateOrderRequest struct {
@@ -258,7 +234,6 @@ func (x *CreateOrderRequest) GetOrder() *Order {
 type CreateOrderResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	ClientCode    string                 `protobuf:"bytes,2,opt,name=client_code,json=clientCode,proto3" json:"client_code,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -296,13 +271,6 @@ func (*CreateOrderResponse) Descriptor() ([]byte, []int) {
 func (x *CreateOrderResponse) GetId() string {
 	if x != nil {
 		return x.Id
-	}
-	return ""
-}
-
-func (x *CreateOrderResponse) GetClientCode() string {
-	if x != nil {
-		return x.ClientCode
 	}
 	return ""
 }
@@ -499,29 +467,27 @@ func (x *GetOrderByTokenResponse) GetCount() int32 {
 	return 0
 }
 
-type GetOrderByStoreIDRequest struct {
+type CheckEligibilityRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	StoreId       string                 `protobuf:"bytes,1,opt,name=store_id,json=storeId,proto3" json:"store_id,omitempty"`
-	Offset        int32                  `protobuf:"varint,2,opt,name=offset,proto3" json:"offset,omitempty"`
-	Limit         int32                  `protobuf:"varint,3,opt,name=limit,proto3" json:"limit,omitempty"`
+	Order         *Order                 `protobuf:"bytes,1,opt,name=order,proto3" json:"order,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *GetOrderByStoreIDRequest) Reset() {
-	*x = GetOrderByStoreIDRequest{}
+func (x *CheckEligibilityRequest) Reset() {
+	*x = CheckEligibilityRequest{}
 	mi := &file_order_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *GetOrderByStoreIDRequest) String() string {
+func (x *CheckEligibilityRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetOrderByStoreIDRequest) ProtoMessage() {}
+func (*CheckEligibilityRequest) ProtoMessage() {}
 
-func (x *GetOrderByStoreIDRequest) ProtoReflect() protoreflect.Message {
+func (x *CheckEligibilityRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_order_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -533,82 +499,68 @@ func (x *GetOrderByStoreIDRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetOrderByStoreIDRequest.ProtoReflect.Descriptor instead.
-func (*GetOrderByStoreIDRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use CheckEligibilityRequest.ProtoReflect.Descriptor instead.
+func (*CheckEligibilityRequest) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *GetOrderByStoreIDRequest) GetStoreId() string {
+func (x *CheckEligibilityRequest) GetOrder() *Order {
 	if x != nil {
-		return x.StoreId
-	}
-	return ""
-}
-
-func (x *GetOrderByStoreIDRequest) GetOffset() int32 {
-	if x != nil {
-		return x.Offset
-	}
-	return 0
-}
-
-func (x *GetOrderByStoreIDRequest) GetLimit() int32 {
-	if x != nil {
-		return x.Limit
-	}
-	return 0
-}
-
-type GetOrderByStoreIDResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Orders        []*OrderList           `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
-	Count         int32                  `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetOrderByStoreIDResponse) Reset() {
-	*x = GetOrderByStoreIDResponse{}
-	mi := &file_order_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetOrderByStoreIDResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetOrderByStoreIDResponse) ProtoMessage() {}
-
-func (x *GetOrderByStoreIDResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_order_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetOrderByStoreIDResponse.ProtoReflect.Descriptor instead.
-func (*GetOrderByStoreIDResponse) Descriptor() ([]byte, []int) {
-	return file_order_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *GetOrderByStoreIDResponse) GetOrders() []*OrderList {
-	if x != nil {
-		return x.Orders
+		return x.Order
 	}
 	return nil
 }
 
-func (x *GetOrderByStoreIDResponse) GetCount() int32 {
+type CheckEligibilityResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Success       bool                   `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+	Order         *OrderDetail           `protobuf:"bytes,2,opt,name=order,proto3" json:"order,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CheckEligibilityResponse) Reset() {
+	*x = CheckEligibilityResponse{}
+	mi := &file_order_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CheckEligibilityResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CheckEligibilityResponse) ProtoMessage() {}
+
+func (x *CheckEligibilityResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_order_proto_msgTypes[10]
 	if x != nil {
-		return x.Count
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
 	}
-	return 0
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CheckEligibilityResponse.ProtoReflect.Descriptor instead.
+func (*CheckEligibilityResponse) Descriptor() ([]byte, []int) {
+	return file_order_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *CheckEligibilityResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+func (x *CheckEligibilityResponse) GetOrder() *OrderDetail {
+	if x != nil {
+		return x.Order
+	}
+	return nil
 }
 
 type UpdateOrderStatusRequest struct {
@@ -711,60 +663,51 @@ var File_order_proto protoreflect.FileDescriptor
 
 const file_order_proto_rawDesc = "" +
 	"\n" +
-	"\vorder.proto\x12\x03cat\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\vitems.proto\"v\n" +
-	"\x05Order\x12#\n" +
-	"\bstore_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreId\x12'\n" +
-	"\n" +
-	"address_id\x18\x02 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\taddressId\x12\x1f\n" +
-	"\x05items\x18\x03 \x03(\v2\t.cat.ItemR\x05items\"=\n" +
+	"\vorder.proto\x12\x05order\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\"8\n" +
+	"\x05Order\x12\x19\n" +
+	"\bstore_id\x18\x01 \x01(\tR\astoreId\x12\x14\n" +
+	"\x05label\x18\x02 \x01(\tR\x05label\"=\n" +
 	"\tOrderList\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\x05R\x06status\"\xa8\x01\n" +
+	"\x06status\x18\x02 \x01(\x05R\x06status\"\\\n" +
 	"\vOrderDetail\x12#\n" +
 	"\bstore_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreId\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\x05R\x06status\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x01R\x05price\x12\x1f\n" +
-	"\vclient_code\x18\x04 \x01(\tR\n" +
-	"clientCode\x12%\n" +
-	"\x05items\x18\x05 \x03(\v2\x0f.cat.ItemDetailR\x05items\">\n" +
-	"\x12CreateOrderRequest\x12(\n" +
-	"\x05order\x18\x01 \x01(\v2\n" +
-	".cat.OrderB\x06\xbaH\x03\xc8\x01\x01R\x05order\"P\n" +
+	"\x06status\x18\x02 \x01(\x05R\x06status\x12\x10\n" +
+	"\x03fee\x18\x03 \x01(\x01R\x03fee\"@\n" +
+	"\x12CreateOrderRequest\x12*\n" +
+	"\x05order\x18\x01 \x01(\v2\f.order.OrderB\x06\xbaH\x03\xc8\x01\x01R\x05order\"/\n" +
 	"\x13CreateOrderResponse\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1f\n" +
-	"\vclient_code\x18\x02 \x01(\tR\n" +
-	"clientCode\"/\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"/\n" +
 	"\x13GetOrderByIDRequest\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"F\n" +
-	"\x14GetOrderByIDResponse\x12.\n" +
-	"\x05order\x18\x01 \x01(\v2\x10.cat.OrderDetailB\x06\xbaH\x03\xc8\x01\x01R\x05order\"\\\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"H\n" +
+	"\x14GetOrderByIDResponse\x120\n" +
+	"\x05order\x18\x01 \x01(\v2\x12.order.OrderDetailB\x06\xbaH\x03\xc8\x01\x01R\x05order\"\\\n" +
 	"\x16GetOrderByTokenRequest\x12!\n" +
-	"\x06offset\x18\x01 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x06offset\x12\x1f\n" +
-	"\x05limit\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\"W\n" +
-	"\x17GetOrderByTokenResponse\x12&\n" +
-	"\x06orders\x18\x01 \x03(\v2\x0e.cat.OrderListR\x06orders\x12\x14\n" +
-	"\x05count\x18\x02 \x01(\x05R\x05count\"\x81\x01\n" +
-	"\x18GetOrderByStoreIDRequest\x12#\n" +
-	"\bstore_id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\astoreId\x12\x1f\n" +
-	"\x06offset\x18\x02 \x01(\x05B\a\xbaH\x04\x1a\x02(\x00R\x06offset\x12\x1f\n" +
-	"\x05limit\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\"Y\n" +
-	"\x19GetOrderByStoreIDResponse\x12&\n" +
-	"\x06orders\x18\x01 \x03(\v2\x0e.cat.OrderListR\x06orders\x12\x14\n" +
-	"\x05count\x18\x02 \x01(\x05R\x05count\"W\n" +
+	"\x06offset\x18\x01 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x00R\x06offset\x12\x1f\n" +
+	"\x05limit\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\"Y\n" +
+	"\x17GetOrderByTokenResponse\x12(\n" +
+	"\x06orders\x18\x01 \x03(\v2\x10.order.OrderListR\x06orders\x12\x14\n" +
+	"\x05count\x18\x02 \x01(\x05R\x05count\"E\n" +
+	"\x17CheckEligibilityRequest\x12*\n" +
+	"\x05order\x18\x01 \x01(\v2\f.order.OrderB\x06\xbaH\x03\xc8\x01\x01R\x05order\"^\n" +
+	"\x18CheckEligibilityResponse\x12\x18\n" +
+	"\asuccess\x18\x01 \x01(\bR\asuccess\x12(\n" +
+	"\x05order\x18\x02 \x01(\v2\x12.order.OrderDetailR\x05order\"W\n" +
 	"\x18UpdateOrderStatusRequest\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12!\n" +
 	"\x06status\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x18\x05(\x00R\x06status\"5\n" +
 	"\x19UpdateOrderStatusResponse\x12\x18\n" +
-	"\asuccess\x18\x01 \x01(\bR\asuccess2\x96\x04\n" +
-	"\fOrderService\x12W\n" +
-	"\vCreateOrder\x12\x17.cat.CreateOrderRequest\x1a\x18.cat.CreateOrderResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
-	"/v1/orders\x12u\n" +
-	"\x11updateOrderStatus\x12\x1d.cat.UpdateOrderStatusRequest\x1a\x1e.cat.UpdateOrderStatusResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*2\x16/v1/orders/{id}/status\x12\\\n" +
-	"\fGetOrderByID\x12\x18.cat.GetOrderByIDRequest\x1a\x19.cat.GetOrderByIDResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/{id}\x12q\n" +
-	"\x11GetOrderByStoreID\x12\x1d.cat.GetOrderByStoreIDRequest\x1a\x1e.cat.GetOrderByStoreIDResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/v1/orders/store/{id}\x12e\n" +
-	"\x0fGetOrderByToken\x12\x1b.cat.GetOrderByTokenRequest\x1a\x1c.cat.GetOrderByTokenResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/userBP\n" +
-	"\acom.catB\n" +
-	"OrderProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03CXX\xaa\x02\x03Cat\xca\x02\x03Cat\xe2\x02\x0fCat\\GPBMetadata\xea\x02\x03Catb\x06proto3"
+	"\asuccess\x18\x01 \x01(\bR\asuccess2\x9f\x04\n" +
+	"\fOrderService\x12[\n" +
+	"\vCreateOrder\x12\x19.order.CreateOrderRequest\x1a\x1a.order.CreateOrderResponse\"\x15\x82\xd3\xe4\x93\x02\x0f:\x01*\"\n" +
+	"/v1/orders\x12r\n" +
+	"\x11UpdateOrderStatus\x12\x1f.order.UpdateOrderStatusRequest\x1a .order.UpdateOrderStatusResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*2\x0f/v1/orders/{id}\x12`\n" +
+	"\fGetOrderByID\x12\x1a.order.GetOrderByIDRequest\x1a\x1b.order.GetOrderByIDResponse\"\x17\x82\xd3\xe4\x93\x02\x11\x12\x0f/v1/orders/{id}\x12d\n" +
+	"\x0fGetOrderByToken\x12\x1d.order.GetOrderByTokenRequest\x1a\x1e.order.GetOrderByTokenResponse\"\x12\x82\xd3\xe4\x93\x02\f\x12\n" +
+	"/v1/orders\x12v\n" +
+	"\x10CheckEligibility\x12\x1e.order.CheckEligibilityRequest\x1a\x1f.order.CheckEligibilityResponse\"!\x82\xd3\xe4\x93\x02\x1b:\x01*\"\x16/v1/orders/eligibilityBZ\n" +
+	"\tcom.orderB\n" +
+	"OrderProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03OXX\xaa\x02\x05Order\xca\x02\x05Order\xe2\x02\x11Order\\GPBMetadata\xea\x02\x05Orderb\x06proto3"
 
 var (
 	file_order_proto_rawDescOnce sync.Once
@@ -780,44 +723,41 @@ func file_order_proto_rawDescGZIP() []byte {
 
 var file_order_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_order_proto_goTypes = []any{
-	(*Order)(nil),                     // 0: cat.Order
-	(*OrderList)(nil),                 // 1: cat.OrderList
-	(*OrderDetail)(nil),               // 2: cat.OrderDetail
-	(*CreateOrderRequest)(nil),        // 3: cat.CreateOrderRequest
-	(*CreateOrderResponse)(nil),       // 4: cat.CreateOrderResponse
-	(*GetOrderByIDRequest)(nil),       // 5: cat.GetOrderByIDRequest
-	(*GetOrderByIDResponse)(nil),      // 6: cat.GetOrderByIDResponse
-	(*GetOrderByTokenRequest)(nil),    // 7: cat.GetOrderByTokenRequest
-	(*GetOrderByTokenResponse)(nil),   // 8: cat.GetOrderByTokenResponse
-	(*GetOrderByStoreIDRequest)(nil),  // 9: cat.GetOrderByStoreIDRequest
-	(*GetOrderByStoreIDResponse)(nil), // 10: cat.GetOrderByStoreIDResponse
-	(*UpdateOrderStatusRequest)(nil),  // 11: cat.UpdateOrderStatusRequest
-	(*UpdateOrderStatusResponse)(nil), // 12: cat.UpdateOrderStatusResponse
-	(*Item)(nil),                      // 13: cat.Item
-	(*ItemDetail)(nil),                // 14: cat.ItemDetail
+	(*Order)(nil),                     // 0: order.Order
+	(*OrderList)(nil),                 // 1: order.OrderList
+	(*OrderDetail)(nil),               // 2: order.OrderDetail
+	(*CreateOrderRequest)(nil),        // 3: order.CreateOrderRequest
+	(*CreateOrderResponse)(nil),       // 4: order.CreateOrderResponse
+	(*GetOrderByIDRequest)(nil),       // 5: order.GetOrderByIDRequest
+	(*GetOrderByIDResponse)(nil),      // 6: order.GetOrderByIDResponse
+	(*GetOrderByTokenRequest)(nil),    // 7: order.GetOrderByTokenRequest
+	(*GetOrderByTokenResponse)(nil),   // 8: order.GetOrderByTokenResponse
+	(*CheckEligibilityRequest)(nil),   // 9: order.CheckEligibilityRequest
+	(*CheckEligibilityResponse)(nil),  // 10: order.CheckEligibilityResponse
+	(*UpdateOrderStatusRequest)(nil),  // 11: order.UpdateOrderStatusRequest
+	(*UpdateOrderStatusResponse)(nil), // 12: order.UpdateOrderStatusResponse
 }
 var file_order_proto_depIdxs = []int32{
-	13, // 0: cat.Order.items:type_name -> cat.Item
-	14, // 1: cat.OrderDetail.items:type_name -> cat.ItemDetail
-	0,  // 2: cat.CreateOrderRequest.order:type_name -> cat.Order
-	2,  // 3: cat.GetOrderByIDResponse.order:type_name -> cat.OrderDetail
-	1,  // 4: cat.GetOrderByTokenResponse.orders:type_name -> cat.OrderList
-	1,  // 5: cat.GetOrderByStoreIDResponse.orders:type_name -> cat.OrderList
-	3,  // 6: cat.OrderService.CreateOrder:input_type -> cat.CreateOrderRequest
-	11, // 7: cat.OrderService.updateOrderStatus:input_type -> cat.UpdateOrderStatusRequest
-	5,  // 8: cat.OrderService.GetOrderByID:input_type -> cat.GetOrderByIDRequest
-	9,  // 9: cat.OrderService.GetOrderByStoreID:input_type -> cat.GetOrderByStoreIDRequest
-	7,  // 10: cat.OrderService.GetOrderByToken:input_type -> cat.GetOrderByTokenRequest
-	4,  // 11: cat.OrderService.CreateOrder:output_type -> cat.CreateOrderResponse
-	12, // 12: cat.OrderService.updateOrderStatus:output_type -> cat.UpdateOrderStatusResponse
-	6,  // 13: cat.OrderService.GetOrderByID:output_type -> cat.GetOrderByIDResponse
-	10, // 14: cat.OrderService.GetOrderByStoreID:output_type -> cat.GetOrderByStoreIDResponse
-	8,  // 15: cat.OrderService.GetOrderByToken:output_type -> cat.GetOrderByTokenResponse
-	11, // [11:16] is the sub-list for method output_type
-	6,  // [6:11] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	0,  // 0: order.CreateOrderRequest.order:type_name -> order.Order
+	2,  // 1: order.GetOrderByIDResponse.order:type_name -> order.OrderDetail
+	1,  // 2: order.GetOrderByTokenResponse.orders:type_name -> order.OrderList
+	0,  // 3: order.CheckEligibilityRequest.order:type_name -> order.Order
+	2,  // 4: order.CheckEligibilityResponse.order:type_name -> order.OrderDetail
+	3,  // 5: order.OrderService.CreateOrder:input_type -> order.CreateOrderRequest
+	11, // 6: order.OrderService.UpdateOrderStatus:input_type -> order.UpdateOrderStatusRequest
+	5,  // 7: order.OrderService.GetOrderByID:input_type -> order.GetOrderByIDRequest
+	7,  // 8: order.OrderService.GetOrderByToken:input_type -> order.GetOrderByTokenRequest
+	9,  // 9: order.OrderService.CheckEligibility:input_type -> order.CheckEligibilityRequest
+	4,  // 10: order.OrderService.CreateOrder:output_type -> order.CreateOrderResponse
+	12, // 11: order.OrderService.UpdateOrderStatus:output_type -> order.UpdateOrderStatusResponse
+	6,  // 12: order.OrderService.GetOrderByID:output_type -> order.GetOrderByIDResponse
+	8,  // 13: order.OrderService.GetOrderByToken:output_type -> order.GetOrderByTokenResponse
+	10, // 14: order.OrderService.CheckEligibility:output_type -> order.CheckEligibilityResponse
+	10, // [10:15] is the sub-list for method output_type
+	5,  // [5:10] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_order_proto_init() }
@@ -825,7 +765,6 @@ func file_order_proto_init() {
 	if File_order_proto != nil {
 		return
 	}
-	file_items_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
