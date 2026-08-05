@@ -86,7 +86,7 @@ func (x *Order) GetRecipient() *Recipient {
 type OrderList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Status        *int32                 `protobuf:"varint,2,opt,name=status,proto3,oneof" json:"status,omitempty"`
+	Status        int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -129,8 +129,8 @@ func (x *OrderList) GetId() string {
 }
 
 func (x *OrderList) GetStatus() int32 {
-	if x != nil && x.Status != nil {
-		return *x.Status
+	if x != nil {
+		return x.Status
 	}
 	return 0
 }
@@ -475,7 +475,6 @@ type GetOrderByTokenRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Offset        int32                  `protobuf:"varint,1,opt,name=offset,proto3" json:"offset,omitempty"`
 	Limit         int32                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`
-	Status        *int32                 `protobuf:"varint,3,opt,name=status,proto3,oneof" json:"status,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -520,13 +519,6 @@ func (x *GetOrderByTokenRequest) GetOffset() int32 {
 func (x *GetOrderByTokenRequest) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
-	}
-	return 0
-}
-
-func (x *GetOrderByTokenRequest) GetStatus() int32 {
-	if x != nil && x.Status != nil {
-		return *x.Status
 	}
 	return 0
 }
@@ -783,11 +775,10 @@ const file_order_proto_rawDesc = "" +
 	"\x05Order\x12\x19\n" +
 	"\bstore_id\x18\x01 \x01(\tR\astoreId\x12)\n" +
 	"\x10delivery_address\x18\x02 \x01(\tR\x0fdeliveryAddress\x12.\n" +
-	"\trecipient\x18\x03 \x01(\v2\x10.order.RecipientR\trecipient\"M\n" +
+	"\trecipient\x18\x03 \x01(\v2\x10.order.RecipientR\trecipient\"=\n" +
 	"\tOrderList\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1b\n" +
-	"\x06status\x18\x02 \x01(\x05H\x00R\x06status\x88\x01\x01B\t\n" +
-	"\a_status\"\xb0\x01\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\x05R\x06status\"\xb0\x01\n" +
 	"\aAddress\x12 \n" +
 	"\x05label\x18\x03 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05label\x12\x1d\n" +
@@ -810,12 +801,10 @@ const file_order_proto_rawDesc = "" +
 	"\x13GetOrderByIDRequest\x12\x18\n" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"H\n" +
 	"\x14GetOrderByIDResponse\x120\n" +
-	"\x05order\x18\x01 \x01(\v2\x12.order.OrderDetailB\x06\xbaH\x03\xc8\x01\x01R\x05order\"\x8f\x01\n" +
+	"\x05order\x18\x01 \x01(\v2\x12.order.OrderDetailB\x06\xbaH\x03\xc8\x01\x01R\x05order\"\\\n" +
 	"\x16GetOrderByTokenRequest\x12!\n" +
 	"\x06offset\x18\x01 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x00R\x06offset\x12\x1f\n" +
-	"\x05limit\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\x12&\n" +
-	"\x06status\x18\x03 \x01(\x05B\t\xbaH\x06\x1a\x04\x18\x02(\x01H\x00R\x06status\x88\x01\x01B\t\n" +
-	"\a_status\"Y\n" +
+	"\x05limit\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\"Y\n" +
 	"\x17GetOrderByTokenResponse\x12(\n" +
 	"\x06orders\x18\x01 \x03(\v2\x10.order.OrderListR\x06orders\x12\x14\n" +
 	"\x05count\x18\x02 \x01(\x05R\x05count\"E\n" +
@@ -903,8 +892,6 @@ func file_order_proto_init() {
 		return
 	}
 	file_recipient_proto_init()
-	file_order_proto_msgTypes[1].OneofWrappers = []any{}
-	file_order_proto_msgTypes[8].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
