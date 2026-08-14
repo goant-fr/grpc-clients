@@ -12,6 +12,7 @@ import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
+	wrapperspb "google.golang.org/protobuf/types/known/wrapperspb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -87,10 +88,10 @@ func (x *Order) GetRecipient() *Recipient {
 type OrderList struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Status        *int32                 `protobuf:"varint,2,opt,name=status,proto3,oneof" json:"status,omitempty"`
-	Fee           *float64               `protobuf:"fixed64,3,opt,name=fee,proto3,oneof" json:"fee,omitempty"`
-	Created       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created,proto3,oneof" json:"created,omitempty"`
-	Updated       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated,proto3,oneof" json:"updated,omitempty"`
+	Status        int32                  `protobuf:"varint,2,opt,name=status,proto3" json:"status,omitempty"`
+	Fee           float64                `protobuf:"fixed64,3,opt,name=fee,proto3" json:"fee,omitempty"`
+	Created       *timestamppb.Timestamp `protobuf:"bytes,4,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=updated,proto3" json:"updated,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -133,15 +134,15 @@ func (x *OrderList) GetId() string {
 }
 
 func (x *OrderList) GetStatus() int32 {
-	if x != nil && x.Status != nil {
-		return *x.Status
+	if x != nil {
+		return x.Status
 	}
 	return 0
 }
 
 func (x *OrderList) GetFee() float64 {
-	if x != nil && x.Fee != nil {
-		return *x.Fee
+	if x != nil {
+		return x.Fee
 	}
 	return 0
 }
@@ -162,10 +163,10 @@ func (x *OrderList) GetUpdated() *timestamppb.Timestamp {
 
 type OrderFilter struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        *int32                 `protobuf:"varint,1,opt,name=status,proto3,oneof" json:"status,omitempty"`
-	Fee           *OrderFilter_FeeRange  `protobuf:"bytes,4,opt,name=fee,proto3,oneof" json:"fee,omitempty"`
-	Created       *OrderFilter_TimeRange `protobuf:"bytes,5,opt,name=created,proto3,oneof" json:"created,omitempty"`
-	Updated       *OrderFilter_TimeRange `protobuf:"bytes,6,opt,name=updated,proto3,oneof" json:"updated,omitempty"`
+	Status        *wrapperspb.Int32Value `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Fee           *OrderFilter_FeeRange  `protobuf:"bytes,4,opt,name=fee,proto3" json:"fee,omitempty"`
+	Created       *OrderFilter_TimeRange `protobuf:"bytes,5,opt,name=created,proto3" json:"created,omitempty"`
+	Updated       *OrderFilter_TimeRange `protobuf:"bytes,6,opt,name=updated,proto3" json:"updated,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -200,11 +201,11 @@ func (*OrderFilter) Descriptor() ([]byte, []int) {
 	return file_order_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *OrderFilter) GetStatus() int32 {
-	if x != nil && x.Status != nil {
-		return *x.Status
+func (x *OrderFilter) GetStatus() *wrapperspb.Int32Value {
+	if x != nil {
+		return x.Status
 	}
-	return 0
+	return nil
 }
 
 func (x *OrderFilter) GetFee() *OrderFilter_FeeRange {
@@ -627,7 +628,7 @@ func (x *GetOrderByTokenRequest) GetFilters() *OrderFilter {
 type GetOrderByTokenResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Orders        []*OrderList           `protobuf:"bytes,1,rep,name=orders,proto3" json:"orders,omitempty"`
-	Count         *int32                 `protobuf:"varint,2,opt,name=count,proto3,oneof" json:"count,omitempty"`
+	Count         int32                  `protobuf:"varint,2,opt,name=count,proto3" json:"count,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -670,8 +671,8 @@ func (x *GetOrderByTokenResponse) GetOrders() []*OrderList {
 }
 
 func (x *GetOrderByTokenResponse) GetCount() int32 {
-	if x != nil && x.Count != nil {
-		return *x.Count
+	if x != nil {
+		return x.Count
 	}
 	return 0
 }
@@ -870,8 +871,8 @@ func (x *UpdateOrderStatusResponse) GetSuccess() bool {
 
 type OrderFilter_FeeRange struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Min           *float64               `protobuf:"fixed64,1,opt,name=min,proto3,oneof" json:"min,omitempty"`
-	Max           *float64               `protobuf:"fixed64,2,opt,name=max,proto3,oneof" json:"max,omitempty"`
+	Min           float64                `protobuf:"fixed64,1,opt,name=min,proto3" json:"min,omitempty"`
+	Max           float64                `protobuf:"fixed64,2,opt,name=max,proto3" json:"max,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -907,23 +908,23 @@ func (*OrderFilter_FeeRange) Descriptor() ([]byte, []int) {
 }
 
 func (x *OrderFilter_FeeRange) GetMin() float64 {
-	if x != nil && x.Min != nil {
-		return *x.Min
+	if x != nil {
+		return x.Min
 	}
 	return 0
 }
 
 func (x *OrderFilter_FeeRange) GetMax() float64 {
-	if x != nil && x.Max != nil {
-		return *x.Max
+	if x != nil {
+		return x.Max
 	}
 	return 0
 }
 
 type OrderFilter_TimeRange struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	After         *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=after,proto3,oneof" json:"after,omitempty"`
-	Before        *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=before,proto3,oneof" json:"before,omitempty"`
+	After         *timestamppb.Timestamp `protobuf:"bytes,1,opt,name=after,proto3" json:"after,omitempty"`
+	Before        *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=before,proto3" json:"before,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -976,44 +977,28 @@ var File_order_proto protoreflect.FileDescriptor
 
 const file_order_proto_rawDesc = "" +
 	"\n" +
-	"\vorder.proto\x12\x05order\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0frecipient.proto\"}\n" +
+	"\vorder.proto\x12\x05order\x1a\x1bbuf/validate/validate.proto\x1a\x1cgoogle/api/annotations.proto\x1a\x15google/api/http.proto\x1a\x1egoogle/protobuf/wrappers.proto\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x0frecipient.proto\"}\n" +
 	"\x05Order\x12\x19\n" +
 	"\bstore_id\x18\x01 \x01(\tR\astoreId\x12)\n" +
 	"\x10delivery_address\x18\x02 \x01(\tR\x0fdeliveryAddress\x12.\n" +
-	"\trecipient\x18\x03 \x01(\v2\x10.order.RecipientR\trecipient\"\xfa\x01\n" +
+	"\trecipient\x18\x03 \x01(\v2\x10.order.RecipientR\trecipient\"\xbb\x01\n" +
 	"\tOrderList\x12\x18\n" +
-	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x1b\n" +
-	"\x06status\x18\x02 \x01(\x05H\x00R\x06status\x88\x01\x01\x12\x15\n" +
-	"\x03fee\x18\x03 \x01(\x01H\x01R\x03fee\x88\x01\x01\x129\n" +
-	"\acreated\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\acreated\x88\x01\x01\x129\n" +
-	"\aupdated\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampH\x03R\aupdated\x88\x01\x01B\t\n" +
-	"\a_statusB\x06\n" +
-	"\x04_feeB\n" +
-	"\n" +
-	"\b_createdB\n" +
-	"\n" +
-	"\b_updated\"\xe0\x03\n" +
-	"\vOrderFilter\x12\x1b\n" +
-	"\x06status\x18\x01 \x01(\x05H\x00R\x06status\x88\x01\x01\x122\n" +
-	"\x03fee\x18\x04 \x01(\v2\x1b.order.OrderFilter.FeeRangeH\x01R\x03fee\x88\x01\x01\x12;\n" +
-	"\acreated\x18\x05 \x01(\v2\x1c.order.OrderFilter.TimeRangeH\x02R\acreated\x88\x01\x01\x12;\n" +
-	"\aupdated\x18\x06 \x01(\v2\x1c.order.OrderFilter.TimeRangeH\x03R\aupdated\x88\x01\x01\x1aH\n" +
-	"\bFeeRange\x12\x15\n" +
-	"\x03min\x18\x01 \x01(\x01H\x00R\x03min\x88\x01\x01\x12\x15\n" +
-	"\x03max\x18\x02 \x01(\x01H\x01R\x03max\x88\x01\x01B\x06\n" +
-	"\x04_minB\x06\n" +
-	"\x04_max\x1a\x90\x01\n" +
-	"\tTimeRange\x125\n" +
-	"\x05after\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampH\x00R\x05after\x88\x01\x01\x127\n" +
-	"\x06before\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\x06before\x88\x01\x01B\b\n" +
-	"\x06_afterB\t\n" +
-	"\a_beforeB\t\n" +
-	"\a_statusB\x06\n" +
-	"\x04_feeB\n" +
-	"\n" +
-	"\b_createdB\n" +
-	"\n" +
-	"\b_updated\"\xb0\x01\n" +
+	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\x05R\x06status\x12\x10\n" +
+	"\x03fee\x18\x03 \x01(\x01R\x03fee\x124\n" +
+	"\acreated\x18\x04 \x01(\v2\x1a.google.protobuf.TimestampR\acreated\x124\n" +
+	"\aupdated\x18\x05 \x01(\v2\x1a.google.protobuf.TimestampR\aupdated\"\x84\x03\n" +
+	"\vOrderFilter\x123\n" +
+	"\x06status\x18\x01 \x01(\v2\x1b.google.protobuf.Int32ValueR\x06status\x12-\n" +
+	"\x03fee\x18\x04 \x01(\v2\x1b.order.OrderFilter.FeeRangeR\x03fee\x126\n" +
+	"\acreated\x18\x05 \x01(\v2\x1c.order.OrderFilter.TimeRangeR\acreated\x126\n" +
+	"\aupdated\x18\x06 \x01(\v2\x1c.order.OrderFilter.TimeRangeR\aupdated\x1a.\n" +
+	"\bFeeRange\x12\x10\n" +
+	"\x03min\x18\x01 \x01(\x01R\x03min\x12\x10\n" +
+	"\x03max\x18\x02 \x01(\x01R\x03max\x1aq\n" +
+	"\tTimeRange\x120\n" +
+	"\x05after\x18\x01 \x01(\v2\x1a.google.protobuf.TimestampR\x05after\x122\n" +
+	"\x06before\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\x06before\"\xb0\x01\n" +
 	"\aAddress\x12 \n" +
 	"\x05label\x18\x03 \x01(\tB\n" +
 	"\xbaH\ar\x05\x10\x01\x18\xff\x01R\x05label\x12\x1d\n" +
@@ -1040,11 +1025,10 @@ const file_order_proto_rawDesc = "" +
 	"\x16GetOrderByTokenRequest\x12!\n" +
 	"\x06offset\x18\x01 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x00R\x06offset\x12\x1f\n" +
 	"\x05limit\x18\x02 \x01(\x05B\t\xbaH\x06\x1a\x04\x18d(\x01R\x05limit\x12,\n" +
-	"\afilters\x18\x03 \x01(\v2\x12.order.OrderFilterR\afilters\"h\n" +
+	"\afilters\x18\x03 \x01(\v2\x12.order.OrderFilterR\afilters\"Y\n" +
 	"\x17GetOrderByTokenResponse\x12(\n" +
-	"\x06orders\x18\x01 \x03(\v2\x10.order.OrderListR\x06orders\x12\x19\n" +
-	"\x05count\x18\x02 \x01(\x05H\x00R\x05count\x88\x01\x01B\b\n" +
-	"\x06_count\"E\n" +
+	"\x06orders\x18\x01 \x03(\v2\x10.order.OrderListR\x06orders\x12\x14\n" +
+	"\x05count\x18\x02 \x01(\x05R\x05count\"E\n" +
 	"\x17CheckEligibilityRequest\x12*\n" +
 	"\x05order\x18\x01 \x01(\v2\f.order.OrderB\x06\xbaH\x03\xc8\x01\x01R\x05order\"^\n" +
 	"\x18CheckEligibilityResponse\x12\x18\n" +
@@ -1099,40 +1083,42 @@ var file_order_proto_goTypes = []any{
 	(*OrderFilter_TimeRange)(nil),     // 16: order.OrderFilter.TimeRange
 	(*Recipient)(nil),                 // 17: order.Recipient
 	(*timestamppb.Timestamp)(nil),     // 18: google.protobuf.Timestamp
+	(*wrapperspb.Int32Value)(nil),     // 19: google.protobuf.Int32Value
 }
 var file_order_proto_depIdxs = []int32{
 	17, // 0: order.Order.recipient:type_name -> order.Recipient
 	18, // 1: order.OrderList.created:type_name -> google.protobuf.Timestamp
 	18, // 2: order.OrderList.updated:type_name -> google.protobuf.Timestamp
-	15, // 3: order.OrderFilter.fee:type_name -> order.OrderFilter.FeeRange
-	16, // 4: order.OrderFilter.created:type_name -> order.OrderFilter.TimeRange
-	16, // 5: order.OrderFilter.updated:type_name -> order.OrderFilter.TimeRange
-	3,  // 6: order.OrderDetail.pickup_address:type_name -> order.Address
-	3,  // 7: order.OrderDetail.delivery_address:type_name -> order.Address
-	17, // 8: order.OrderDetail.recipient:type_name -> order.Recipient
-	0,  // 9: order.CreateOrderRequest.order:type_name -> order.Order
-	4,  // 10: order.GetOrderByIDResponse.order:type_name -> order.OrderDetail
-	2,  // 11: order.GetOrderByTokenRequest.filters:type_name -> order.OrderFilter
-	1,  // 12: order.GetOrderByTokenResponse.orders:type_name -> order.OrderList
-	0,  // 13: order.CheckEligibilityRequest.order:type_name -> order.Order
-	4,  // 14: order.CheckEligibilityResponse.order:type_name -> order.OrderDetail
-	18, // 15: order.OrderFilter.TimeRange.after:type_name -> google.protobuf.Timestamp
-	18, // 16: order.OrderFilter.TimeRange.before:type_name -> google.protobuf.Timestamp
-	5,  // 17: order.OrderService.CreateOrder:input_type -> order.CreateOrderRequest
-	13, // 18: order.OrderService.UpdateOrderStatus:input_type -> order.UpdateOrderStatusRequest
-	7,  // 19: order.OrderService.GetOrderByID:input_type -> order.GetOrderByIDRequest
-	9,  // 20: order.OrderService.GetOrderByToken:input_type -> order.GetOrderByTokenRequest
-	11, // 21: order.OrderService.CheckEligibility:input_type -> order.CheckEligibilityRequest
-	6,  // 22: order.OrderService.CreateOrder:output_type -> order.CreateOrderResponse
-	14, // 23: order.OrderService.UpdateOrderStatus:output_type -> order.UpdateOrderStatusResponse
-	8,  // 24: order.OrderService.GetOrderByID:output_type -> order.GetOrderByIDResponse
-	10, // 25: order.OrderService.GetOrderByToken:output_type -> order.GetOrderByTokenResponse
-	12, // 26: order.OrderService.CheckEligibility:output_type -> order.CheckEligibilityResponse
-	22, // [22:27] is the sub-list for method output_type
-	17, // [17:22] is the sub-list for method input_type
-	17, // [17:17] is the sub-list for extension type_name
-	17, // [17:17] is the sub-list for extension extendee
-	0,  // [0:17] is the sub-list for field type_name
+	19, // 3: order.OrderFilter.status:type_name -> google.protobuf.Int32Value
+	15, // 4: order.OrderFilter.fee:type_name -> order.OrderFilter.FeeRange
+	16, // 5: order.OrderFilter.created:type_name -> order.OrderFilter.TimeRange
+	16, // 6: order.OrderFilter.updated:type_name -> order.OrderFilter.TimeRange
+	3,  // 7: order.OrderDetail.pickup_address:type_name -> order.Address
+	3,  // 8: order.OrderDetail.delivery_address:type_name -> order.Address
+	17, // 9: order.OrderDetail.recipient:type_name -> order.Recipient
+	0,  // 10: order.CreateOrderRequest.order:type_name -> order.Order
+	4,  // 11: order.GetOrderByIDResponse.order:type_name -> order.OrderDetail
+	2,  // 12: order.GetOrderByTokenRequest.filters:type_name -> order.OrderFilter
+	1,  // 13: order.GetOrderByTokenResponse.orders:type_name -> order.OrderList
+	0,  // 14: order.CheckEligibilityRequest.order:type_name -> order.Order
+	4,  // 15: order.CheckEligibilityResponse.order:type_name -> order.OrderDetail
+	18, // 16: order.OrderFilter.TimeRange.after:type_name -> google.protobuf.Timestamp
+	18, // 17: order.OrderFilter.TimeRange.before:type_name -> google.protobuf.Timestamp
+	5,  // 18: order.OrderService.CreateOrder:input_type -> order.CreateOrderRequest
+	13, // 19: order.OrderService.UpdateOrderStatus:input_type -> order.UpdateOrderStatusRequest
+	7,  // 20: order.OrderService.GetOrderByID:input_type -> order.GetOrderByIDRequest
+	9,  // 21: order.OrderService.GetOrderByToken:input_type -> order.GetOrderByTokenRequest
+	11, // 22: order.OrderService.CheckEligibility:input_type -> order.CheckEligibilityRequest
+	6,  // 23: order.OrderService.CreateOrder:output_type -> order.CreateOrderResponse
+	14, // 24: order.OrderService.UpdateOrderStatus:output_type -> order.UpdateOrderStatusResponse
+	8,  // 25: order.OrderService.GetOrderByID:output_type -> order.GetOrderByIDResponse
+	10, // 26: order.OrderService.GetOrderByToken:output_type -> order.GetOrderByTokenResponse
+	12, // 27: order.OrderService.CheckEligibility:output_type -> order.CheckEligibilityResponse
+	23, // [23:28] is the sub-list for method output_type
+	18, // [18:23] is the sub-list for method input_type
+	18, // [18:18] is the sub-list for extension type_name
+	18, // [18:18] is the sub-list for extension extendee
+	0,  // [0:18] is the sub-list for field type_name
 }
 
 func init() { file_order_proto_init() }
@@ -1141,11 +1127,6 @@ func file_order_proto_init() {
 		return
 	}
 	file_recipient_proto_init()
-	file_order_proto_msgTypes[1].OneofWrappers = []any{}
-	file_order_proto_msgTypes[2].OneofWrappers = []any{}
-	file_order_proto_msgTypes[10].OneofWrappers = []any{}
-	file_order_proto_msgTypes[15].OneofWrappers = []any{}
-	file_order_proto_msgTypes[16].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
