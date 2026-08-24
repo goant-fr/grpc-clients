@@ -11,7 +11,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -20,11 +19,10 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	DriverHistoryService_CreateDriverHistory_FullMethodName                      = "/driver_history.DriverHistoryService/CreateDriverHistory"
 	DriverHistoryService_GetDriverHistoryByID_FullMethodName                     = "/driver_history.DriverHistoryService/GetDriverHistoryByID"
+	DriverHistoryService_GetDriverHistories_FullMethodName                       = "/driver_history.DriverHistoryService/GetDriverHistories"
 	DriverHistoryService_ReadAllDriverHistories_FullMethodName                   = "/driver_history.DriverHistoryService/ReadAllDriverHistories"
 	DriverHistoryService_UpdateDriverHistory_FullMethodName                      = "/driver_history.DriverHistoryService/UpdateDriverHistory"
-	DriverHistoryService_DeleteDriverHistory_FullMethodName                      = "/driver_history.DriverHistoryService/DeleteDriverHistory"
 	DriverHistoryService_GetDriverHistoriesByDriverID_FullMethodName             = "/driver_history.DriverHistoryService/GetDriverHistoriesByDriverID"
 	DriverHistoryService_GetDriverHistoriesByAction_FullMethodName               = "/driver_history.DriverHistoryService/GetDriverHistoriesByAction"
 	DriverHistoryService_GetDriverHistoriesByDriverIDAndAction_FullMethodName    = "/driver_history.DriverHistoryService/GetDriverHistoriesByDriverIDAndAction"
@@ -47,11 +45,10 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DriverHistoryServiceClient interface {
-	CreateDriverHistory(ctx context.Context, in *CreateDriverHistoryRequest, opts ...grpc.CallOption) (*DriverHistoryResponse, error)
 	GetDriverHistoryByID(ctx context.Context, in *GetDriverHistoryByIDRequest, opts ...grpc.CallOption) (*DriverHistoryResponse, error)
+	GetDriverHistories(ctx context.Context, in *GetDriverHistoryRequest, opts ...grpc.CallOption) (*DriverHistoriesResponse, error)
 	ReadAllDriverHistories(ctx context.Context, in *ReadAllDriverHistoriesRequest, opts ...grpc.CallOption) (*DriverHistoryListResponse, error)
 	UpdateDriverHistory(ctx context.Context, in *UpdateDriverHistoryRequest, opts ...grpc.CallOption) (*DriverHistoryResponse, error)
-	DeleteDriverHistory(ctx context.Context, in *DeleteDriverHistoryRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	GetDriverHistoriesByDriverID(ctx context.Context, in *GetDriverHistoriesByDriverIDRequest, opts ...grpc.CallOption) (*DriverHistoryListResponse, error)
 	GetDriverHistoriesByAction(ctx context.Context, in *GetDriverHistoriesByActionRequest, opts ...grpc.CallOption) (*DriverHistoryListResponse, error)
 	GetDriverHistoriesByDriverIDAndAction(ctx context.Context, in *GetDriverHistoriesByDriverIDAndActionRequest, opts ...grpc.CallOption) (*DriverHistoryListResponse, error)
@@ -78,20 +75,20 @@ func NewDriverHistoryServiceClient(cc grpc.ClientConnInterface) DriverHistorySer
 	return &driverHistoryServiceClient{cc}
 }
 
-func (c *driverHistoryServiceClient) CreateDriverHistory(ctx context.Context, in *CreateDriverHistoryRequest, opts ...grpc.CallOption) (*DriverHistoryResponse, error) {
+func (c *driverHistoryServiceClient) GetDriverHistoryByID(ctx context.Context, in *GetDriverHistoryByIDRequest, opts ...grpc.CallOption) (*DriverHistoryResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DriverHistoryResponse)
-	err := c.cc.Invoke(ctx, DriverHistoryService_CreateDriverHistory_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, DriverHistoryService_GetDriverHistoryByID_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *driverHistoryServiceClient) GetDriverHistoryByID(ctx context.Context, in *GetDriverHistoryByIDRequest, opts ...grpc.CallOption) (*DriverHistoryResponse, error) {
+func (c *driverHistoryServiceClient) GetDriverHistories(ctx context.Context, in *GetDriverHistoryRequest, opts ...grpc.CallOption) (*DriverHistoriesResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(DriverHistoryResponse)
-	err := c.cc.Invoke(ctx, DriverHistoryService_GetDriverHistoryByID_FullMethodName, in, out, cOpts...)
+	out := new(DriverHistoriesResponse)
+	err := c.cc.Invoke(ctx, DriverHistoryService_GetDriverHistories_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -112,16 +109,6 @@ func (c *driverHistoryServiceClient) UpdateDriverHistory(ctx context.Context, in
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(DriverHistoryResponse)
 	err := c.cc.Invoke(ctx, DriverHistoryService_UpdateDriverHistory_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *driverHistoryServiceClient) DeleteDriverHistory(ctx context.Context, in *DeleteDriverHistoryRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, DriverHistoryService_DeleteDriverHistory_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -292,11 +279,10 @@ func (c *driverHistoryServiceClient) TrackDeliverCommand(ctx context.Context, in
 // All implementations must embed UnimplementedDriverHistoryServiceServer
 // for forward compatibility.
 type DriverHistoryServiceServer interface {
-	CreateDriverHistory(context.Context, *CreateDriverHistoryRequest) (*DriverHistoryResponse, error)
 	GetDriverHistoryByID(context.Context, *GetDriverHistoryByIDRequest) (*DriverHistoryResponse, error)
+	GetDriverHistories(context.Context, *GetDriverHistoryRequest) (*DriverHistoriesResponse, error)
 	ReadAllDriverHistories(context.Context, *ReadAllDriverHistoriesRequest) (*DriverHistoryListResponse, error)
 	UpdateDriverHistory(context.Context, *UpdateDriverHistoryRequest) (*DriverHistoryResponse, error)
-	DeleteDriverHistory(context.Context, *DeleteDriverHistoryRequest) (*emptypb.Empty, error)
 	GetDriverHistoriesByDriverID(context.Context, *GetDriverHistoriesByDriverIDRequest) (*DriverHistoryListResponse, error)
 	GetDriverHistoriesByAction(context.Context, *GetDriverHistoriesByActionRequest) (*DriverHistoryListResponse, error)
 	GetDriverHistoriesByDriverIDAndAction(context.Context, *GetDriverHistoriesByDriverIDAndActionRequest) (*DriverHistoryListResponse, error)
@@ -323,20 +309,17 @@ type DriverHistoryServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedDriverHistoryServiceServer struct{}
 
-func (UnimplementedDriverHistoryServiceServer) CreateDriverHistory(context.Context, *CreateDriverHistoryRequest) (*DriverHistoryResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreateDriverHistory not implemented")
-}
 func (UnimplementedDriverHistoryServiceServer) GetDriverHistoryByID(context.Context, *GetDriverHistoryByIDRequest) (*DriverHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriverHistoryByID not implemented")
+}
+func (UnimplementedDriverHistoryServiceServer) GetDriverHistories(context.Context, *GetDriverHistoryRequest) (*DriverHistoriesResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetDriverHistories not implemented")
 }
 func (UnimplementedDriverHistoryServiceServer) ReadAllDriverHistories(context.Context, *ReadAllDriverHistoriesRequest) (*DriverHistoryListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadAllDriverHistories not implemented")
 }
 func (UnimplementedDriverHistoryServiceServer) UpdateDriverHistory(context.Context, *UpdateDriverHistoryRequest) (*DriverHistoryResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateDriverHistory not implemented")
-}
-func (UnimplementedDriverHistoryServiceServer) DeleteDriverHistory(context.Context, *DeleteDriverHistoryRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeleteDriverHistory not implemented")
 }
 func (UnimplementedDriverHistoryServiceServer) GetDriverHistoriesByDriverID(context.Context, *GetDriverHistoriesByDriverIDRequest) (*DriverHistoryListResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDriverHistoriesByDriverID not implemented")
@@ -407,24 +390,6 @@ func RegisterDriverHistoryServiceServer(s grpc.ServiceRegistrar, srv DriverHisto
 	s.RegisterService(&DriverHistoryService_ServiceDesc, srv)
 }
 
-func _DriverHistoryService_CreateDriverHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateDriverHistoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DriverHistoryServiceServer).CreateDriverHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DriverHistoryService_CreateDriverHistory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHistoryServiceServer).CreateDriverHistory(ctx, req.(*CreateDriverHistoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _DriverHistoryService_GetDriverHistoryByID_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetDriverHistoryByIDRequest)
 	if err := dec(in); err != nil {
@@ -439,6 +404,24 @@ func _DriverHistoryService_GetDriverHistoryByID_Handler(srv interface{}, ctx con
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DriverHistoryServiceServer).GetDriverHistoryByID(ctx, req.(*GetDriverHistoryByIDRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DriverHistoryService_GetDriverHistories_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetDriverHistoryRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverHistoryServiceServer).GetDriverHistories(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverHistoryService_GetDriverHistories_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverHistoryServiceServer).GetDriverHistories(ctx, req.(*GetDriverHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -475,24 +458,6 @@ func _DriverHistoryService_UpdateDriverHistory_Handler(srv interface{}, ctx cont
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DriverHistoryServiceServer).UpdateDriverHistory(ctx, req.(*UpdateDriverHistoryRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _DriverHistoryService_DeleteDriverHistory_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteDriverHistoryRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DriverHistoryServiceServer).DeleteDriverHistory(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: DriverHistoryService_DeleteDriverHistory_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverHistoryServiceServer).DeleteDriverHistory(ctx, req.(*DeleteDriverHistoryRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -793,12 +758,12 @@ var DriverHistoryService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*DriverHistoryServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreateDriverHistory",
-			Handler:    _DriverHistoryService_CreateDriverHistory_Handler,
-		},
-		{
 			MethodName: "GetDriverHistoryByID",
 			Handler:    _DriverHistoryService_GetDriverHistoryByID_Handler,
+		},
+		{
+			MethodName: "GetDriverHistories",
+			Handler:    _DriverHistoryService_GetDriverHistories_Handler,
 		},
 		{
 			MethodName: "ReadAllDriverHistories",
@@ -807,10 +772,6 @@ var DriverHistoryService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "UpdateDriverHistory",
 			Handler:    _DriverHistoryService_UpdateDriverHistory_Handler,
-		},
-		{
-			MethodName: "DeleteDriverHistory",
-			Handler:    _DriverHistoryService_DeleteDriverHistory_Handler,
 		},
 		{
 			MethodName: "GetDriverHistoriesByDriverID",

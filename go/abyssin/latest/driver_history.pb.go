@@ -10,7 +10,7 @@ import (
 	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
-	emptypb "google.golang.org/protobuf/types/known/emptypb"
+	_ "google.golang.org/protobuf/types/known/emptypb"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 	reflect "reflect"
 	sync "sync"
@@ -92,6 +92,7 @@ type DriverHistory struct {
 	ZoneId        string                 `protobuf:"bytes,6,opt,name=zone_id,json=zoneId,proto3" json:"zone_id,omitempty"`
 	CreatedAt     *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
 	UpdatedAt     *timestamppb.Timestamp `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Command       *Command               `protobuf:"bytes,9,opt,name=command,proto3" json:"command,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -178,6 +179,13 @@ func (x *DriverHistory) GetCreatedAt() *timestamppb.Timestamp {
 func (x *DriverHistory) GetUpdatedAt() *timestamppb.Timestamp {
 	if x != nil {
 		return x.UpdatedAt
+	}
+	return nil
+}
+
+func (x *DriverHistory) GetCommand() *Command {
+	if x != nil {
+		return x.Command
 	}
 	return nil
 }
@@ -270,6 +278,66 @@ func (x *DriverHistoryListResponse) GetDriverHistories() []*DriverHistory {
 	return nil
 }
 
+type DriverHistoriesResponse struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	DriverHistories []*DriverHistory       `protobuf:"bytes,1,rep,name=driver_histories,json=driverHistories,proto3" json:"driver_histories,omitempty"`
+	TotalCount      int32                  `protobuf:"varint,2,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`
+	FeeTotal        int32                  `protobuf:"varint,3,opt,name=fee_total,json=feeTotal,proto3" json:"fee_total,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *DriverHistoriesResponse) Reset() {
+	*x = DriverHistoriesResponse{}
+	mi := &file_driver_history_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DriverHistoriesResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DriverHistoriesResponse) ProtoMessage() {}
+
+func (x *DriverHistoriesResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_driver_history_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DriverHistoriesResponse.ProtoReflect.Descriptor instead.
+func (*DriverHistoriesResponse) Descriptor() ([]byte, []int) {
+	return file_driver_history_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *DriverHistoriesResponse) GetDriverHistories() []*DriverHistory {
+	if x != nil {
+		return x.DriverHistories
+	}
+	return nil
+}
+
+func (x *DriverHistoriesResponse) GetTotalCount() int32 {
+	if x != nil {
+		return x.TotalCount
+	}
+	return 0
+}
+
+func (x *DriverHistoriesResponse) GetFeeTotal() int32 {
+	if x != nil {
+		return x.FeeTotal
+	}
+	return 0
+}
+
 type CreateDriverHistoryRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Action        DriverHistoryAction    `protobuf:"varint,1,opt,name=action,proto3,enum=driver_history.DriverHistoryAction" json:"action,omitempty"`
@@ -283,7 +351,7 @@ type CreateDriverHistoryRequest struct {
 
 func (x *CreateDriverHistoryRequest) Reset() {
 	*x = CreateDriverHistoryRequest{}
-	mi := &file_driver_history_proto_msgTypes[3]
+	mi := &file_driver_history_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -295,7 +363,7 @@ func (x *CreateDriverHistoryRequest) String() string {
 func (*CreateDriverHistoryRequest) ProtoMessage() {}
 
 func (x *CreateDriverHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[3]
+	mi := &file_driver_history_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -308,7 +376,7 @@ func (x *CreateDriverHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateDriverHistoryRequest.ProtoReflect.Descriptor instead.
 func (*CreateDriverHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{3}
+	return file_driver_history_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *CreateDriverHistoryRequest) GetAction() DriverHistoryAction {
@@ -355,7 +423,7 @@ type GetDriverHistoryByIDRequest struct {
 
 func (x *GetDriverHistoryByIDRequest) Reset() {
 	*x = GetDriverHistoryByIDRequest{}
-	mi := &file_driver_history_proto_msgTypes[4]
+	mi := &file_driver_history_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -367,7 +435,7 @@ func (x *GetDriverHistoryByIDRequest) String() string {
 func (*GetDriverHistoryByIDRequest) ProtoMessage() {}
 
 func (x *GetDriverHistoryByIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[4]
+	mi := &file_driver_history_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -380,7 +448,7 @@ func (x *GetDriverHistoryByIDRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetDriverHistoryByIDRequest.ProtoReflect.Descriptor instead.
 func (*GetDriverHistoryByIDRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{4}
+	return file_driver_history_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetDriverHistoryByIDRequest) GetId() string {
@@ -400,7 +468,7 @@ type ReadAllDriverHistoriesRequest struct {
 
 func (x *ReadAllDriverHistoriesRequest) Reset() {
 	*x = ReadAllDriverHistoriesRequest{}
-	mi := &file_driver_history_proto_msgTypes[5]
+	mi := &file_driver_history_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -412,7 +480,7 @@ func (x *ReadAllDriverHistoriesRequest) String() string {
 func (*ReadAllDriverHistoriesRequest) ProtoMessage() {}
 
 func (x *ReadAllDriverHistoriesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[5]
+	mi := &file_driver_history_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -425,7 +493,7 @@ func (x *ReadAllDriverHistoriesRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadAllDriverHistoriesRequest.ProtoReflect.Descriptor instead.
 func (*ReadAllDriverHistoriesRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{5}
+	return file_driver_history_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *ReadAllDriverHistoriesRequest) GetOffset() int32 {
@@ -456,7 +524,7 @@ type UpdateDriverHistoryRequest struct {
 
 func (x *UpdateDriverHistoryRequest) Reset() {
 	*x = UpdateDriverHistoryRequest{}
-	mi := &file_driver_history_proto_msgTypes[6]
+	mi := &file_driver_history_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -468,7 +536,7 @@ func (x *UpdateDriverHistoryRequest) String() string {
 func (*UpdateDriverHistoryRequest) ProtoMessage() {}
 
 func (x *UpdateDriverHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[6]
+	mi := &file_driver_history_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -481,7 +549,7 @@ func (x *UpdateDriverHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateDriverHistoryRequest.ProtoReflect.Descriptor instead.
 func (*UpdateDriverHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{6}
+	return file_driver_history_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UpdateDriverHistoryRequest) GetId() string {
@@ -535,7 +603,7 @@ type DeleteDriverHistoryRequest struct {
 
 func (x *DeleteDriverHistoryRequest) Reset() {
 	*x = DeleteDriverHistoryRequest{}
-	mi := &file_driver_history_proto_msgTypes[7]
+	mi := &file_driver_history_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -547,7 +615,7 @@ func (x *DeleteDriverHistoryRequest) String() string {
 func (*DeleteDriverHistoryRequest) ProtoMessage() {}
 
 func (x *DeleteDriverHistoryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[7]
+	mi := &file_driver_history_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -560,7 +628,7 @@ func (x *DeleteDriverHistoryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DeleteDriverHistoryRequest.ProtoReflect.Descriptor instead.
 func (*DeleteDriverHistoryRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{7}
+	return file_driver_history_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *DeleteDriverHistoryRequest) GetId() string {
@@ -581,7 +649,7 @@ type GetDriverHistoriesByDriverIDRequest struct {
 
 func (x *GetDriverHistoriesByDriverIDRequest) Reset() {
 	*x = GetDriverHistoriesByDriverIDRequest{}
-	mi := &file_driver_history_proto_msgTypes[8]
+	mi := &file_driver_history_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -593,7 +661,7 @@ func (x *GetDriverHistoriesByDriverIDRequest) String() string {
 func (*GetDriverHistoriesByDriverIDRequest) ProtoMessage() {}
 
 func (x *GetDriverHistoriesByDriverIDRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[8]
+	mi := &file_driver_history_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -606,7 +674,7 @@ func (x *GetDriverHistoriesByDriverIDRequest) ProtoReflect() protoreflect.Messag
 
 // Deprecated: Use GetDriverHistoriesByDriverIDRequest.ProtoReflect.Descriptor instead.
 func (*GetDriverHistoriesByDriverIDRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{8}
+	return file_driver_history_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetDriverHistoriesByDriverIDRequest) GetDriverId() string {
@@ -641,7 +709,7 @@ type GetDriverHistoriesByActionRequest struct {
 
 func (x *GetDriverHistoriesByActionRequest) Reset() {
 	*x = GetDriverHistoriesByActionRequest{}
-	mi := &file_driver_history_proto_msgTypes[9]
+	mi := &file_driver_history_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -653,7 +721,7 @@ func (x *GetDriverHistoriesByActionRequest) String() string {
 func (*GetDriverHistoriesByActionRequest) ProtoMessage() {}
 
 func (x *GetDriverHistoriesByActionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[9]
+	mi := &file_driver_history_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -666,7 +734,7 @@ func (x *GetDriverHistoriesByActionRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetDriverHistoriesByActionRequest.ProtoReflect.Descriptor instead.
 func (*GetDriverHistoriesByActionRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{9}
+	return file_driver_history_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetDriverHistoriesByActionRequest) GetAction() DriverHistoryAction {
@@ -701,7 +769,7 @@ type GetDriverHistoriesByDriverIDAndActionRequest struct {
 
 func (x *GetDriverHistoriesByDriverIDAndActionRequest) Reset() {
 	*x = GetDriverHistoriesByDriverIDAndActionRequest{}
-	mi := &file_driver_history_proto_msgTypes[10]
+	mi := &file_driver_history_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -713,7 +781,7 @@ func (x *GetDriverHistoriesByDriverIDAndActionRequest) String() string {
 func (*GetDriverHistoriesByDriverIDAndActionRequest) ProtoMessage() {}
 
 func (x *GetDriverHistoriesByDriverIDAndActionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[10]
+	mi := &file_driver_history_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -726,7 +794,7 @@ func (x *GetDriverHistoriesByDriverIDAndActionRequest) ProtoReflect() protorefle
 
 // Deprecated: Use GetDriverHistoriesByDriverIDAndActionRequest.ProtoReflect.Descriptor instead.
 func (*GetDriverHistoriesByDriverIDAndActionRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{10}
+	return file_driver_history_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetDriverHistoriesByDriverIDAndActionRequest) GetAction() DriverHistoryAction {
@@ -761,7 +829,7 @@ type GetDriverHistoriesByDriverIDBetweenDatesRequest struct {
 
 func (x *GetDriverHistoriesByDriverIDBetweenDatesRequest) Reset() {
 	*x = GetDriverHistoriesByDriverIDBetweenDatesRequest{}
-	mi := &file_driver_history_proto_msgTypes[11]
+	mi := &file_driver_history_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -773,7 +841,7 @@ func (x *GetDriverHistoriesByDriverIDBetweenDatesRequest) String() string {
 func (*GetDriverHistoriesByDriverIDBetweenDatesRequest) ProtoMessage() {}
 
 func (x *GetDriverHistoriesByDriverIDBetweenDatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[11]
+	mi := &file_driver_history_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -786,7 +854,7 @@ func (x *GetDriverHistoriesByDriverIDBetweenDatesRequest) ProtoReflect() protore
 
 // Deprecated: Use GetDriverHistoriesByDriverIDBetweenDatesRequest.ProtoReflect.Descriptor instead.
 func (*GetDriverHistoriesByDriverIDBetweenDatesRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{11}
+	return file_driver_history_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetDriverHistoriesByDriverIDBetweenDatesRequest) GetDriverId() string {
@@ -821,7 +889,7 @@ type GetDriverHistoriesByActionBetweenDatesRequest struct {
 
 func (x *GetDriverHistoriesByActionBetweenDatesRequest) Reset() {
 	*x = GetDriverHistoriesByActionBetweenDatesRequest{}
-	mi := &file_driver_history_proto_msgTypes[12]
+	mi := &file_driver_history_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -833,7 +901,7 @@ func (x *GetDriverHistoriesByActionBetweenDatesRequest) String() string {
 func (*GetDriverHistoriesByActionBetweenDatesRequest) ProtoMessage() {}
 
 func (x *GetDriverHistoriesByActionBetweenDatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[12]
+	mi := &file_driver_history_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -846,7 +914,7 @@ func (x *GetDriverHistoriesByActionBetweenDatesRequest) ProtoReflect() protorefl
 
 // Deprecated: Use GetDriverHistoriesByActionBetweenDatesRequest.ProtoReflect.Descriptor instead.
 func (*GetDriverHistoriesByActionBetweenDatesRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{12}
+	return file_driver_history_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *GetDriverHistoriesByActionBetweenDatesRequest) GetAction() DriverHistoryAction {
@@ -880,7 +948,7 @@ type CountAcceptedCommandsByDayRequest struct {
 
 func (x *CountAcceptedCommandsByDayRequest) Reset() {
 	*x = CountAcceptedCommandsByDayRequest{}
-	mi := &file_driver_history_proto_msgTypes[13]
+	mi := &file_driver_history_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -892,7 +960,7 @@ func (x *CountAcceptedCommandsByDayRequest) String() string {
 func (*CountAcceptedCommandsByDayRequest) ProtoMessage() {}
 
 func (x *CountAcceptedCommandsByDayRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[13]
+	mi := &file_driver_history_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -905,7 +973,7 @@ func (x *CountAcceptedCommandsByDayRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use CountAcceptedCommandsByDayRequest.ProtoReflect.Descriptor instead.
 func (*CountAcceptedCommandsByDayRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{13}
+	return file_driver_history_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *CountAcceptedCommandsByDayRequest) GetStartDate() *timestamppb.Timestamp {
@@ -932,7 +1000,7 @@ type CountAcceptedCommandsByDayForAllDriversRequest struct {
 
 func (x *CountAcceptedCommandsByDayForAllDriversRequest) Reset() {
 	*x = CountAcceptedCommandsByDayForAllDriversRequest{}
-	mi := &file_driver_history_proto_msgTypes[14]
+	mi := &file_driver_history_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -944,7 +1012,7 @@ func (x *CountAcceptedCommandsByDayForAllDriversRequest) String() string {
 func (*CountAcceptedCommandsByDayForAllDriversRequest) ProtoMessage() {}
 
 func (x *CountAcceptedCommandsByDayForAllDriversRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[14]
+	mi := &file_driver_history_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -957,7 +1025,7 @@ func (x *CountAcceptedCommandsByDayForAllDriversRequest) ProtoReflect() protoref
 
 // Deprecated: Use CountAcceptedCommandsByDayForAllDriversRequest.ProtoReflect.Descriptor instead.
 func (*CountAcceptedCommandsByDayForAllDriversRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{14}
+	return file_driver_history_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *CountAcceptedCommandsByDayForAllDriversRequest) GetStartDate() *timestamppb.Timestamp {
@@ -984,7 +1052,7 @@ type CommandCountByDay struct {
 
 func (x *CommandCountByDay) Reset() {
 	*x = CommandCountByDay{}
-	mi := &file_driver_history_proto_msgTypes[15]
+	mi := &file_driver_history_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -996,7 +1064,7 @@ func (x *CommandCountByDay) String() string {
 func (*CommandCountByDay) ProtoMessage() {}
 
 func (x *CommandCountByDay) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[15]
+	mi := &file_driver_history_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1009,7 +1077,7 @@ func (x *CommandCountByDay) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommandCountByDay.ProtoReflect.Descriptor instead.
 func (*CommandCountByDay) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{15}
+	return file_driver_history_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *CommandCountByDay) GetDate() string {
@@ -1035,7 +1103,7 @@ type CommandCountByDayListResponse struct {
 
 func (x *CommandCountByDayListResponse) Reset() {
 	*x = CommandCountByDayListResponse{}
-	mi := &file_driver_history_proto_msgTypes[16]
+	mi := &file_driver_history_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1047,7 +1115,7 @@ func (x *CommandCountByDayListResponse) String() string {
 func (*CommandCountByDayListResponse) ProtoMessage() {}
 
 func (x *CommandCountByDayListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[16]
+	mi := &file_driver_history_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1060,7 +1128,7 @@ func (x *CommandCountByDayListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CommandCountByDayListResponse.ProtoReflect.Descriptor instead.
 func (*CommandCountByDayListResponse) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{16}
+	return file_driver_history_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *CommandCountByDayListResponse) GetItems() []*CommandCountByDay {
@@ -1080,7 +1148,7 @@ type CountActionsByDriverRequest struct {
 
 func (x *CountActionsByDriverRequest) Reset() {
 	*x = CountActionsByDriverRequest{}
-	mi := &file_driver_history_proto_msgTypes[17]
+	mi := &file_driver_history_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1092,7 +1160,7 @@ func (x *CountActionsByDriverRequest) String() string {
 func (*CountActionsByDriverRequest) ProtoMessage() {}
 
 func (x *CountActionsByDriverRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[17]
+	mi := &file_driver_history_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1105,7 +1173,7 @@ func (x *CountActionsByDriverRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CountActionsByDriverRequest.ProtoReflect.Descriptor instead.
 func (*CountActionsByDriverRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{17}
+	return file_driver_history_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *CountActionsByDriverRequest) GetStartDate() *timestamppb.Timestamp {
@@ -1132,7 +1200,7 @@ type ActionCount struct {
 
 func (x *ActionCount) Reset() {
 	*x = ActionCount{}
-	mi := &file_driver_history_proto_msgTypes[18]
+	mi := &file_driver_history_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1144,7 +1212,7 @@ func (x *ActionCount) String() string {
 func (*ActionCount) ProtoMessage() {}
 
 func (x *ActionCount) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[18]
+	mi := &file_driver_history_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1157,7 +1225,7 @@ func (x *ActionCount) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionCount.ProtoReflect.Descriptor instead.
 func (*ActionCount) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{18}
+	return file_driver_history_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *ActionCount) GetAction() DriverHistoryAction {
@@ -1183,7 +1251,7 @@ type ActionCountListResponse struct {
 
 func (x *ActionCountListResponse) Reset() {
 	*x = ActionCountListResponse{}
-	mi := &file_driver_history_proto_msgTypes[19]
+	mi := &file_driver_history_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1195,7 +1263,7 @@ func (x *ActionCountListResponse) String() string {
 func (*ActionCountListResponse) ProtoMessage() {}
 
 func (x *ActionCountListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[19]
+	mi := &file_driver_history_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1208,7 +1276,7 @@ func (x *ActionCountListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ActionCountListResponse.ProtoReflect.Descriptor instead.
 func (*ActionCountListResponse) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{19}
+	return file_driver_history_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ActionCountListResponse) GetItems() []*ActionCount {
@@ -1227,7 +1295,7 @@ type GetWorkedHoursByDayRequest struct {
 
 func (x *GetWorkedHoursByDayRequest) Reset() {
 	*x = GetWorkedHoursByDayRequest{}
-	mi := &file_driver_history_proto_msgTypes[20]
+	mi := &file_driver_history_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1239,7 +1307,7 @@ func (x *GetWorkedHoursByDayRequest) String() string {
 func (*GetWorkedHoursByDayRequest) ProtoMessage() {}
 
 func (x *GetWorkedHoursByDayRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[20]
+	mi := &file_driver_history_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1252,7 +1320,7 @@ func (x *GetWorkedHoursByDayRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetWorkedHoursByDayRequest.ProtoReflect.Descriptor instead.
 func (*GetWorkedHoursByDayRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{20}
+	return file_driver_history_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *GetWorkedHoursByDayRequest) GetDay() *timestamppb.Timestamp {
@@ -1272,7 +1340,7 @@ type GetWorkedHoursBetweenDatesRequest struct {
 
 func (x *GetWorkedHoursBetweenDatesRequest) Reset() {
 	*x = GetWorkedHoursBetweenDatesRequest{}
-	mi := &file_driver_history_proto_msgTypes[21]
+	mi := &file_driver_history_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1284,7 +1352,7 @@ func (x *GetWorkedHoursBetweenDatesRequest) String() string {
 func (*GetWorkedHoursBetweenDatesRequest) ProtoMessage() {}
 
 func (x *GetWorkedHoursBetweenDatesRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[21]
+	mi := &file_driver_history_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1297,7 +1365,7 @@ func (x *GetWorkedHoursBetweenDatesRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetWorkedHoursBetweenDatesRequest.ProtoReflect.Descriptor instead.
 func (*GetWorkedHoursBetweenDatesRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{21}
+	return file_driver_history_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *GetWorkedHoursBetweenDatesRequest) GetStartDate() *timestamppb.Timestamp {
@@ -1326,7 +1394,7 @@ type WorkedHours struct {
 
 func (x *WorkedHours) Reset() {
 	*x = WorkedHours{}
-	mi := &file_driver_history_proto_msgTypes[22]
+	mi := &file_driver_history_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1338,7 +1406,7 @@ func (x *WorkedHours) String() string {
 func (*WorkedHours) ProtoMessage() {}
 
 func (x *WorkedHours) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[22]
+	mi := &file_driver_history_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1351,7 +1419,7 @@ func (x *WorkedHours) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkedHours.ProtoReflect.Descriptor instead.
 func (*WorkedHours) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{22}
+	return file_driver_history_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *WorkedHours) GetDriverId() string {
@@ -1391,7 +1459,7 @@ type WorkedHoursResponse struct {
 
 func (x *WorkedHoursResponse) Reset() {
 	*x = WorkedHoursResponse{}
-	mi := &file_driver_history_proto_msgTypes[23]
+	mi := &file_driver_history_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1403,7 +1471,7 @@ func (x *WorkedHoursResponse) String() string {
 func (*WorkedHoursResponse) ProtoMessage() {}
 
 func (x *WorkedHoursResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[23]
+	mi := &file_driver_history_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1416,7 +1484,7 @@ func (x *WorkedHoursResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkedHoursResponse.ProtoReflect.Descriptor instead.
 func (*WorkedHoursResponse) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{23}
+	return file_driver_history_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *WorkedHoursResponse) GetWorkedHours() *WorkedHours {
@@ -1435,7 +1503,7 @@ type WorkedHoursListResponse struct {
 
 func (x *WorkedHoursListResponse) Reset() {
 	*x = WorkedHoursListResponse{}
-	mi := &file_driver_history_proto_msgTypes[24]
+	mi := &file_driver_history_proto_msgTypes[25]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1447,7 +1515,7 @@ func (x *WorkedHoursListResponse) String() string {
 func (*WorkedHoursListResponse) ProtoMessage() {}
 
 func (x *WorkedHoursListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[24]
+	mi := &file_driver_history_proto_msgTypes[25]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1460,7 +1528,7 @@ func (x *WorkedHoursListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WorkedHoursListResponse.ProtoReflect.Descriptor instead.
 func (*WorkedHoursListResponse) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{24}
+	return file_driver_history_proto_rawDescGZIP(), []int{25}
 }
 
 func (x *WorkedHoursListResponse) GetItems() []*WorkedHours {
@@ -1480,7 +1548,7 @@ type GetTotalCommandFeesByDayRequest struct {
 
 func (x *GetTotalCommandFeesByDayRequest) Reset() {
 	*x = GetTotalCommandFeesByDayRequest{}
-	mi := &file_driver_history_proto_msgTypes[25]
+	mi := &file_driver_history_proto_msgTypes[26]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1492,7 +1560,7 @@ func (x *GetTotalCommandFeesByDayRequest) String() string {
 func (*GetTotalCommandFeesByDayRequest) ProtoMessage() {}
 
 func (x *GetTotalCommandFeesByDayRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[25]
+	mi := &file_driver_history_proto_msgTypes[26]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1505,7 +1573,7 @@ func (x *GetTotalCommandFeesByDayRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetTotalCommandFeesByDayRequest.ProtoReflect.Descriptor instead.
 func (*GetTotalCommandFeesByDayRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{25}
+	return file_driver_history_proto_rawDescGZIP(), []int{26}
 }
 
 func (x *GetTotalCommandFeesByDayRequest) GetStartDate() *timestamppb.Timestamp {
@@ -1522,6 +1590,74 @@ func (x *GetTotalCommandFeesByDayRequest) GetEndDate() *timestamppb.Timestamp {
 	return nil
 }
 
+type GetDriverHistoryRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StartDate     *timestamppb.Timestamp `protobuf:"bytes,2,opt,name=start_date,json=startDate,proto3" json:"start_date,omitempty"`
+	EndDate       *timestamppb.Timestamp `protobuf:"bytes,3,opt,name=end_date,json=endDate,proto3" json:"end_date,omitempty"`
+	Limit         int32                  `protobuf:"varint,4,opt,name=limit,proto3" json:"limit,omitempty"`
+	Offset        int32                  `protobuf:"varint,5,opt,name=offset,proto3" json:"offset,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetDriverHistoryRequest) Reset() {
+	*x = GetDriverHistoryRequest{}
+	mi := &file_driver_history_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetDriverHistoryRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetDriverHistoryRequest) ProtoMessage() {}
+
+func (x *GetDriverHistoryRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_driver_history_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetDriverHistoryRequest.ProtoReflect.Descriptor instead.
+func (*GetDriverHistoryRequest) Descriptor() ([]byte, []int) {
+	return file_driver_history_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *GetDriverHistoryRequest) GetStartDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.StartDate
+	}
+	return nil
+}
+
+func (x *GetDriverHistoryRequest) GetEndDate() *timestamppb.Timestamp {
+	if x != nil {
+		return x.EndDate
+	}
+	return nil
+}
+
+func (x *GetDriverHistoryRequest) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *GetDriverHistoryRequest) GetOffset() int32 {
+	if x != nil {
+		return x.Offset
+	}
+	return 0
+}
+
 type FeeByDay struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Date          string                 `protobuf:"bytes,1,opt,name=date,proto3" json:"date,omitempty"`
@@ -1532,7 +1668,7 @@ type FeeByDay struct {
 
 func (x *FeeByDay) Reset() {
 	*x = FeeByDay{}
-	mi := &file_driver_history_proto_msgTypes[26]
+	mi := &file_driver_history_proto_msgTypes[28]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1544,7 +1680,7 @@ func (x *FeeByDay) String() string {
 func (*FeeByDay) ProtoMessage() {}
 
 func (x *FeeByDay) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[26]
+	mi := &file_driver_history_proto_msgTypes[28]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1557,7 +1693,7 @@ func (x *FeeByDay) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeeByDay.ProtoReflect.Descriptor instead.
 func (*FeeByDay) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{26}
+	return file_driver_history_proto_rawDescGZIP(), []int{28}
 }
 
 func (x *FeeByDay) GetDate() string {
@@ -1583,7 +1719,7 @@ type FeeByDayListResponse struct {
 
 func (x *FeeByDayListResponse) Reset() {
 	*x = FeeByDayListResponse{}
-	mi := &file_driver_history_proto_msgTypes[27]
+	mi := &file_driver_history_proto_msgTypes[29]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1595,7 +1731,7 @@ func (x *FeeByDayListResponse) String() string {
 func (*FeeByDayListResponse) ProtoMessage() {}
 
 func (x *FeeByDayListResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[27]
+	mi := &file_driver_history_proto_msgTypes[29]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1608,7 +1744,7 @@ func (x *FeeByDayListResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeeByDayListResponse.ProtoReflect.Descriptor instead.
 func (*FeeByDayListResponse) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{27}
+	return file_driver_history_proto_rawDescGZIP(), []int{29}
 }
 
 func (x *FeeByDayListResponse) GetItems() []*FeeByDay {
@@ -1627,7 +1763,7 @@ type TrackJoinZoneRequest struct {
 
 func (x *TrackJoinZoneRequest) Reset() {
 	*x = TrackJoinZoneRequest{}
-	mi := &file_driver_history_proto_msgTypes[28]
+	mi := &file_driver_history_proto_msgTypes[30]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1639,7 +1775,7 @@ func (x *TrackJoinZoneRequest) String() string {
 func (*TrackJoinZoneRequest) ProtoMessage() {}
 
 func (x *TrackJoinZoneRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[28]
+	mi := &file_driver_history_proto_msgTypes[30]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1652,7 +1788,7 @@ func (x *TrackJoinZoneRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrackJoinZoneRequest.ProtoReflect.Descriptor instead.
 func (*TrackJoinZoneRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{28}
+	return file_driver_history_proto_rawDescGZIP(), []int{30}
 }
 
 func (x *TrackJoinZoneRequest) GetZoneId() string {
@@ -1671,7 +1807,7 @@ type TrackLeaveZoneRequest struct {
 
 func (x *TrackLeaveZoneRequest) Reset() {
 	*x = TrackLeaveZoneRequest{}
-	mi := &file_driver_history_proto_msgTypes[29]
+	mi := &file_driver_history_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1683,7 +1819,7 @@ func (x *TrackLeaveZoneRequest) String() string {
 func (*TrackLeaveZoneRequest) ProtoMessage() {}
 
 func (x *TrackLeaveZoneRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[29]
+	mi := &file_driver_history_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1696,7 +1832,7 @@ func (x *TrackLeaveZoneRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrackLeaveZoneRequest.ProtoReflect.Descriptor instead.
 func (*TrackLeaveZoneRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{29}
+	return file_driver_history_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *TrackLeaveZoneRequest) GetZoneId() string {
@@ -1716,7 +1852,7 @@ type TrackAcceptCommandRequest struct {
 
 func (x *TrackAcceptCommandRequest) Reset() {
 	*x = TrackAcceptCommandRequest{}
-	mi := &file_driver_history_proto_msgTypes[30]
+	mi := &file_driver_history_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1728,7 +1864,7 @@ func (x *TrackAcceptCommandRequest) String() string {
 func (*TrackAcceptCommandRequest) ProtoMessage() {}
 
 func (x *TrackAcceptCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[30]
+	mi := &file_driver_history_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1741,7 +1877,7 @@ func (x *TrackAcceptCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrackAcceptCommandRequest.ProtoReflect.Descriptor instead.
 func (*TrackAcceptCommandRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{30}
+	return file_driver_history_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *TrackAcceptCommandRequest) GetCommandId() string {
@@ -1768,7 +1904,7 @@ type TrackShareCommandRequest struct {
 
 func (x *TrackShareCommandRequest) Reset() {
 	*x = TrackShareCommandRequest{}
-	mi := &file_driver_history_proto_msgTypes[31]
+	mi := &file_driver_history_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1780,7 +1916,7 @@ func (x *TrackShareCommandRequest) String() string {
 func (*TrackShareCommandRequest) ProtoMessage() {}
 
 func (x *TrackShareCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[31]
+	mi := &file_driver_history_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1793,7 +1929,7 @@ func (x *TrackShareCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrackShareCommandRequest.ProtoReflect.Descriptor instead.
 func (*TrackShareCommandRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{31}
+	return file_driver_history_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *TrackShareCommandRequest) GetCommandId() string {
@@ -1820,7 +1956,7 @@ type TrackDeliverCommandRequest struct {
 
 func (x *TrackDeliverCommandRequest) Reset() {
 	*x = TrackDeliverCommandRequest{}
-	mi := &file_driver_history_proto_msgTypes[32]
+	mi := &file_driver_history_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1832,7 +1968,7 @@ func (x *TrackDeliverCommandRequest) String() string {
 func (*TrackDeliverCommandRequest) ProtoMessage() {}
 
 func (x *TrackDeliverCommandRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_driver_history_proto_msgTypes[32]
+	mi := &file_driver_history_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1845,7 +1981,7 @@ func (x *TrackDeliverCommandRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TrackDeliverCommandRequest.ProtoReflect.Descriptor instead.
 func (*TrackDeliverCommandRequest) Descriptor() ([]byte, []int) {
-	return file_driver_history_proto_rawDescGZIP(), []int{32}
+	return file_driver_history_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *TrackDeliverCommandRequest) GetCommandId() string {
@@ -1866,7 +2002,7 @@ var File_driver_history_proto protoreflect.FileDescriptor
 
 const file_driver_history_proto_rawDesc = "" +
 	"\n" +
-	"\x14driver_history.proto\x12\x0edriver_history\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\"\xc8\x02\n" +
+	"\x14driver_history.proto\x12\x0edriver_history\x1a\x1fgoogle/protobuf/timestamp.proto\x1a\x1bgoogle/protobuf/empty.proto\x1a\x1cgoogle/api/annotations.proto\x1a\rcommand.proto\"\xf0\x02\n" +
 	"\rDriverHistory\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12;\n" +
 	"\x06action\x18\x02 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\x1d\n" +
@@ -1879,11 +2015,17 @@ const file_driver_history_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampR\tcreatedAt\x129\n" +
 	"\n" +
-	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\"]\n" +
+	"updated_at\x18\b \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12&\n" +
+	"\acommand\x18\t \x01(\v2\f.cat.CommandR\acommand\"]\n" +
 	"\x15DriverHistoryResponse\x12D\n" +
 	"\x0edriver_history\x18\x01 \x01(\v2\x1d.driver_history.DriverHistoryR\rdriverHistory\"e\n" +
 	"\x19DriverHistoryListResponse\x12H\n" +
-	"\x10driver_histories\x18\x01 \x03(\v2\x1d.driver_history.DriverHistoryR\x0fdriverHistories\"\xcf\x01\n" +
+	"\x10driver_histories\x18\x01 \x03(\v2\x1d.driver_history.DriverHistoryR\x0fdriverHistories\"\xa1\x01\n" +
+	"\x17DriverHistoriesResponse\x12H\n" +
+	"\x10driver_histories\x18\x01 \x03(\v2\x1d.driver_history.DriverHistoryR\x0fdriverHistories\x12\x1f\n" +
+	"\vtotal_count\x18\x02 \x01(\x05R\n" +
+	"totalCount\x12\x1b\n" +
+	"\tfee_total\x18\x03 \x01(\x05R\bfeeTotal\"\xcf\x01\n" +
 	"\x1aCreateDriverHistoryRequest\x12;\n" +
 	"\x06action\x18\x01 \x01(\x0e2#.driver_history.DriverHistoryActionR\x06action\x12\x1d\n" +
 	"\n" +
@@ -1970,7 +2112,13 @@ const file_driver_history_proto_rawDesc = "" +
 	"\x1fGetTotalCommandFeesByDayRequest\x129\n" +
 	"\n" +
 	"start_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
-	"\bend_date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\"4\n" +
+	"\bend_date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\"\xb9\x01\n" +
+	"\x17GetDriverHistoryRequest\x129\n" +
+	"\n" +
+	"start_date\x18\x02 \x01(\v2\x1a.google.protobuf.TimestampR\tstartDate\x125\n" +
+	"\bend_date\x18\x03 \x01(\v2\x1a.google.protobuf.TimestampR\aendDate\x12\x14\n" +
+	"\x05limit\x18\x04 \x01(\x05R\x05limit\x12\x16\n" +
+	"\x06offset\x18\x05 \x01(\x05R\x06offset\"4\n" +
 	"\bFeeByDay\x12\x12\n" +
 	"\x04date\x18\x01 \x01(\tR\x04date\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x01R\x05total\"F\n" +
@@ -2002,13 +2150,12 @@ const file_driver_history_proto_rawDesc = "" +
 	"LEAVE_ZONE\x10\x02\x12\x12\n" +
 	"\x0eACCEPT_COMMAND\x10\x03\x12\x11\n" +
 	"\rSHARE_COMMAND\x10\x04\x12\x13\n" +
-	"\x0fDELIVER_COMMAND\x10\x052\x87\x1c\n" +
-	"\x14DriverHistoryService\x12\x91\x01\n" +
-	"\x13CreateDriverHistory\x12*.driver_history.CreateDriverHistoryRequest\x1a%.driver_history.DriverHistoryResponse\"'\x82\xd3\xe4\x93\x02!:\x01*\"\x1c/v1/abyssin/driver-histories\x12\x95\x01\n" +
-	"\x14GetDriverHistoryByID\x12+.driver_history.GetDriverHistoryByIDRequest\x1a%.driver_history.DriverHistoryResponse\")\x82\xd3\xe4\x93\x02#\x12!/v1/abyssin/driver-histories/{id}\x12\x98\x01\n" +
+	"\x0fDELIVER_COMMAND\x10\x052\x88\x1b\n" +
+	"\x14DriverHistoryService\x12\x95\x01\n" +
+	"\x14GetDriverHistoryByID\x12+.driver_history.GetDriverHistoryByIDRequest\x1a%.driver_history.DriverHistoryResponse\")\x82\xd3\xe4\x93\x02#\x12!/v1/abyssin/driver-histories/{id}\x12\x99\x01\n" +
+	"\x12GetDriverHistories\x12'.driver_history.GetDriverHistoryRequest\x1a'.driver_history.DriverHistoriesResponse\"1\x82\xd3\xe4\x93\x02+\x12)/v1/abyssin/drivers/{driver_id}/histories\x12\x98\x01\n" +
 	"\x16ReadAllDriverHistories\x12-.driver_history.ReadAllDriverHistoriesRequest\x1a).driver_history.DriverHistoryListResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/v1/abyssin/driver-histories\x12\x96\x01\n" +
-	"\x13UpdateDriverHistory\x12*.driver_history.UpdateDriverHistoryRequest\x1a%.driver_history.DriverHistoryResponse\",\x82\xd3\xe4\x93\x02&:\x01*\x1a!/v1/abyssin/driver-histories/{id}\x12\x84\x01\n" +
-	"\x13DeleteDriverHistory\x12*.driver_history.DeleteDriverHistoryRequest\x1a\x16.google.protobuf.Empty\")\x82\xd3\xe4\x93\x02#*!/v1/abyssin/driver-histories/{id}\x12\xa5\x01\n" +
+	"\x13UpdateDriverHistory\x12*.driver_history.UpdateDriverHistoryRequest\x1a%.driver_history.DriverHistoryResponse\",\x82\xd3\xe4\x93\x02&:\x01*\x1a!/v1/abyssin/driver-histories/{id}\x12\xa5\x01\n" +
 	"\x1cGetDriverHistoriesByDriverID\x123.driver_history.GetDriverHistoriesByDriverIDRequest\x1a).driver_history.DriverHistoryListResponse\"%\x82\xd3\xe4\x93\x02\x1f\x12\x1d/v1/abyssin/drivers/histories\x12\xb1\x01\n" +
 	"\x1aGetDriverHistoriesByAction\x121.driver_history.GetDriverHistoriesByActionRequest\x1a).driver_history.DriverHistoryListResponse\"5\x82\xd3\xe4\x93\x02/\x12-/v1/abyssin/driver-histories/actions/{action}\x12\xc8\x01\n" +
 	"%GetDriverHistoriesByDriverIDAndAction\x12<.driver_history.GetDriverHistoriesByDriverIDAndActionRequest\x1a).driver_history.DriverHistoryListResponse\"6\x82\xd3\xe4\x93\x020\x12./v1/abyssin/drivers/histories/actions/{action}\x12\xc8\x01\n" +
@@ -2040,124 +2187,128 @@ func file_driver_history_proto_rawDescGZIP() []byte {
 }
 
 var file_driver_history_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_driver_history_proto_msgTypes = make([]protoimpl.MessageInfo, 33)
+var file_driver_history_proto_msgTypes = make([]protoimpl.MessageInfo, 35)
 var file_driver_history_proto_goTypes = []any{
 	(DriverHistoryAction)(0),                                // 0: driver_history.DriverHistoryAction
 	(*DriverHistory)(nil),                                   // 1: driver_history.DriverHistory
 	(*DriverHistoryResponse)(nil),                           // 2: driver_history.DriverHistoryResponse
 	(*DriverHistoryListResponse)(nil),                       // 3: driver_history.DriverHistoryListResponse
-	(*CreateDriverHistoryRequest)(nil),                      // 4: driver_history.CreateDriverHistoryRequest
-	(*GetDriverHistoryByIDRequest)(nil),                     // 5: driver_history.GetDriverHistoryByIDRequest
-	(*ReadAllDriverHistoriesRequest)(nil),                   // 6: driver_history.ReadAllDriverHistoriesRequest
-	(*UpdateDriverHistoryRequest)(nil),                      // 7: driver_history.UpdateDriverHistoryRequest
-	(*DeleteDriverHistoryRequest)(nil),                      // 8: driver_history.DeleteDriverHistoryRequest
-	(*GetDriverHistoriesByDriverIDRequest)(nil),             // 9: driver_history.GetDriverHistoriesByDriverIDRequest
-	(*GetDriverHistoriesByActionRequest)(nil),               // 10: driver_history.GetDriverHistoriesByActionRequest
-	(*GetDriverHistoriesByDriverIDAndActionRequest)(nil),    // 11: driver_history.GetDriverHistoriesByDriverIDAndActionRequest
-	(*GetDriverHistoriesByDriverIDBetweenDatesRequest)(nil), // 12: driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest
-	(*GetDriverHistoriesByActionBetweenDatesRequest)(nil),   // 13: driver_history.GetDriverHistoriesByActionBetweenDatesRequest
-	(*CountAcceptedCommandsByDayRequest)(nil),               // 14: driver_history.CountAcceptedCommandsByDayRequest
-	(*CountAcceptedCommandsByDayForAllDriversRequest)(nil),  // 15: driver_history.CountAcceptedCommandsByDayForAllDriversRequest
-	(*CommandCountByDay)(nil),                               // 16: driver_history.CommandCountByDay
-	(*CommandCountByDayListResponse)(nil),                   // 17: driver_history.CommandCountByDayListResponse
-	(*CountActionsByDriverRequest)(nil),                     // 18: driver_history.CountActionsByDriverRequest
-	(*ActionCount)(nil),                                     // 19: driver_history.ActionCount
-	(*ActionCountListResponse)(nil),                         // 20: driver_history.ActionCountListResponse
-	(*GetWorkedHoursByDayRequest)(nil),                      // 21: driver_history.GetWorkedHoursByDayRequest
-	(*GetWorkedHoursBetweenDatesRequest)(nil),               // 22: driver_history.GetWorkedHoursBetweenDatesRequest
-	(*WorkedHours)(nil),                                     // 23: driver_history.WorkedHours
-	(*WorkedHoursResponse)(nil),                             // 24: driver_history.WorkedHoursResponse
-	(*WorkedHoursListResponse)(nil),                         // 25: driver_history.WorkedHoursListResponse
-	(*GetTotalCommandFeesByDayRequest)(nil),                 // 26: driver_history.GetTotalCommandFeesByDayRequest
-	(*FeeByDay)(nil),                                        // 27: driver_history.FeeByDay
-	(*FeeByDayListResponse)(nil),                            // 28: driver_history.FeeByDayListResponse
-	(*TrackJoinZoneRequest)(nil),                            // 29: driver_history.TrackJoinZoneRequest
-	(*TrackLeaveZoneRequest)(nil),                           // 30: driver_history.TrackLeaveZoneRequest
-	(*TrackAcceptCommandRequest)(nil),                       // 31: driver_history.TrackAcceptCommandRequest
-	(*TrackShareCommandRequest)(nil),                        // 32: driver_history.TrackShareCommandRequest
-	(*TrackDeliverCommandRequest)(nil),                      // 33: driver_history.TrackDeliverCommandRequest
-	(*timestamppb.Timestamp)(nil),                           // 34: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),                                   // 35: google.protobuf.Empty
+	(*DriverHistoriesResponse)(nil),                         // 4: driver_history.DriverHistoriesResponse
+	(*CreateDriverHistoryRequest)(nil),                      // 5: driver_history.CreateDriverHistoryRequest
+	(*GetDriverHistoryByIDRequest)(nil),                     // 6: driver_history.GetDriverHistoryByIDRequest
+	(*ReadAllDriverHistoriesRequest)(nil),                   // 7: driver_history.ReadAllDriverHistoriesRequest
+	(*UpdateDriverHistoryRequest)(nil),                      // 8: driver_history.UpdateDriverHistoryRequest
+	(*DeleteDriverHistoryRequest)(nil),                      // 9: driver_history.DeleteDriverHistoryRequest
+	(*GetDriverHistoriesByDriverIDRequest)(nil),             // 10: driver_history.GetDriverHistoriesByDriverIDRequest
+	(*GetDriverHistoriesByActionRequest)(nil),               // 11: driver_history.GetDriverHistoriesByActionRequest
+	(*GetDriverHistoriesByDriverIDAndActionRequest)(nil),    // 12: driver_history.GetDriverHistoriesByDriverIDAndActionRequest
+	(*GetDriverHistoriesByDriverIDBetweenDatesRequest)(nil), // 13: driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest
+	(*GetDriverHistoriesByActionBetweenDatesRequest)(nil),   // 14: driver_history.GetDriverHistoriesByActionBetweenDatesRequest
+	(*CountAcceptedCommandsByDayRequest)(nil),               // 15: driver_history.CountAcceptedCommandsByDayRequest
+	(*CountAcceptedCommandsByDayForAllDriversRequest)(nil),  // 16: driver_history.CountAcceptedCommandsByDayForAllDriversRequest
+	(*CommandCountByDay)(nil),                               // 17: driver_history.CommandCountByDay
+	(*CommandCountByDayListResponse)(nil),                   // 18: driver_history.CommandCountByDayListResponse
+	(*CountActionsByDriverRequest)(nil),                     // 19: driver_history.CountActionsByDriverRequest
+	(*ActionCount)(nil),                                     // 20: driver_history.ActionCount
+	(*ActionCountListResponse)(nil),                         // 21: driver_history.ActionCountListResponse
+	(*GetWorkedHoursByDayRequest)(nil),                      // 22: driver_history.GetWorkedHoursByDayRequest
+	(*GetWorkedHoursBetweenDatesRequest)(nil),               // 23: driver_history.GetWorkedHoursBetweenDatesRequest
+	(*WorkedHours)(nil),                                     // 24: driver_history.WorkedHours
+	(*WorkedHoursResponse)(nil),                             // 25: driver_history.WorkedHoursResponse
+	(*WorkedHoursListResponse)(nil),                         // 26: driver_history.WorkedHoursListResponse
+	(*GetTotalCommandFeesByDayRequest)(nil),                 // 27: driver_history.GetTotalCommandFeesByDayRequest
+	(*GetDriverHistoryRequest)(nil),                         // 28: driver_history.GetDriverHistoryRequest
+	(*FeeByDay)(nil),                                        // 29: driver_history.FeeByDay
+	(*FeeByDayListResponse)(nil),                            // 30: driver_history.FeeByDayListResponse
+	(*TrackJoinZoneRequest)(nil),                            // 31: driver_history.TrackJoinZoneRequest
+	(*TrackLeaveZoneRequest)(nil),                           // 32: driver_history.TrackLeaveZoneRequest
+	(*TrackAcceptCommandRequest)(nil),                       // 33: driver_history.TrackAcceptCommandRequest
+	(*TrackShareCommandRequest)(nil),                        // 34: driver_history.TrackShareCommandRequest
+	(*TrackDeliverCommandRequest)(nil),                      // 35: driver_history.TrackDeliverCommandRequest
+	(*timestamppb.Timestamp)(nil),                           // 36: google.protobuf.Timestamp
+	(*Command)(nil),                                         // 37: cat.Command
 }
 var file_driver_history_proto_depIdxs = []int32{
 	0,  // 0: driver_history.DriverHistory.action:type_name -> driver_history.DriverHistoryAction
-	34, // 1: driver_history.DriverHistory.created_at:type_name -> google.protobuf.Timestamp
-	34, // 2: driver_history.DriverHistory.updated_at:type_name -> google.protobuf.Timestamp
-	1,  // 3: driver_history.DriverHistoryResponse.driver_history:type_name -> driver_history.DriverHistory
-	1,  // 4: driver_history.DriverHistoryListResponse.driver_histories:type_name -> driver_history.DriverHistory
-	0,  // 5: driver_history.CreateDriverHistoryRequest.action:type_name -> driver_history.DriverHistoryAction
-	0,  // 6: driver_history.UpdateDriverHistoryRequest.action:type_name -> driver_history.DriverHistoryAction
-	0,  // 7: driver_history.GetDriverHistoriesByActionRequest.action:type_name -> driver_history.DriverHistoryAction
-	0,  // 8: driver_history.GetDriverHistoriesByDriverIDAndActionRequest.action:type_name -> driver_history.DriverHistoryAction
-	34, // 9: driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest.start_date:type_name -> google.protobuf.Timestamp
-	34, // 10: driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest.end_date:type_name -> google.protobuf.Timestamp
-	0,  // 11: driver_history.GetDriverHistoriesByActionBetweenDatesRequest.action:type_name -> driver_history.DriverHistoryAction
-	34, // 12: driver_history.GetDriverHistoriesByActionBetweenDatesRequest.start_date:type_name -> google.protobuf.Timestamp
-	34, // 13: driver_history.GetDriverHistoriesByActionBetweenDatesRequest.end_date:type_name -> google.protobuf.Timestamp
-	34, // 14: driver_history.CountAcceptedCommandsByDayRequest.start_date:type_name -> google.protobuf.Timestamp
-	34, // 15: driver_history.CountAcceptedCommandsByDayRequest.end_date:type_name -> google.protobuf.Timestamp
-	34, // 16: driver_history.CountAcceptedCommandsByDayForAllDriversRequest.start_date:type_name -> google.protobuf.Timestamp
-	34, // 17: driver_history.CountAcceptedCommandsByDayForAllDriversRequest.end_date:type_name -> google.protobuf.Timestamp
-	16, // 18: driver_history.CommandCountByDayListResponse.items:type_name -> driver_history.CommandCountByDay
-	34, // 19: driver_history.CountActionsByDriverRequest.start_date:type_name -> google.protobuf.Timestamp
-	34, // 20: driver_history.CountActionsByDriverRequest.end_date:type_name -> google.protobuf.Timestamp
-	0,  // 21: driver_history.ActionCount.action:type_name -> driver_history.DriverHistoryAction
-	19, // 22: driver_history.ActionCountListResponse.items:type_name -> driver_history.ActionCount
-	34, // 23: driver_history.GetWorkedHoursByDayRequest.day:type_name -> google.protobuf.Timestamp
-	34, // 24: driver_history.GetWorkedHoursBetweenDatesRequest.start_date:type_name -> google.protobuf.Timestamp
-	34, // 25: driver_history.GetWorkedHoursBetweenDatesRequest.end_date:type_name -> google.protobuf.Timestamp
-	23, // 26: driver_history.WorkedHoursResponse.worked_hours:type_name -> driver_history.WorkedHours
-	23, // 27: driver_history.WorkedHoursListResponse.items:type_name -> driver_history.WorkedHours
-	34, // 28: driver_history.GetTotalCommandFeesByDayRequest.start_date:type_name -> google.protobuf.Timestamp
-	34, // 29: driver_history.GetTotalCommandFeesByDayRequest.end_date:type_name -> google.protobuf.Timestamp
-	27, // 30: driver_history.FeeByDayListResponse.items:type_name -> driver_history.FeeByDay
-	4,  // 31: driver_history.DriverHistoryService.CreateDriverHistory:input_type -> driver_history.CreateDriverHistoryRequest
-	5,  // 32: driver_history.DriverHistoryService.GetDriverHistoryByID:input_type -> driver_history.GetDriverHistoryByIDRequest
-	6,  // 33: driver_history.DriverHistoryService.ReadAllDriverHistories:input_type -> driver_history.ReadAllDriverHistoriesRequest
-	7,  // 34: driver_history.DriverHistoryService.UpdateDriverHistory:input_type -> driver_history.UpdateDriverHistoryRequest
-	8,  // 35: driver_history.DriverHistoryService.DeleteDriverHistory:input_type -> driver_history.DeleteDriverHistoryRequest
-	9,  // 36: driver_history.DriverHistoryService.GetDriverHistoriesByDriverID:input_type -> driver_history.GetDriverHistoriesByDriverIDRequest
-	10, // 37: driver_history.DriverHistoryService.GetDriverHistoriesByAction:input_type -> driver_history.GetDriverHistoriesByActionRequest
-	11, // 38: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDAndAction:input_type -> driver_history.GetDriverHistoriesByDriverIDAndActionRequest
-	12, // 39: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDBetweenDates:input_type -> driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest
-	13, // 40: driver_history.DriverHistoryService.GetDriverHistoriesByActionBetweenDates:input_type -> driver_history.GetDriverHistoriesByActionBetweenDatesRequest
-	14, // 41: driver_history.DriverHistoryService.CountAcceptedCommandsByDay:input_type -> driver_history.CountAcceptedCommandsByDayRequest
-	15, // 42: driver_history.DriverHistoryService.CountAcceptedCommandsByDayForAllDrivers:input_type -> driver_history.CountAcceptedCommandsByDayForAllDriversRequest
-	18, // 43: driver_history.DriverHistoryService.CountActionsByDriver:input_type -> driver_history.CountActionsByDriverRequest
-	21, // 44: driver_history.DriverHistoryService.GetWorkedHoursByDay:input_type -> driver_history.GetWorkedHoursByDayRequest
-	22, // 45: driver_history.DriverHistoryService.GetWorkedHoursBetweenDates:input_type -> driver_history.GetWorkedHoursBetweenDatesRequest
-	26, // 46: driver_history.DriverHistoryService.GetTotalCommandFeesByDay:input_type -> driver_history.GetTotalCommandFeesByDayRequest
-	29, // 47: driver_history.DriverHistoryService.TrackJoinZone:input_type -> driver_history.TrackJoinZoneRequest
-	30, // 48: driver_history.DriverHistoryService.TrackLeaveZone:input_type -> driver_history.TrackLeaveZoneRequest
-	31, // 49: driver_history.DriverHistoryService.TrackAcceptCommand:input_type -> driver_history.TrackAcceptCommandRequest
-	32, // 50: driver_history.DriverHistoryService.TrackShareCommand:input_type -> driver_history.TrackShareCommandRequest
-	33, // 51: driver_history.DriverHistoryService.TrackDeliverCommand:input_type -> driver_history.TrackDeliverCommandRequest
-	2,  // 52: driver_history.DriverHistoryService.CreateDriverHistory:output_type -> driver_history.DriverHistoryResponse
-	2,  // 53: driver_history.DriverHistoryService.GetDriverHistoryByID:output_type -> driver_history.DriverHistoryResponse
-	3,  // 54: driver_history.DriverHistoryService.ReadAllDriverHistories:output_type -> driver_history.DriverHistoryListResponse
-	2,  // 55: driver_history.DriverHistoryService.UpdateDriverHistory:output_type -> driver_history.DriverHistoryResponse
-	35, // 56: driver_history.DriverHistoryService.DeleteDriverHistory:output_type -> google.protobuf.Empty
-	3,  // 57: driver_history.DriverHistoryService.GetDriverHistoriesByDriverID:output_type -> driver_history.DriverHistoryListResponse
-	3,  // 58: driver_history.DriverHistoryService.GetDriverHistoriesByAction:output_type -> driver_history.DriverHistoryListResponse
-	3,  // 59: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDAndAction:output_type -> driver_history.DriverHistoryListResponse
-	3,  // 60: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDBetweenDates:output_type -> driver_history.DriverHistoryListResponse
-	3,  // 61: driver_history.DriverHistoryService.GetDriverHistoriesByActionBetweenDates:output_type -> driver_history.DriverHistoryListResponse
-	17, // 62: driver_history.DriverHistoryService.CountAcceptedCommandsByDay:output_type -> driver_history.CommandCountByDayListResponse
-	17, // 63: driver_history.DriverHistoryService.CountAcceptedCommandsByDayForAllDrivers:output_type -> driver_history.CommandCountByDayListResponse
-	20, // 64: driver_history.DriverHistoryService.CountActionsByDriver:output_type -> driver_history.ActionCountListResponse
-	24, // 65: driver_history.DriverHistoryService.GetWorkedHoursByDay:output_type -> driver_history.WorkedHoursResponse
-	25, // 66: driver_history.DriverHistoryService.GetWorkedHoursBetweenDates:output_type -> driver_history.WorkedHoursListResponse
-	28, // 67: driver_history.DriverHistoryService.GetTotalCommandFeesByDay:output_type -> driver_history.FeeByDayListResponse
-	2,  // 68: driver_history.DriverHistoryService.TrackJoinZone:output_type -> driver_history.DriverHistoryResponse
-	2,  // 69: driver_history.DriverHistoryService.TrackLeaveZone:output_type -> driver_history.DriverHistoryResponse
-	2,  // 70: driver_history.DriverHistoryService.TrackAcceptCommand:output_type -> driver_history.DriverHistoryResponse
-	2,  // 71: driver_history.DriverHistoryService.TrackShareCommand:output_type -> driver_history.DriverHistoryResponse
-	2,  // 72: driver_history.DriverHistoryService.TrackDeliverCommand:output_type -> driver_history.DriverHistoryResponse
-	52, // [52:73] is the sub-list for method output_type
-	31, // [31:52] is the sub-list for method input_type
-	31, // [31:31] is the sub-list for extension type_name
-	31, // [31:31] is the sub-list for extension extendee
-	0,  // [0:31] is the sub-list for field type_name
+	36, // 1: driver_history.DriverHistory.created_at:type_name -> google.protobuf.Timestamp
+	36, // 2: driver_history.DriverHistory.updated_at:type_name -> google.protobuf.Timestamp
+	37, // 3: driver_history.DriverHistory.command:type_name -> cat.Command
+	1,  // 4: driver_history.DriverHistoryResponse.driver_history:type_name -> driver_history.DriverHistory
+	1,  // 5: driver_history.DriverHistoryListResponse.driver_histories:type_name -> driver_history.DriverHistory
+	1,  // 6: driver_history.DriverHistoriesResponse.driver_histories:type_name -> driver_history.DriverHistory
+	0,  // 7: driver_history.CreateDriverHistoryRequest.action:type_name -> driver_history.DriverHistoryAction
+	0,  // 8: driver_history.UpdateDriverHistoryRequest.action:type_name -> driver_history.DriverHistoryAction
+	0,  // 9: driver_history.GetDriverHistoriesByActionRequest.action:type_name -> driver_history.DriverHistoryAction
+	0,  // 10: driver_history.GetDriverHistoriesByDriverIDAndActionRequest.action:type_name -> driver_history.DriverHistoryAction
+	36, // 11: driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 12: driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest.end_date:type_name -> google.protobuf.Timestamp
+	0,  // 13: driver_history.GetDriverHistoriesByActionBetweenDatesRequest.action:type_name -> driver_history.DriverHistoryAction
+	36, // 14: driver_history.GetDriverHistoriesByActionBetweenDatesRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 15: driver_history.GetDriverHistoriesByActionBetweenDatesRequest.end_date:type_name -> google.protobuf.Timestamp
+	36, // 16: driver_history.CountAcceptedCommandsByDayRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 17: driver_history.CountAcceptedCommandsByDayRequest.end_date:type_name -> google.protobuf.Timestamp
+	36, // 18: driver_history.CountAcceptedCommandsByDayForAllDriversRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 19: driver_history.CountAcceptedCommandsByDayForAllDriversRequest.end_date:type_name -> google.protobuf.Timestamp
+	17, // 20: driver_history.CommandCountByDayListResponse.items:type_name -> driver_history.CommandCountByDay
+	36, // 21: driver_history.CountActionsByDriverRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 22: driver_history.CountActionsByDriverRequest.end_date:type_name -> google.protobuf.Timestamp
+	0,  // 23: driver_history.ActionCount.action:type_name -> driver_history.DriverHistoryAction
+	20, // 24: driver_history.ActionCountListResponse.items:type_name -> driver_history.ActionCount
+	36, // 25: driver_history.GetWorkedHoursByDayRequest.day:type_name -> google.protobuf.Timestamp
+	36, // 26: driver_history.GetWorkedHoursBetweenDatesRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 27: driver_history.GetWorkedHoursBetweenDatesRequest.end_date:type_name -> google.protobuf.Timestamp
+	24, // 28: driver_history.WorkedHoursResponse.worked_hours:type_name -> driver_history.WorkedHours
+	24, // 29: driver_history.WorkedHoursListResponse.items:type_name -> driver_history.WorkedHours
+	36, // 30: driver_history.GetTotalCommandFeesByDayRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 31: driver_history.GetTotalCommandFeesByDayRequest.end_date:type_name -> google.protobuf.Timestamp
+	36, // 32: driver_history.GetDriverHistoryRequest.start_date:type_name -> google.protobuf.Timestamp
+	36, // 33: driver_history.GetDriverHistoryRequest.end_date:type_name -> google.protobuf.Timestamp
+	29, // 34: driver_history.FeeByDayListResponse.items:type_name -> driver_history.FeeByDay
+	6,  // 35: driver_history.DriverHistoryService.GetDriverHistoryByID:input_type -> driver_history.GetDriverHistoryByIDRequest
+	28, // 36: driver_history.DriverHistoryService.GetDriverHistories:input_type -> driver_history.GetDriverHistoryRequest
+	7,  // 37: driver_history.DriverHistoryService.ReadAllDriverHistories:input_type -> driver_history.ReadAllDriverHistoriesRequest
+	8,  // 38: driver_history.DriverHistoryService.UpdateDriverHistory:input_type -> driver_history.UpdateDriverHistoryRequest
+	10, // 39: driver_history.DriverHistoryService.GetDriverHistoriesByDriverID:input_type -> driver_history.GetDriverHistoriesByDriverIDRequest
+	11, // 40: driver_history.DriverHistoryService.GetDriverHistoriesByAction:input_type -> driver_history.GetDriverHistoriesByActionRequest
+	12, // 41: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDAndAction:input_type -> driver_history.GetDriverHistoriesByDriverIDAndActionRequest
+	13, // 42: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDBetweenDates:input_type -> driver_history.GetDriverHistoriesByDriverIDBetweenDatesRequest
+	14, // 43: driver_history.DriverHistoryService.GetDriverHistoriesByActionBetweenDates:input_type -> driver_history.GetDriverHistoriesByActionBetweenDatesRequest
+	15, // 44: driver_history.DriverHistoryService.CountAcceptedCommandsByDay:input_type -> driver_history.CountAcceptedCommandsByDayRequest
+	16, // 45: driver_history.DriverHistoryService.CountAcceptedCommandsByDayForAllDrivers:input_type -> driver_history.CountAcceptedCommandsByDayForAllDriversRequest
+	19, // 46: driver_history.DriverHistoryService.CountActionsByDriver:input_type -> driver_history.CountActionsByDriverRequest
+	22, // 47: driver_history.DriverHistoryService.GetWorkedHoursByDay:input_type -> driver_history.GetWorkedHoursByDayRequest
+	23, // 48: driver_history.DriverHistoryService.GetWorkedHoursBetweenDates:input_type -> driver_history.GetWorkedHoursBetweenDatesRequest
+	27, // 49: driver_history.DriverHistoryService.GetTotalCommandFeesByDay:input_type -> driver_history.GetTotalCommandFeesByDayRequest
+	31, // 50: driver_history.DriverHistoryService.TrackJoinZone:input_type -> driver_history.TrackJoinZoneRequest
+	32, // 51: driver_history.DriverHistoryService.TrackLeaveZone:input_type -> driver_history.TrackLeaveZoneRequest
+	33, // 52: driver_history.DriverHistoryService.TrackAcceptCommand:input_type -> driver_history.TrackAcceptCommandRequest
+	34, // 53: driver_history.DriverHistoryService.TrackShareCommand:input_type -> driver_history.TrackShareCommandRequest
+	35, // 54: driver_history.DriverHistoryService.TrackDeliverCommand:input_type -> driver_history.TrackDeliverCommandRequest
+	2,  // 55: driver_history.DriverHistoryService.GetDriverHistoryByID:output_type -> driver_history.DriverHistoryResponse
+	4,  // 56: driver_history.DriverHistoryService.GetDriverHistories:output_type -> driver_history.DriverHistoriesResponse
+	3,  // 57: driver_history.DriverHistoryService.ReadAllDriverHistories:output_type -> driver_history.DriverHistoryListResponse
+	2,  // 58: driver_history.DriverHistoryService.UpdateDriverHistory:output_type -> driver_history.DriverHistoryResponse
+	3,  // 59: driver_history.DriverHistoryService.GetDriverHistoriesByDriverID:output_type -> driver_history.DriverHistoryListResponse
+	3,  // 60: driver_history.DriverHistoryService.GetDriverHistoriesByAction:output_type -> driver_history.DriverHistoryListResponse
+	3,  // 61: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDAndAction:output_type -> driver_history.DriverHistoryListResponse
+	3,  // 62: driver_history.DriverHistoryService.GetDriverHistoriesByDriverIDBetweenDates:output_type -> driver_history.DriverHistoryListResponse
+	3,  // 63: driver_history.DriverHistoryService.GetDriverHistoriesByActionBetweenDates:output_type -> driver_history.DriverHistoryListResponse
+	18, // 64: driver_history.DriverHistoryService.CountAcceptedCommandsByDay:output_type -> driver_history.CommandCountByDayListResponse
+	18, // 65: driver_history.DriverHistoryService.CountAcceptedCommandsByDayForAllDrivers:output_type -> driver_history.CommandCountByDayListResponse
+	21, // 66: driver_history.DriverHistoryService.CountActionsByDriver:output_type -> driver_history.ActionCountListResponse
+	25, // 67: driver_history.DriverHistoryService.GetWorkedHoursByDay:output_type -> driver_history.WorkedHoursResponse
+	26, // 68: driver_history.DriverHistoryService.GetWorkedHoursBetweenDates:output_type -> driver_history.WorkedHoursListResponse
+	30, // 69: driver_history.DriverHistoryService.GetTotalCommandFeesByDay:output_type -> driver_history.FeeByDayListResponse
+	2,  // 70: driver_history.DriverHistoryService.TrackJoinZone:output_type -> driver_history.DriverHistoryResponse
+	2,  // 71: driver_history.DriverHistoryService.TrackLeaveZone:output_type -> driver_history.DriverHistoryResponse
+	2,  // 72: driver_history.DriverHistoryService.TrackAcceptCommand:output_type -> driver_history.DriverHistoryResponse
+	2,  // 73: driver_history.DriverHistoryService.TrackShareCommand:output_type -> driver_history.DriverHistoryResponse
+	2,  // 74: driver_history.DriverHistoryService.TrackDeliverCommand:output_type -> driver_history.DriverHistoryResponse
+	55, // [55:75] is the sub-list for method output_type
+	35, // [35:55] is the sub-list for method input_type
+	35, // [35:35] is the sub-list for extension type_name
+	35, // [35:35] is the sub-list for extension extendee
+	0,  // [0:35] is the sub-list for field type_name
 }
 
 func init() { file_driver_history_proto_init() }
@@ -2165,13 +2316,14 @@ func file_driver_history_proto_init() {
 	if File_driver_history_proto != nil {
 		return
 	}
+	file_command_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_driver_history_proto_rawDesc), len(file_driver_history_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   33,
+			NumMessages:   35,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
