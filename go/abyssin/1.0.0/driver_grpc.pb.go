@@ -26,6 +26,7 @@ const (
 	DriverService_AcceptCommand_FullMethodName  = "/cat.DriverService/AcceptCommand"
 	DriverService_PickupCommand_FullMethodName  = "/cat.DriverService/PickupCommand"
 	DriverService_AcceptSlot_FullMethodName     = "/cat.DriverService/AcceptSlot"
+	DriverService_FindPath_FullMethodName       = "/cat.DriverService/FindPath"
 	DriverService_ChangeSlot_FullMethodName     = "/cat.DriverService/ChangeSlot"
 	DriverService_DeliverCommand_FullMethodName = "/cat.DriverService/DeliverCommand"
 )
@@ -41,6 +42,7 @@ type DriverServiceClient interface {
 	AcceptCommand(ctx context.Context, in *AcceptCommandRequest, opts ...grpc.CallOption) (*AcceptCommandResponse, error)
 	PickupCommand(ctx context.Context, in *PickupCommandRequest, opts ...grpc.CallOption) (*PickupCommandResponse, error)
 	AcceptSlot(ctx context.Context, in *AcceptSlotRequest, opts ...grpc.CallOption) (*AcceptSlotResponse, error)
+	FindPath(ctx context.Context, in *FindPathRequest, opts ...grpc.CallOption) (*FindPathResponse, error)
 	ChangeSlot(ctx context.Context, in *ChangeSlotRequest, opts ...grpc.CallOption) (*ChangeSlotResponse, error)
 	DeliverCommand(ctx context.Context, in *DeliverCommandRequest, opts ...grpc.CallOption) (*DeliverCommandResponse, error)
 }
@@ -123,6 +125,16 @@ func (c *driverServiceClient) AcceptSlot(ctx context.Context, in *AcceptSlotRequ
 	return out, nil
 }
 
+func (c *driverServiceClient) FindPath(ctx context.Context, in *FindPathRequest, opts ...grpc.CallOption) (*FindPathResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(FindPathResponse)
+	err := c.cc.Invoke(ctx, DriverService_FindPath_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *driverServiceClient) ChangeSlot(ctx context.Context, in *ChangeSlotRequest, opts ...grpc.CallOption) (*ChangeSlotResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ChangeSlotResponse)
@@ -154,6 +166,7 @@ type DriverServiceServer interface {
 	AcceptCommand(context.Context, *AcceptCommandRequest) (*AcceptCommandResponse, error)
 	PickupCommand(context.Context, *PickupCommandRequest) (*PickupCommandResponse, error)
 	AcceptSlot(context.Context, *AcceptSlotRequest) (*AcceptSlotResponse, error)
+	FindPath(context.Context, *FindPathRequest) (*FindPathResponse, error)
 	ChangeSlot(context.Context, *ChangeSlotRequest) (*ChangeSlotResponse, error)
 	DeliverCommand(context.Context, *DeliverCommandRequest) (*DeliverCommandResponse, error)
 	mustEmbedUnimplementedDriverServiceServer()
@@ -186,6 +199,9 @@ func (UnimplementedDriverServiceServer) PickupCommand(context.Context, *PickupCo
 }
 func (UnimplementedDriverServiceServer) AcceptSlot(context.Context, *AcceptSlotRequest) (*AcceptSlotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AcceptSlot not implemented")
+}
+func (UnimplementedDriverServiceServer) FindPath(context.Context, *FindPathRequest) (*FindPathResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method FindPath not implemented")
 }
 func (UnimplementedDriverServiceServer) ChangeSlot(context.Context, *ChangeSlotRequest) (*ChangeSlotResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ChangeSlot not implemented")
@@ -340,6 +356,24 @@ func _DriverService_AcceptSlot_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _DriverService_FindPath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(FindPathRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverServiceServer).FindPath(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DriverService_FindPath_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverServiceServer).FindPath(ctx, req.(*FindPathRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _DriverService_ChangeSlot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ChangeSlotRequest)
 	if err := dec(in); err != nil {
@@ -410,6 +444,10 @@ var DriverService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AcceptSlot",
 			Handler:    _DriverService_AcceptSlot_Handler,
+		},
+		{
+			MethodName: "FindPath",
+			Handler:    _DriverService_FindPath_Handler,
 		},
 		{
 			MethodName: "ChangeSlot",
