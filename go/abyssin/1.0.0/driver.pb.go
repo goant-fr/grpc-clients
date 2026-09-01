@@ -843,6 +843,8 @@ func (x *Leg) GetSteps() []*Step {
 
 type FindPathRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Lat           float64                `protobuf:"fixed64,1,opt,name=lat,proto3" json:"lat,omitempty"`
+	Lon           float64                `protobuf:"fixed64,2,opt,name=lon,proto3" json:"lon,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -875,6 +877,20 @@ func (x *FindPathRequest) ProtoReflect() protoreflect.Message {
 // Deprecated: Use FindPathRequest.ProtoReflect.Descriptor instead.
 func (*FindPathRequest) Descriptor() ([]byte, []int) {
 	return file_driver_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *FindPathRequest) GetLat() float64 {
+	if x != nil {
+		return x.Lat
+	}
+	return 0
+}
+
+func (x *FindPathRequest) GetLon() float64 {
+	if x != nil {
+		return x.Lon
+	}
+	return 0
 }
 
 type Path struct {
@@ -1530,8 +1546,10 @@ const file_driver_proto_rawDesc = "" +
 	"\bdistance\x18\x01 \x01(\x01R\bdistance\x12\x1a\n" +
 	"\bduration\x18\x02 \x01(\x01R\bduration\x12\x18\n" +
 	"\asummary\x18\x03 \x01(\tR\asummary\x12\x1f\n" +
-	"\x05steps\x18\x04 \x03(\v2\t.cat.StepR\x05steps\"\x11\n" +
-	"\x0fFindPathRequest\"\xb9\x02\n" +
+	"\x05steps\x18\x04 \x03(\v2\t.cat.StepR\x05steps\"g\n" +
+	"\x0fFindPathRequest\x12)\n" +
+	"\x03lat\x18\x01 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80V@!\x00\x00\x00\x00\x00\x80V\xc0R\x03lat\x12)\n" +
+	"\x03lon\x18\x02 \x01(\x01B\x17\xbaH\x14\x12\x12\x11\x00\x00\x00\x00\x00\x80f@!\x00\x00\x00\x00\x00\x80f\xc0R\x03lon\"\xb9\x02\n" +
 	"\x04Path\x12\x1a\n" +
 	"\bgeometry\x18\x02 \x01(\tR\bgeometry\x12\x1a\n" +
 	"\bdistance\x18\x03 \x01(\x01R\bdistance\x12\x1a\n" +
