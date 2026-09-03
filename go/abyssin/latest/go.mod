@@ -3,7 +3,7 @@ module github.com/goant-fr/grpc-clients/go/abyssin/latest
 go 1.25.0
 
 require (
-	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.12-20260825204119-511051f7f437.1
+	buf.build/gen/go/bufbuild/protovalidate/protocolbuffers/go v1.36.12-20260825204119-511051f7f437.2
 	google.golang.org/genproto/googleapis/api v0.0.0-20260831171406-18b4a7587f8a
 	google.golang.org/grpc v1.83.2
 	google.golang.org/protobuf v1.36.12
