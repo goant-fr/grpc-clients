@@ -24,7 +24,7 @@ var File_calico_proto protoreflect.FileDescriptor
 
 const file_calico_proto_rawDesc = "" +
 	"\n" +
-	"\fcalico.proto\x1a\x0frecipient.proto\x1a\vorder.protoB\x1eB\vCalicoProtoP\x01Z\rmau/pkg/pb;pb"
+	"\fcalico.proto\x1a\x0frecipient.proto\x1a\vorder.proto\x1a\rinvoice.protoB\x1eB\vCalicoProtoP\x01Z\rmau/pkg/pb;pb"
 
 var file_calico_proto_goTypes = []any{}
 var file_calico_proto_depIdxs = []int32{
@@ -42,6 +42,7 @@ func file_calico_proto_init() {
 	}
 	file_recipient_proto_init()
 	file_order_proto_init()
+	file_invoice_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

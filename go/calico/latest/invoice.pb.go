@@ -330,10 +330,10 @@ const file_invoice_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\tB\b\xbaH\x05r\x03\xb0\x01\x01R\x02id\"F\n" +
 	"\x16GetInvoiceByIdResponse\x12\x1a\n" +
 	"\bfilename\x18\x01 \x01(\tR\bfilename\x12\x10\n" +
-	"\x03pdf\x18\x02 \x01(\tR\x03pdf2\xf2\x01\n" +
-	"\x0eInvoiceService\x12q\n" +
-	"\x11GetInvoiceByToken\x12!.invoice.GetInvoiceByTokenRequest\x1a\".invoice.GetInvoiceByTokenResponse\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/api/invoices\x12m\n" +
-	"\x0eGetInvoiceById\x12\x1e.invoice.GetInvoiceByIdRequest\x1a\x1f.invoice.GetInvoiceByIdResponse\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/api/invoices/{id}Bf\n" +
+	"\x03pdf\x18\x02 \x01(\tR\x03pdf2\xf8\x01\n" +
+	"\x0eInvoiceService\x12t\n" +
+	"\x11GetInvoiceByToken\x12!.invoice.GetInvoiceByTokenRequest\x1a\".invoice.GetInvoiceByTokenResponse\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/orders/invoices\x12p\n" +
+	"\x0eGetInvoiceById\x12\x1e.invoice.GetInvoiceByIdRequest\x1a\x1f.invoice.GetInvoiceByIdResponse\"\x1d\x82\xd3\xe4\x93\x02\x17\x12\x15/orders/invoices/{id}Bf\n" +
 	"\vcom.invoiceB\fInvoiceProtoP\x01Z\rmau/pkg/pb;pb\xa2\x02\x03IXX\xaa\x02\aInvoice\xca\x02\aInvoice\xe2\x02\x13Invoice\\GPBMetadata\xea\x02\aInvoiceb\x06proto3"
 
 var (
